@@ -1,8 +1,8 @@
-package com.example.remtalchemy
+package com.example.rentalchemy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.remtalchemy.ui.main.MainFragment
+import com.example.rentalchemy.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -72,7 +72,7 @@
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/detail_state"
         app:layout_constraintTop_toBottomOf="@id/detail_street"
-        app:layout_constraintEnd_toStartOf="detail_zip"/>
+        app:layout_constraintEnd_toStartOf="@+id/detail_zip" />
 
     <TextView
         android:id="@+id/detail_zip"

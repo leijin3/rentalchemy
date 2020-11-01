@@ -1,4 +1,4 @@
-package com.example.remtalchemy.ui.main
+package com.example.rentalchemy.ui.main
 
 import androidx.lifecycle.ViewModel
 
