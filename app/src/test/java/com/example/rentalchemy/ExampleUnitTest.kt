@@ -1,4 +1,4 @@
-package com.example.remtalchemy
+package com.example.rentalchemy
 
 import org.junit.Test
 
