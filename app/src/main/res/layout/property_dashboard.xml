@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/dashboard_addressTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1234 Main Street Apt 3"
+        android:textSize="24dp"
+        android:padding="12dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/dashboard_cityTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="Austin"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/dashboard_stateTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_addressTV" />
+
+    <TextView
+        android:id="@+id/dashboard_stateTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Texas"
+        android:textSize="24dp"
+        android:padding="12dp"
+        app:layout_constraintStart_toEndOf="@id/dashboard_cityTV"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_addressTV"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/design_default_color_secondary_variant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_cityTV"
+        app:layout_constraintBottom_toTopOf="@id/property_detailBut"/>
+
+
+
+    <Button
+        android:id="@+id/property_detailBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Property Detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_cityTV"
+        app:layout_constraintEnd_toStartOf="@+id/tenant_infoBut"
+        app:layout_constraintBottom_toTopOf="@id/maintenanceBut"/>
+
+    <Button
+        android:id="@+id/tenant_infoBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tenant Info"
+        app:layout_constraintStart_toEndOf="@id/property_detailBut"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_stateTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/appliancesBut"/>
+
+    <Button
+        android:id="@+id/maintenanceBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maintenance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/property_detailBut"
+        app:layout_constraintEnd_toStartOf="@+id/appliancesBut"
+        app:layout_constraintBottom_toTopOf="@id/incomeBut"/>
+
+    <Button
+        android:id="@+id/appliancesBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appliances"
+        app:layout_constraintStart_toEndOf="@id/maintenanceBut"
+        app:layout_constraintTop_toBottomOf="@id/tenant_infoBut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/expensesBut"/>
+
+    <Button
+        android:id="@+id/incomeBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Income"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/maintenanceBut"
+        app:layout_constraintEnd_toStartOf="@+id/expensesBut"
+        app:layout_constraintBottom_toTopOf="@id/reportBut"/>
+
+    <Button
+        android:id="@+id/expensesBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expenses"
+        app:layout_constraintStart_toEndOf="@id/incomeBut"
+        app:layout_constraintTop_toBottomOf="@id/appliancesBut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/reportBut"/>
+
+    <Button
+        android:id="@+id/reportBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generate Report"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/incomeBut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
