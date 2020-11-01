@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/street"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Street Address: "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/detail_street"/>
+
+    <TextView
+        android:id="@+id/detail_street"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1234 Main Street Apt 3"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/street"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City: "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/street"
+        app:layout_constraintEnd_toStartOf="@+id/detail_city"/>
+
+    <TextView
+        android:id="@+id/detail_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Austin"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/city"
+        app:layout_constraintTop_toBottomOf="@id/detail_street"
+        app:layout_constraintEnd_toStartOf="@+id/state"/>
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="State: "
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/detail_city"
+        app:layout_constraintTop_toBottomOf="@id/detail_street"
+        app:layout_constraintEnd_toStartOf="@id/detail_state"/>
+
+    <TextView
+        android:id="@+id/detail_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Texas"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/state"
+        app:layout_constraintTop_toBottomOf="@id/detail_street"
+        app:layout_constraintEnd_toStartOf="@id/zip"/>
+
+    <TextView
+        android:id="@+id/zip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Postal Code:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/detail_state"
+        app:layout_constraintTop_toBottomOf="@id/detail_street"
+        app:layout_constraintEnd_toStartOf="detail_zip"/>
+
+    <TextView
+        android:id="@+id/detail_zip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="98765"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/zip"
+        app:layout_constraintTop_toBottomOf="@id/detail_street"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/edit_detailBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Property Details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_zip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
