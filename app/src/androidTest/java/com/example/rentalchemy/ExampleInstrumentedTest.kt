@@ -1,4 +1,4 @@
-package com.example.remtalchemy
+package com.example.rentalchemy
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
