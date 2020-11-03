@@ -2,10 +2,13 @@ package com.example.rentalchemy.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rentalchemy.R
 
 class MainFragment : Fragment() {
@@ -14,10 +17,13 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+
+
+
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
@@ -25,10 +31,31 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
+//        initAdapter(root)
+        initPropertyObservers()
+        viewModel.netProperties()
 
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+
+//        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+
+    // Set up the adapter
+//    private fun initAdapter(root: View) {
+//        adapter = PostRowAdapter(viewModel)
+//        val rv = root.recyclerView
+//        rv.adapter = adapter
+//        rv.layoutManager = LinearLayoutManager(context)
+//    }
+
+    private fun initPropertyObservers() {
+        viewModel.observeProperties().observe(viewLifecycleOwner, {
+//            adapter.submitList(it)
+//            adapter.notifyDataSetChanged()
+            Log.d("XXX", it.toString())
+        })
     }
 
 }
