@@ -2,8 +2,6 @@ package com.example.rentalchemy.database.model
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import java.time.Year
-import java.util.*
 
 @Serializable
 data class Property (var id: Long,

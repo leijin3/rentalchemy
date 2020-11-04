@@ -1,7 +1,8 @@
 package com.example.rentalchemy.database.model
 
-import java.util.*
+import kotlinx.serialization.Serializable
 
-data class Appliance (var idi: Long, var propertyId: Long, var type: String, var price: Float,
-                      var datePurchased: Date, var warranty: Date){
+@Serializable
+data class Appliance (var id: Long, var property_id: Long, var type: String, var price: Float,
+                      var date_purchased: String, var warranty: String){
 }
