@@ -1,12 +1,13 @@
 package com.example.rentalchemy.database.model
 
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Property (var id: Long,
                      var user_id: Long,
-                     var st_address: String,
+                     @SerialName("st_address") var streetAddress: String,
                      var city: String,
                      var state: String,
                      var zip : String,
