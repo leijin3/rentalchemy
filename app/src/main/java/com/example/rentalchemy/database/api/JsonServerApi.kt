@@ -1,6 +1,7 @@
 package com.example.rentalchemy.database.api
 
 import android.text.SpannableString
+import android.util.Log
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.User
 import com.google.gson.GsonBuilder
@@ -40,14 +41,14 @@ interface JsonServerApi {
 
         private var httpurl = HttpUrl.Builder()
             .scheme("http")
-            .host("10.0.2.2")
+            .host("localhost")
             .port(3000)
             .build()
         private val contentType = "application/json".toMediaType()
 
         fun create(): JsonServerApi = create(httpurl)
         private fun create(httpUrl: HttpUrl): JsonServerApi {
-
+            Log.d("XXX", "create: httpurl = " + httpurl.toString() + " contentType = " + contentType.type)
             // https://github.com/JakeWharton/retrofit2-kotlinx-serialization-converter
             return Retrofit.Builder()
                 .baseUrl(httpUrl)

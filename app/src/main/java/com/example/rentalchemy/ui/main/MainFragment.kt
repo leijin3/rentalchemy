@@ -5,7 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 
@@ -16,44 +19,31 @@ class MainFragment : Fragment() {
     }
 
     private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var propertyListFragment: PropertyListFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-
-
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        var enterButton = view.findViewById<Button>(R.id.usernameBut)
+        var userNameET = view.findViewById<EditText>(R.id.usernameET)
 
-//        initAdapter(root)
-        initPropertyObservers()
-        viewModel.netProperties()
-
-
-
-
-//        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
-    // Set up the adapter
-//    private fun initAdapter(root: View) {
-//        adapter = PostRowAdapter(viewModel)
-//        val rv = root.recyclerView
-//        rv.adapter = adapter
-//        rv.layoutManager = LinearLayoutManager(context)
-//    }
-
-    private fun initPropertyObservers() {
-        viewModel.observeProperties().observe(viewLifecycleOwner, {
-//            adapter.submitList(it)
-//            adapter.notifyDataSetChanged()
-            it.forEach { property -> Log.d("XXX", property.city) }
-        })
+        enterButton.setOnClickListener {
+            if (userNameET.text.isNotEmpty()) {
+                //TODO:  implement checking the username and query for UID, set UID in viewModel
+                propertyListFragment = PropertyListFragment.newInstance()
+                parentFragmentManager
+                    .beginTransaction()
+                    .add(R.id.container, propertyListFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            }
+        }
     }
 
 }

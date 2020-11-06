@@ -34,4 +34,8 @@ class MainViewModel : ViewModel() {
         return netProperties
     }
 
+    fun getProperties(): List<Property>? {
+        return netProperties.value
+    }
+
 }
