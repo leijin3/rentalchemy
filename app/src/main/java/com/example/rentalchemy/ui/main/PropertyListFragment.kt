@@ -1,12 +1,11 @@
 package com.example.rentalchemy.ui.main
 
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +39,7 @@ class PropertyListFragment : Fragment() {
 
     // Set up the adapter
     private fun initAdapter(root: View) {
-        val adapter = PropertyListAdapter(viewModel)
+        adapter = PropertyListAdapter(viewModel)
         val rv = root.findViewById<RecyclerView>(R.id.property_listRV)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(context)
