@@ -1,7 +1,6 @@
 package com.example.rentalchemy.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,8 @@ class MainFragment : Fragment() {
                 propertyListFragment = PropertyListFragment.newInstance()
                 parentFragmentManager
                     .beginTransaction()
-                    .add(R.id.container, propertyListFragment)
+                    .addToBackStack(null)
+                    .replace(R.id.container, propertyListFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit()
             }
