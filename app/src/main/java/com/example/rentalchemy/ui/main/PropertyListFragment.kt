@@ -1,7 +1,6 @@
 package com.example.rentalchemy.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +48,6 @@ class PropertyListFragment : Fragment() {
         viewModel.observeProperties().observe(viewLifecycleOwner, {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
-            it.forEach { property -> Log.d("XXX", property.city) }
         })
     }
 }

@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var enterButton = view.findViewById<Button>(R.id.usernameBut)
+        val enterButton = view.findViewById<Button>(R.id.usernameBut)
         var userNameET = view.findViewById<EditText>(R.id.usernameET)
 
         enterButton.setOnClickListener {
