@@ -13,29 +13,28 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
     // TODO: Implement the ViewModel
-    private val netProperties = MutableLiveData<List<Property>>()
-    private var userId = MutableLiveData<Int> ().apply { value = 1 }
+    private val fetchProperties = MutableLiveData<List<Property>>()
+    private var userId = MutableLiveData<Int>().apply { value = 1 }
 
     private val jsApi = JsonServerApi.create()
     private val propertyRepository = PropertyRepository(jsApi)
 
 
-
-    fun netProperties() = viewModelScope.launch(
+    fun fetchProperties() = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
     ) {
         // Update LiveData from IO dispatcher, use postValue
-        netProperties.postValue(propertyRepository.getPropertyList(userId.value!!))
+        fetchProperties.postValue(propertyRepository.getPropertyList(userId.value!!))
     }
 
 
     fun observeProperties(): LiveData<List<Property>> {
-        return netProperties
+        return fetchProperties
     }
 
-    fun getProperties(): List<Property>? {
-        return netProperties.value
-    }
+//    fun getProperties(): List<Property>? {
+//        return fetchProperties.value
+//    }
 
 }

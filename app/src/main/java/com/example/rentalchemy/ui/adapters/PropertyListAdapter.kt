@@ -13,8 +13,10 @@ import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.ui.main.MainViewModel
 
-class PropertyListAdapter (private val viewModel: MainViewModel)
-    : ListAdapter <Property, PropertyListAdapter.VH>(PropertyDiff()) {
+class PropertyListAdapter(
+    private val viewModel: MainViewModel,
+    private val propertyClickListener: () -> Unit
+) : ListAdapter<Property, PropertyListAdapter.VH>(PropertyDiff()) {
     class PropertyDiff : DiffUtil.ItemCallback<Property>() {
 
         override fun areItemsTheSame(oldItem: Property, newItem: Property): Boolean {
@@ -34,7 +36,6 @@ class PropertyListAdapter (private val viewModel: MainViewModel)
         private var cityTV = itemView.findViewById<TextView>(R.id.row_city)
         private var stateTV = itemView.findViewById<TextView>(R.id.row_state)
 
-//        init {}
 
         fun bind(item: Property) {
             addressTV.text = item.streetAddress
@@ -49,11 +50,10 @@ class PropertyListAdapter (private val viewModel: MainViewModel)
         return VH(itemView)
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int){
+    override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
-        holder.itemView.setOnClickListener{
-            //TODO:  go to Dashboard Fragment w/ current property
-
+        holder.itemView.setOnClickListener {
+            propertyClickListener()
         }
     }
 
