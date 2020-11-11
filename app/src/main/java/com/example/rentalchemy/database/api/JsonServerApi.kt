@@ -7,10 +7,8 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.serialization.json.Json
 import okhttp3.HttpUrl
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 
@@ -27,6 +25,7 @@ interface JsonServerApi {
     suspend fun getPropertyList(@Query("user_id") userId: Int): List<Property>
 
 
+
     @Headers("Content-Type: application/json")
     @POST("properties")
     fun createProperty(@Body propertyInfo: Property): Call<Property>
@@ -38,26 +37,23 @@ interface JsonServerApi {
 
     companion object {
 
-
-        private val client = OkHttpClient.Builder().build()
-
         private var httpurl = HttpUrl.Builder()
             .scheme("http")
             .host("10.0.2.2")
             .port(3000)
             .build()
+        private val contentType = "application/json".toMediaType()
 
         fun create(): JsonServerApi = create(httpurl)
         private fun create(httpUrl: HttpUrl): JsonServerApi {
             Log.d(
                 "XXX",
-                "create: httpurl = $httpurl"
+                "create: httpurl = " + httpurl.toString() + " contentType = " + contentType.type
             )
             // https://github.com/JakeWharton/retrofit2-kotlinx-serialization-converter
             return Retrofit.Builder()
                 .baseUrl(httpUrl)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(Json.asConverterFactory(contentType))
                 .build()
                 .create(JsonServerApi::class.java)
         }

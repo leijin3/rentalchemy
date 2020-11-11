@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PropertyRepository (private val jsApi: JsonServerApi) {
+class PropertyRepository(private val jsApi: JsonServerApi) {
 
     //functions to serve data to the ViewModel
 
