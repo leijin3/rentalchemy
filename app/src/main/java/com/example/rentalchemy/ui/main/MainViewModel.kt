@@ -61,6 +61,8 @@ class MainViewModel : ViewModel() {
             if (it?.id != null) {
                 // it = newly added property parsed as response
                 // it?.id = newly added property ID
+                fetchProperties()
+                Log.d("XXX", "fetch new")
             } else {
                 Log.d("XXX", "Error adding new property")
             }
@@ -77,8 +79,10 @@ class MainViewModel : ViewModel() {
             if (it?.id != null) {
                 // it = newly added property parsed as response
                 // it?.id = newly added property ID
+                Log.d("XXX", "not deleted!")
             } else {
-                Log.d("XXX", "Error deleting property")
+                Log.d("XXX", "deletion done")
+                fetchProperties()
             }
         }
 
