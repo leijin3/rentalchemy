@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/street"
@@ -12,13 +13,13 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/detail_street"/>
+        app:layout_constraintEnd_toStartOf="@+id/detail_street" />
 
     <TextView
         android:id="@+id/detail_street"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1234 Main Street Apt 3"
+        tools:text="1234 Main Street Apt 3"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/street"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +39,7 @@
         android:id="@+id/detail_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Austin"
+        tools:text="Austin"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/city"
         app:layout_constraintTop_toBottomOf="@id/detail_street"
@@ -58,7 +59,7 @@
         android:id="@+id/detail_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Texas"
+        tools:text="Texas"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/state"
         app:layout_constraintTop_toBottomOf="@id/detail_street"
@@ -78,7 +79,7 @@
         android:id="@+id/detail_zip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="98765"
+        tools:text="98765"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/zip"
         app:layout_constraintTop_toBottomOf="@id/detail_street"
@@ -88,7 +89,7 @@
         android:id="@+id/edit_detailBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Property Details"
+        android:text="@string/edit_property_details"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detail_zip"
         app:layout_constraintBottom_toBottomOf="parent"

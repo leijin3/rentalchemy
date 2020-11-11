@@ -1,23 +1,39 @@
 package com.example.rentalchemy.database.model
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-data class Property (var id: Long,
-                     var user_id: Long,
-                     @SerialName("st_address") var streetAddress: String,
-                     var city: String,
-                     var state: String,
-                     var zip : String,
-                     var rent_amt: String,
-                     var type: String,
-                     var sqft: Int,
-                     var num_beds: Int,
-                     var num_baths: Int,
-                     var cost_basis: String,
-                     var date_acquired: String,
-                     var year_built: String,
-                     var parking: Int)  {
+data class Property(
+    var id: Long,
+    @SerializedName("user_id")
+    var landlordID: Long,
+    @SerializedName("st_address")
+    var streetAddress: String,
+    @SerializedName("city")
+    var city: String,
+    @SerializedName("state")
+    var state: String,
+    @SerializedName("zip")
+    var zip: String,
+    @SerializedName("rent_amt")
+    var rent_amt: String,
+    @SerializedName("type")
+    var propertyType: String,
+    @SerializedName("sqft")
+    var sqft: Int,
+    @SerializedName("num_beds")
+    var num_beds: Int,
+    @SerializedName("num_baths")
+    var num_baths: Int,
+    @SerializedName("cost_basis")
+    var cost_basis: String,
+    @SerializedName("date_acquired")
+    var date_acquired: String,
+    @SerializedName("year_built")
+    var year_built: String,
+    @SerializedName("parking")
+    var parking: Int
+)  {
 }

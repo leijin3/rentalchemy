@@ -7,43 +7,57 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.serialization.json.Json
 import okhttp3.HttpUrl
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import retrofit2.Call
 import retrofit2.Retrofit
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.*
 
 
 interface JsonServerApi {
 
     @GET(
-        "/users"
+        "users"
     )
     suspend fun getUserID(@Query("user_name") username: String): User
 
     @GET(
-        "/properties"
+        "properties"
     )
     suspend fun getPropertyList(@Query("user_id") userId: Int): List<Property>
 
 
+    @Headers("Content-Type: application/json")
+    @POST("properties")
+    fun createProperty(@Body propertyInfo: Property): Call<Property>
+
+
+    @DELETE("properties/{id}")
+    fun deleteProperty(@Path("id") propertyId: Long): Call<Property>
+
+
     companion object {
+
+
+        private val client = OkHttpClient.Builder().build()
 
         private var httpurl = HttpUrl.Builder()
             .scheme("http")
             .host("10.0.2.2")
             .port(3000)
             .build()
-        private val contentType = "application/json".toMediaType()
 
         fun create(): JsonServerApi = create(httpurl)
         private fun create(httpUrl: HttpUrl): JsonServerApi {
             Log.d(
                 "XXX",
-                "create: httpurl = " + httpurl.toString() + " contentType = " + contentType.type
+                "create: httpurl = $httpurl"
             )
             // https://github.com/JakeWharton/retrofit2-kotlinx-serialization-converter
             return Retrofit.Builder()
                 .baseUrl(httpUrl)
-                .addConverterFactory(Json.asConverterFactory(contentType))
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(JsonServerApi::class.java)
         }

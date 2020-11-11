@@ -35,17 +35,18 @@ class DashboardFragment : Fragment() {
         view.findViewById<TextView>(R.id.dashboard_cityTV).text = city
         view.findViewById<TextView>(R.id.dashboard_stateTV).text = state
 
-        val propertyDetailBtn = view.findViewById<Button>(R.id.property_detailBut)
-        propertyDetailBtn.setOnClickListener {
-            val propertyDetailFragment = PropertyDetailFragment.newInstance()
-            parentFragmentManager
-                .beginTransaction()
-                .addToBackStack(propertyDetailKey)
-                .replace(R.id.container, propertyDetailFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit()
-
+        view.findViewById<Button>(R.id.property_detailBut).apply {
+            setOnClickListener {
+                val propertyDetailFragment = PropertyDetailFragment.newInstance()
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(propertyDetailKey)
+                    .replace(R.id.container, propertyDetailFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            }
         }
+
 
     }
 

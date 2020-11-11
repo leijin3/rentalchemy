@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_home_foreground"/>
+        android:src="@drawable/ic_home_foreground" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,9 +19,10 @@
             android:id="@+id/row_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1234 Main Street Apt. 3"
+            android:padding="12dp"
             android:textSize="24sp"
-            android:padding="12dp"/>
+            tools:text="1234 Main Street Apt. 3" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,16 +32,17 @@
                 android:id="@+id/row_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Austin"
+                android:padding="12dp"
                 android:textSize="24sp"
-                android:padding="12dp"/>
+                tools:text="Austin" />
+
             <TextView
                 android:id="@+id/row_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Texas"
+                android:padding="12dp"
                 android:textSize="24sp"
-                android:padding="12dp"/>
+                tools:text="Texas" />
         </LinearLayout>
 
     </LinearLayout>

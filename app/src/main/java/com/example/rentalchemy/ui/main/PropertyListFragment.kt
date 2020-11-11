@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
@@ -36,6 +37,28 @@ class PropertyListFragment : Fragment() {
         initPropertyObservers()
         viewModel.fetchProperties()
 
+        view.findViewById<Button>(R.id.add_propertyBut).apply {
+            setOnClickListener {
+                addProperty()
+            }
+
+        }
+
+        // TODO: Delete me, for testing purpose only
+        view.findViewById<Button>(R.id.delete_propertyBut).apply {
+            setOnClickListener {
+                deleteProperty()
+            }
+        }
+
+    }
+
+    private fun deleteProperty() {
+        viewModel.deleteDummyProperty()
+    }
+
+    private fun addProperty() {
+        viewModel.createDummyProperty()
     }
 
     // Set up the adapter
