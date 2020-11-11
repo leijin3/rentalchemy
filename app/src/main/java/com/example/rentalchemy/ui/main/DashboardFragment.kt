@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.rentalchemy.R
 
 class DashboardFragment : Fragment() {
@@ -13,6 +15,7 @@ class DashboardFragment : Fragment() {
 
     companion object {
         fun newInstance() = DashboardFragment()
+        const val propertyDetailKey = "PropertyDetail"
     }
 
     private lateinit var viewModel: MainViewModel
@@ -32,9 +35,19 @@ class DashboardFragment : Fragment() {
         view.findViewById<TextView>(R.id.dashboard_cityTV).text = city
         view.findViewById<TextView>(R.id.dashboard_stateTV).text = state
 
+        val propertyDetailBtn = view.findViewById<Button>(R.id.property_detailBut)
+        propertyDetailBtn.setOnClickListener {
+            val propertyDetailFragment = PropertyDetailFragment.newInstance()
+            parentFragmentManager
+                .beginTransaction()
+                .addToBackStack(propertyDetailKey)
+                .replace(R.id.container, propertyDetailFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit()
+
+        }
 
     }
-
 
 }
 
