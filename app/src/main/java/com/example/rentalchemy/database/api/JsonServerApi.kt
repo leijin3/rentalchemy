@@ -25,7 +25,6 @@ interface JsonServerApi {
     suspend fun getPropertyList(@Query("user_id") userId: Int): List<Property>
 
 
-
     companion object {
 
         private var httpurl = HttpUrl.Builder()
@@ -37,7 +36,10 @@ interface JsonServerApi {
 
         fun create(): JsonServerApi = create(httpurl)
         private fun create(httpUrl: HttpUrl): JsonServerApi {
-            Log.d("XXX", "create: httpurl = " + httpurl.toString() + " contentType = " + contentType.type)
+            Log.d(
+                "XXX",
+                "create: httpurl = " + httpurl.toString() + " contentType = " + contentType.type
+            )
             // https://github.com/JakeWharton/retrofit2-kotlinx-serialization-converter
             return Retrofit.Builder()
                 .baseUrl(httpUrl)
