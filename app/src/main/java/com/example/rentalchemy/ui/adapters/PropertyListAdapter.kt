@@ -52,10 +52,10 @@ class PropertyListAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
+
         holder.itemView.setOnClickListener {
             propertyClickListener()
+            MainViewModel.setProperty(getItem(position))
         }
     }
-
-
 }
