@@ -1,13 +1,11 @@
 package com.example.rentalchemy.ui.adapters
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
-import android.widget.RemoteViews
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.Property
@@ -55,7 +53,7 @@ class PropertyListAdapter(
 
         holder.itemView.setOnClickListener {
             propertyClickListener()
-            MainViewModel.setProperty(getItem(position))
+            MainViewModel.selectedProperty = getItem(position)
         }
     }
 }

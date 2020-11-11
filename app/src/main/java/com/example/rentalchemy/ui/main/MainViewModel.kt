@@ -1,6 +1,5 @@
 package com.example.rentalchemy.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,15 +33,7 @@ class MainViewModel : ViewModel() {
     }
 
     companion object {
-        private var selectedProperty: Property? = null
-
-        fun getProperty(): Property? {
-            return selectedProperty
-        }
-
-        fun setProperty(property: Property) {
-            selectedProperty = property
-        }
+        var selectedProperty: Property? = null
     }
 
 

@@ -27,7 +27,7 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val (_, _, streetAddress, city, state, _) = MainViewModel.getProperty()!!
+        val (_, _, streetAddress, city, state, _) = MainViewModel.selectedProperty!!
         view.findViewById<TextView>(R.id.dashboard_addressTV).text = streetAddress
         view.findViewById<TextView>(R.id.dashboard_cityTV).text = city
         view.findViewById<TextView>(R.id.dashboard_stateTV).text = state
