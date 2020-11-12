@@ -13,13 +13,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="12dp">
 
         <TextView
             android:id="@+id/row_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
+            android:paddingTop="12dp"
             android:textSize="24sp"
             tools:text="1234 Main Street Apt. 3" />
 
@@ -32,7 +33,7 @@
                 android:id="@+id/row_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:paddingBottom="12dp"
                 android:textSize="24sp"
                 tools:text="Austin" />
 
@@ -40,7 +41,8 @@
                 android:id="@+id/row_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:layout_marginStart="12dp"
                 android:textSize="24sp"
                 tools:text="Texas" />
         </LinearLayout>
