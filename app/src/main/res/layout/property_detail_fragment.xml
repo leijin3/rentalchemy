@@ -1,99 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/design_default_color_on_primary">
 
     <TextView
-        android:id="@+id/street"
-        android:layout_width="wrap_content"
+        android:id="@+id/property_detail_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Street Address: "
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/detail_street" />
+        android:text="Property Detail"
+        android:textSize="32sp"
+        android:textColor="@color/cardview_dark_background"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_margin="32dp"/>
 
-    <TextView
-        android:id="@+id/detail_street"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="1234 Main Street Apt 3"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/street"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:src="@color/design_default_color_secondary"
+        android:layout_marginBottom="24dp"/>
 
-    <TextView
-        android:id="@+id/city"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="City: "
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/street"
-        app:layout_constraintEnd_toStartOf="@+id/detail_city"/>
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <TextView
+            android:id="@+id/street"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Street Address: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
 
-    <TextView
-        android:id="@+id/detail_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Austin"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/city"
-        app:layout_constraintTop_toBottomOf="@id/detail_street"
-        app:layout_constraintEnd_toStartOf="@+id/state"/>
+        <EditText
+            android:id="@+id/detail_street"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:hint="1234 Main Street Apt 3"
+            android:textSize="18sp" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/state"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="State: "
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/detail_city"
-        app:layout_constraintTop_toBottomOf="@id/detail_street"
-        app:layout_constraintEnd_toStartOf="@id/detail_state"/>
+        android:orientation="horizontal"
+        android:padding="8dp">
 
-    <TextView
-        android:id="@+id/detail_state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Texas"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/state"
-        app:layout_constraintTop_toBottomOf="@id/detail_street"
-        app:layout_constraintEnd_toStartOf="@id/zip"/>
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
 
-    <TextView
-        android:id="@+id/zip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Postal Code:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/detail_state"
-        app:layout_constraintTop_toBottomOf="@id/detail_street"
-        app:layout_constraintEnd_toStartOf="@+id/detail_zip" />
+        <EditText
+            android:id="@+id/detail_city"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="San Antonio"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/detail_zip"
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="State: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+
+        <EditText
+            android:id="@+id/detail_state"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:hint="Mississippi"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/zip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Postal Code: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+
+        <EditText
+            android:id="@+id/detail_zip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="98765"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/sqft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:text="Sqft: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <EditText
+            android:id="@+id/detail_sqft"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:hint="2300"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/property_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <Spinner
+            android:id="@+id/detail_property_type"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/rent_amt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rent/mo: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <EditText
+            android:id="@+id/detail_rent_amt"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:hint="1200"
+            android:textSize="18sp"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/num_beds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="#Beds: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <EditText
+            android:id="@+id/detail_num_beds"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:hint="3"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/num_baths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="#Baths: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <EditText
+            android:id="@+id/detail_num_baths"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:hint="2"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/parking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="#Parking: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <EditText
+            android:id="@+id/detail_parking"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:hint="3"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="98765"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/zip"
-        app:layout_constraintTop_toBottomOf="@id/detail_street"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/year_built"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Year Built: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <EditText
+            android:id="@+id/detail_year_built"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:hint="1975"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/date_acquired"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date acquired: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <EditText
+            android:id="@+id/detail_date_acquired"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="10/31/18"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/cost_basis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cost Basis: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+        <EditText
+            android:id="@+id/detail_cost_basis"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="150000"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
 
     <Button
-        android:id="@+id/edit_detailBut"
+        android:id="@+id/detail_edit_saveBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_property_details"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detail_zip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:text="Edit Property Details"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center_horizontal" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
