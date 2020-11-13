@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.rentalchemy.R
+import com.example.rentalchemy.ui.forms.TenantInfoFragment
 
 class DashboardFragment : Fragment() {
 
@@ -16,6 +17,7 @@ class DashboardFragment : Fragment() {
     companion object {
         fun newInstance() = DashboardFragment()
         const val propertyDetailKey = "PropertyDetail"
+        const val tenantInfoKey = "TenantInfo"
     }
 
     private lateinit var viewModel: MainViewModel
@@ -42,6 +44,18 @@ class DashboardFragment : Fragment() {
                     .beginTransaction()
                     .addToBackStack(propertyDetailKey)
                     .replace(R.id.container, propertyDetailFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            }
+        }
+
+        view.findViewById<Button>(R.id.tenant_infoBut).apply {
+            setOnClickListener {
+                val tenantInfoFragment = TenantInfoFragment.newInstance()
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(tenantInfoKey)
+                    .replace(R.id.container, tenantInfoFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit()
             }
