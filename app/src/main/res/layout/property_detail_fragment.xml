@@ -143,7 +143,7 @@
             android:textColor="@color/cardview_dark_background"/>
         <Spinner
             android:id="@+id/detail_property_type"
-            android:layout_width="100dp"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -246,13 +246,14 @@
             android:id="@+id/date_acquired"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date acquired: "
+            android:layout_marginStart="8dp"
+            android:text="Date acq.: "
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/cardview_dark_background"/>
         <EditText
             android:id="@+id/detail_date_acquired"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:hint="10/31/18"
             android:textSize="18sp"/>

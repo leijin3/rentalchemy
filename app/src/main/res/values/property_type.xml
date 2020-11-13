@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="property_types">
+        <item>House</item>
+        <item>Duplex</item>
+        <item>Apartment</item>
+        <item>Townhouse</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>
