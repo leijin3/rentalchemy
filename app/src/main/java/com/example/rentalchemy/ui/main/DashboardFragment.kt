@@ -39,7 +39,7 @@ class DashboardFragment : Fragment() {
 
         view.findViewById<Button>(R.id.property_detailBut).apply {
             setOnClickListener {
-                val propertyDetailFragment = PropertyDetailFragment.newInstance()
+                val propertyDetailFragment = PropertyDetailFragment.newInstance(false)
                 parentFragmentManager
                     .beginTransaction()
                     .addToBackStack(propertyDetailKey)

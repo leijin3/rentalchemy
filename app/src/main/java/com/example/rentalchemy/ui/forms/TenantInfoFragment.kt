@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
-import com.example.rentalchemy.ui.main.PropertyDetailFragment
+
 
 class TenantInfoFragment : Fragment() {
 

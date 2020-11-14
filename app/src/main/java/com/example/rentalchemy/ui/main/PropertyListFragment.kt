@@ -37,9 +37,20 @@ class PropertyListFragment : Fragment() {
         initPropertyObservers()
         viewModel.fetchProperties()
 
+
+        //For now, set selectedProperty to null so that the fragment knows we're creating a new
+        //property.  Maybe the addProperty() method can create a new, empty property and the viewModel
+        // can refer to that?
         view.findViewById<Button>(R.id.add_propertyBut).apply {
             setOnClickListener {
                 addProperty()
+                MainViewModel.selectedProperty = null
+                //MainViewModel.selectedProperty = viewModel.createNewProperty()
+                parentFragmentManager
+                    .beginTransaction()
+                    .add(R.id.container, PropertyDetailFragment.newInstance(isEditing = true))
+                    .addToBackStack("PropertyDetail")
+                    .commit()
             }
 
         }
