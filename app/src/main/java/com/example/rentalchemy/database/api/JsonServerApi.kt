@@ -25,7 +25,6 @@ interface JsonServerApi {
     suspend fun getPropertyList(@Query("user_id") userId: Int): List<Property>
 
 
-
     @Headers("Content-Type: application/json")
     @POST("properties")
     fun createProperty(@Body propertyInfo: Property): Call<Property>
@@ -33,6 +32,9 @@ interface JsonServerApi {
 
     @DELETE("properties/{id}")
     fun deleteProperty(@Path("id") propertyId: Long): Call<Property>
+
+    @PUT("properties/{id}")
+    fun updateProperty(@Path("id") propertyId: Long, @Body newProperty: Property): Call<Property>
 
 
     companion object {

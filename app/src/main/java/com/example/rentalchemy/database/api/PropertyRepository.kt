@@ -47,4 +47,18 @@ class PropertyRepository(private val jsApi: JsonServerApi) {
             }
         )
     }
+
+    fun updateProperty(propertyId: Long, newProperty: Property, onResult: (Property?) -> Unit) {
+        jsApi.updateProperty(propertyId, newProperty).enqueue(
+            object : Callback<Property> {
+                override fun onFailure(call: Call<Property>, t: Throwable) {
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Property>, response: Response<Property>) {
+                    onResult(newProperty)
+                }
+            }
+        )
+    }
 }
