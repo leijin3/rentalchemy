@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,29 +18,63 @@ class PropertyListFragment : Fragment() {
 
     companion object {
         fun newInstance() = PropertyListFragment()
+        const val propertyListKey = "PropertyList"
     }
 
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: PropertyListAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.property_list_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initAdapter(view)
         initPropertyObservers()
-        viewModel.netProperties()
+        viewModel.fetchProperties()
+
+
+        //For now, set selectedProperty to null so that the fragment knows we're creating a new
+        //property.  Maybe the addProperty() method can create a new, empty property and the viewModel
+        // can refer to that?
+        view.findViewById<Button>(R.id.add_propertyBut).apply {
+            setOnClickListener {
+                addProperty()
+                MainViewModel.selectedProperty = null
+                //MainViewModel.selectedProperty = viewModel.createNewProperty()
+                parentFragmentManager
+                    .beginTransaction()
+                    .add(R.id.container, PropertyDetailFragment.newInstance(isEditing = true))
+                    .addToBackStack("PropertyDetail")
+                    .commit()
+            }
+
+        }
+
+        // TODO: Delete me, for testing purpose only
+        view.findViewById<Button>(R.id.delete_propertyBut).apply {
+            setOnClickListener {
+                deleteProperty()
+            }
+        }
 
     }
 
+    private fun deleteProperty() {
+        viewModel.deleteDummyProperty()
+    }
+
+    private fun addProperty() {
+        viewModel.createDummyProperty()
+    }
 
     // Set up the adapter
     private fun initAdapter(root: View) {
-        adapter = PropertyListAdapter(viewModel)
+        adapter = PropertyListAdapter(viewModel, ::propertyClickListener)
         val rv = root.findViewById<RecyclerView>(R.id.property_listRV)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(context)
@@ -47,7 +83,17 @@ class PropertyListFragment : Fragment() {
     private fun initPropertyObservers() {
         viewModel.observeProperties().observe(viewLifecycleOwner, {
             adapter.submitList(it)
-            adapter.notifyDataSetChanged()
         })
+    }
+
+    private fun propertyClickListener() {
+        // Go to Dashboard Fragment w/ current property
+        val dashboardFragment = DashboardFragment.newInstance()
+        parentFragmentManager
+            .beginTransaction()
+            .addToBackStack(propertyListKey)
+            .replace(R.id.container, dashboardFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
     }
 }

@@ -7001,7 +7001,6 @@
       "date_finished": "2/7/2020"
     }
   ],
-
   "income": [
     {
       "id": 1,
@@ -14004,7 +14003,6 @@
       "date_received": "8/8/2019"
     }
   ],
-
   "appliances": [
     {
       "id": 1,
@@ -36261,33 +36259,150 @@
       "date_acquired": "9/3/2018",
       "year_built": "7/22/1900",
       "parking": 4
+    },
+    {
+      "id": 999,
+      "user_id": 1,
+      "st_address": "123 Fifth Ave",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10003",
+      "rent_amt": "5000",
+      "type": "apartment",
+      "sqft": 3000,
+      "num_beds": 3,
+      "num_baths": 2,
+      "cost_basis": "2000000",
+      "date_acquired": "2020/01/01",
+      "year_built": "1999",
+      "parking": 2
     }
   ],
   "users": [
-    { "id": 1, "user_name": "jzanneli0", "created_at": "12/10/2019" },
-    { "id": 2, "user_name": "plockey1", "created_at": "6/10/2020" },
-    { "id": 3, "user_name": "achrystal2", "created_at": "6/11/2020" },
-    { "id": 4, "user_name": "keiler3", "created_at": "8/28/2020" },
-    { "id": 5, "user_name": "tdaen4", "created_at": "2/11/2020" },
-    { "id": 6, "user_name": "cbone5", "created_at": "7/11/2020" },
-    { "id": 7, "user_name": "ajoblin6", "created_at": "1/5/2020" },
-    { "id": 8, "user_name": "bfochs7", "created_at": "3/22/2020" },
-    { "id": 9, "user_name": "apavie8", "created_at": "8/18/2020" },
-    { "id": 10, "user_name": "kblood9", "created_at": "10/7/2020" },
-    { "id": 11, "user_name": "ctomkowicza", "created_at": "9/2/2020" },
-    { "id": 12, "user_name": "lsimnettb", "created_at": "10/19/2020" },
-    { "id": 13, "user_name": "rmacgillespiec", "created_at": "1/23/2020" },
-    { "id": 14, "user_name": "fmaccafferkyd", "created_at": "11/15/2019" },
-    { "id": 15, "user_name": "srizzardinie", "created_at": "3/22/2020" },
-    { "id": 16, "user_name": "oseniourf", "created_at": "3/8/2020" },
-    { "id": 17, "user_name": "cmacgheeg", "created_at": "6/18/2020" },
-    { "id": 18, "user_name": "spenningtonh", "created_at": "2/16/2020" },
-    { "id": 19, "user_name": "btrenouthi", "created_at": "12/22/2019" },
-    { "id": 20, "user_name": "vscreasej", "created_at": "2/2/2020" },
-    { "id": 21, "user_name": "scommuccik", "created_at": "5/29/2020" },
-    { "id": 22, "user_name": "shinschel", "created_at": "3/26/2020" },
-    { "id": 23, "user_name": "mgillyettm", "created_at": "12/8/2019" },
-    { "id": 24, "user_name": "igierthn", "created_at": "12/26/2019" },
-    { "id": 25, "user_name": "mshatliffeo", "created_at": "9/19/2020" }
+    {
+      "id": 1,
+      "user_name": "jzanneli0",
+      "created_at": "12/10/2019"
+    },
+    {
+      "id": 2,
+      "user_name": "plockey1",
+      "created_at": "6/10/2020"
+    },
+    {
+      "id": 3,
+      "user_name": "achrystal2",
+      "created_at": "6/11/2020"
+    },
+    {
+      "id": 4,
+      "user_name": "keiler3",
+      "created_at": "8/28/2020"
+    },
+    {
+      "id": 5,
+      "user_name": "tdaen4",
+      "created_at": "2/11/2020"
+    },
+    {
+      "id": 6,
+      "user_name": "cbone5",
+      "created_at": "7/11/2020"
+    },
+    {
+      "id": 7,
+      "user_name": "ajoblin6",
+      "created_at": "1/5/2020"
+    },
+    {
+      "id": 8,
+      "user_name": "bfochs7",
+      "created_at": "3/22/2020"
+    },
+    {
+      "id": 9,
+      "user_name": "apavie8",
+      "created_at": "8/18/2020"
+    },
+    {
+      "id": 10,
+      "user_name": "kblood9",
+      "created_at": "10/7/2020"
+    },
+    {
+      "id": 11,
+      "user_name": "ctomkowicza",
+      "created_at": "9/2/2020"
+    },
+    {
+      "id": 12,
+      "user_name": "lsimnettb",
+      "created_at": "10/19/2020"
+    },
+    {
+      "id": 13,
+      "user_name": "rmacgillespiec",
+      "created_at": "1/23/2020"
+    },
+    {
+      "id": 14,
+      "user_name": "fmaccafferkyd",
+      "created_at": "11/15/2019"
+    },
+    {
+      "id": 15,
+      "user_name": "srizzardinie",
+      "created_at": "3/22/2020"
+    },
+    {
+      "id": 16,
+      "user_name": "oseniourf",
+      "created_at": "3/8/2020"
+    },
+    {
+      "id": 17,
+      "user_name": "cmacgheeg",
+      "created_at": "6/18/2020"
+    },
+    {
+      "id": 18,
+      "user_name": "spenningtonh",
+      "created_at": "2/16/2020"
+    },
+    {
+      "id": 19,
+      "user_name": "btrenouthi",
+      "created_at": "12/22/2019"
+    },
+    {
+      "id": 20,
+      "user_name": "vscreasej",
+      "created_at": "2/2/2020"
+    },
+    {
+      "id": 21,
+      "user_name": "scommuccik",
+      "created_at": "5/29/2020"
+    },
+    {
+      "id": 22,
+      "user_name": "shinschel",
+      "created_at": "3/26/2020"
+    },
+    {
+      "id": 23,
+      "user_name": "mgillyettm",
+      "created_at": "12/8/2019"
+    },
+    {
+      "id": 24,
+      "user_name": "igierthn",
+      "created_at": "12/26/2019"
+    },
+    {
+      "id": 25,
+      "user_name": "mshatliffeo",
+      "created_at": "9/19/2020"
+    }
   ]
 }

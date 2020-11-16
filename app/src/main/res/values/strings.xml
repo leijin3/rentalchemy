@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Rentalchemy</string>
+    <string name="add_property">Add Property</string>
+    <string name="my_properties">My Properties</string>
+    <string name="edit_property_details">Edit Property Details</string>
+    <string name="delete_property">Delete a Property</string>
 </resources>
