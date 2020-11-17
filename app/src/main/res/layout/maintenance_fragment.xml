@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/design_default_color_on_primary">
+
+    <TextView
+        android:id="@+id/maintenance_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Maintenance"
+        android:textSize="32sp"
+        android:textColor="@color/cardview_dark_background"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_margin="32dp"/>
+
+    <TextView
+        android:id="@+id/maintenance_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Property Address Here"
+        android:textSize="24sp"
+        android:textColor="@color/design_default_color_secondary"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="12dp"/>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:src="@color/design_default_color_secondary"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Purchase and install new furnace."
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contractor: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+
+        <EditText
+            android:id="@+id/contractor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Total HVAC Solutions, 527-6543"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date Finished: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+
+        <EditText
+            android:id="@+id/date_finished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="10/23/2020"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/maintenance_saveBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Maintenance Record"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
