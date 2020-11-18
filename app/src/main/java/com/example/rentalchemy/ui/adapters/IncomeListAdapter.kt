@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.IncomeItem
+import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
 class IncomeListAdapter(private val viewModel: MainViewModel) :
@@ -26,7 +27,31 @@ class IncomeListAdapter(private val viewModel: MainViewModel) :
         }
     }
 
-//TODO:  Finish after writing XML
+    //View Holder
+    inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var typeTV = itemView.findViewById<TextView>(R.id.row_income_type)
+        private var amountTV = itemView.findViewById<TextView>(R.id.row_amt_received)
+        private var dateTV = itemView.findViewById<TextView>(R.id.row_date_received)
+
+
+        fun bind(item: IncomeItem) {
+            typeTV.text = item.type
+            amountTV.text = item.amt_received.toString()
+            dateTV.text = item.date_received
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.income_row, parent, false)
+        return VH(itemView)
+    }
+
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        holder.bind(getItem(position))
+
+        //TODO: onClick for row, highlight selected for possible deletion?
+    }
 
 
 }

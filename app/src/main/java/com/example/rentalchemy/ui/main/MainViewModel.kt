@@ -119,6 +119,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun addMaintenance(description: String, contractor: String, date : String){
         //Write Me  -- create new MaintenanceItem object, use selectedProperty, save to database
     }
+    fun addIncome(type: String, amount: Int, date: String){
+        //Write Me -- similar to above
+    }
 
     companion object {
         var selectedProperty: Property? = null

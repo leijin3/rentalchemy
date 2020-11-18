@@ -30,14 +30,14 @@ class MaintenanceFragment : Fragment() {
         val addressTV = view.findViewById<TextView>(R.id.maintenance_address)
         val descriptionTV = view.findViewById<TextView>(R.id.description)
         val contractorTV = view.findViewById<TextView>(R.id.contractor)
-        val date_finishedTV = view.findViewById<TextView>(R.id.date_finished)
+        val datefinishedTV = view.findViewById<TextView>(R.id.date_finished)
         val saveBut = view.findViewById<Button>(R.id.maintenance_saveBut)
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
         saveBut.setOnClickListener{
             viewModel.addMaintenance(descriptionTV.text.toString(), contractorTV.text.toString(),
-                date_finishedTV.text.toString())
+                datefinishedTV.text.toString())
             parentFragmentManager.popBackStack()
         }
     }

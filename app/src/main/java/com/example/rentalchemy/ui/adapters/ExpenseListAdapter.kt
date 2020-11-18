@@ -3,12 +3,14 @@ package com.example.rentalchemy.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.Expense
+import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
 class ExpenseListAdapter(private val viewModel: MainViewModel) :
@@ -27,5 +29,32 @@ class ExpenseListAdapter(private val viewModel: MainViewModel) :
         }
     }
 
-    //TODO :  finish after writing xml
+    //View Holder
+    inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var typeTV = itemView.findViewById<TextView>(R.id.row_expense_type)
+        private var dateTV = itemView.findViewById<TextView>(R.id.row_date_spent)
+        private var amountTV = itemView.findViewById<TextView>(R.id.row_amt_spent)
+        private var receiptIV = itemView.findViewById<ImageView>(R.id.row_receipt_image)
+
+
+        fun bind(item: Expense) {
+            typeTV.text = item.type
+            dateTV.text = item.date_spent
+            amountTV.text = item.amount_spent.toString()
+            //TODO: display picture in row
+            //receiptIV.setImageResource(getImage(item.receipt_url))
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.expense_row, parent, false)
+        return VH(itemView)
+    }
+
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        holder.bind(getItem(position))
+
+        //TODO: onClick for row, highlight selected for possible deletion?
+    }
 }
