@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
@@ -16,6 +17,9 @@ import java.lang.Integer.parseInt
 class IncomeFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
+    private val incomeTypes: Array<String> by lazy {
+        resources.getStringArray(R.array.income_types)
+    }
 
     companion object{
         fun newInstance()  = IncomeFragment()
@@ -29,7 +33,14 @@ class IncomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val typeSpinner = view.findViewById<Spinner>(R.id.income_type)
+        val incomeTypeSpinner: Spinner = view.findViewById(R.id.income_type)
+        val incomeTypeAdapter = ArrayAdapter.createFromResource(
+            this.requireContext(),
+            R.array.income_types, android.R.layout.simple_spinner_item
+        )
+        incomeTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        incomeTypeSpinner.adapter = incomeTypeAdapter
+
         val amountTV = view.findViewById<TextView>(R.id.income_amt_received)
         val dateTV = view.findViewById<TextView>(R.id.income_date_received)
         val addressTV = view.findViewById<TextView>(R.id.income_address)
@@ -38,7 +49,7 @@ class IncomeFragment : Fragment() {
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
         saveBut.setOnClickListener{
-            viewModel.addIncome(typeSpinner.selectedItem.toString(), parseInt(amountTV.text.toString()),
+            viewModel.addIncome(incomeTypeSpinner.selectedItem.toString(), parseInt(amountTV.text.toString()),
                 dateTV.text.toString())
             parentFragmentManager.popBackStack()
         }

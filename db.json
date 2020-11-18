@@ -34466,13 +34466,13 @@
       "state": "Florida",
       "zip": "32859",
       "rent_amt": "$2236.68",
-      "type": "townhouse",
+      "type": "House",
       "sqft": 1113,
       "num_beds": 5,
       "num_baths": 3,
       "cost_basis": "$83962.76",
       "date_acquired": "11/18/1987",
-      "year_built": "12/18/1939",
+      "year_built": "1939",
       "parking": 3
     },
     {

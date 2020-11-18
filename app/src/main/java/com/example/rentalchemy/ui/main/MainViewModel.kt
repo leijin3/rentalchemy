@@ -122,6 +122,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun addIncome(type: String, amount: Int, date: String){
         //Write Me -- similar to above
     }
+    fun addExpense(type: String, amount: Int, date: String, receiptURL: String){
+        //Write Me -- similar to above
+    }
+    fun addAppliance(type: String, price: String, date: String, warranty: String){
+        //Write Me -- similar to above
+    }
 
     companion object {
         var selectedProperty: Property? = null
