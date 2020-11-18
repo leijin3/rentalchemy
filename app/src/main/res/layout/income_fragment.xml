@@ -65,7 +65,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Amount Received: "
+            android:text="Amount Received: $"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/cardview_dark_background"/>
@@ -74,7 +74,7 @@
             android:id="@+id/income_amt_received"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="$1500"
+            android:hint="1500"
             android:textSize="18sp" />
 
     </LinearLayout>

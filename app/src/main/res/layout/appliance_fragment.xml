@@ -65,7 +65,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Purchase Price: "
+            android:text="Purchase Price: $"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/cardview_dark_background"/>
@@ -74,7 +74,7 @@
             android:id="@+id/appliance_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="$1595.50"
+            android:hint="1595.50"
             android:textSize="18sp" />
 
     </LinearLayout>

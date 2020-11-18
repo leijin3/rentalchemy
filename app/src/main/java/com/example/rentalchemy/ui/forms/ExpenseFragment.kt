@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
-import java.lang.Integer.parseInt
+import java.lang.Float.parseFloat
 
 class ExpenseFragment : Fragment() {
 
@@ -55,7 +55,7 @@ class ExpenseFragment : Fragment() {
 
 
         saveBut.setOnClickListener{
-            viewModel.addExpense(expenseTypeSpinner.selectedItem.toString(), parseInt(amountTV.text.toString()),
+            viewModel.addExpense(expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
                 dateTV.text.toString(), recepitURL)
             parentFragmentManager.popBackStack()
         }

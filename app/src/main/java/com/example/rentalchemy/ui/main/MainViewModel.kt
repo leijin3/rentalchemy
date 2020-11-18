@@ -119,13 +119,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun addMaintenance(description: String, contractor: String, date : String){
         //Write Me  -- create new MaintenanceItem object, use selectedProperty, save to database
     }
-    fun addIncome(type: String, amount: Int, date: String){
+    fun addIncome(type: String, amount: Float, date: String){
         //Write Me -- similar to above
     }
-    fun addExpense(type: String, amount: Int, date: String, receiptURL: String){
+    fun addExpense(type: String, amount: Float, date: String, receiptURL: String){
         //Write Me -- similar to above
     }
-    fun addAppliance(type: String, price: String, date: String, warranty: String){
+    fun addAppliance(type: String, price: Float, date: String, warranty: String){
         //Write Me -- similar to above
     }
 

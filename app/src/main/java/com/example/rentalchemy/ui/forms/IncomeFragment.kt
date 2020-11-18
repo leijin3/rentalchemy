@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
-import java.lang.Integer.parseInt
+import java.lang.Float.parseFloat
 
 class IncomeFragment : Fragment() {
 
@@ -49,7 +49,7 @@ class IncomeFragment : Fragment() {
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
         saveBut.setOnClickListener{
-            viewModel.addIncome(incomeTypeSpinner.selectedItem.toString(), parseInt(amountTV.text.toString()),
+            viewModel.addIncome(incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
                 dateTV.text.toString())
             parentFragmentManager.popBackStack()
         }
