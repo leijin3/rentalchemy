@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
-import com.example.rentalchemy.ui.adapters.ItemListAdapter
+import com.example.rentalchemy.ui.adapters.*
 import com.example.rentalchemy.ui.main.MainViewModel
 
 class ItemListFragment : Fragment(){
@@ -29,7 +30,7 @@ class ItemListFragment : Fragment(){
     }
 
     private val viewModel: MainViewModel by activityViewModels()
-    private lateinit var adapter: ItemListAdapter
+    //private lateinit var adapter: RecyclerView.Adapter
     private lateinit var type: String
 
     override fun onCreateView(
@@ -59,7 +60,13 @@ class ItemListFragment : Fragment(){
     }
 
     private fun initAdapter(root: View, type: String){
-        adapter = ItemListAdapter(viewModel, type)
+        var adapter = when(type) {
+            "Maintenance" -> MaintListAdapter(viewModel)
+            "Appliance" -> AppliListAdapter(viewModel)
+            "Income" -> IncomeListAdapter(viewModel)
+            "Expense" -> ExpenseListAdapter(viewModel)
+            else -> ExpenseListAdapter(viewModel)
+        }
         val rv = root.findViewById<RecyclerView>(R.id.item_listRV)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(context)
