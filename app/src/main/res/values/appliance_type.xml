@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="appliance_types">
+        <item>HVAC</item>
+        <item>Dishwasher</item>
+        <item>Washer</item>
+        <item>Dryer</item>
+        <item>Fridge</item>
+        <item>Range</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>

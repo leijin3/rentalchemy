@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="income_types">
+        <item>Rent</item>
+        <item>Deposit</item>
+        <item>Late Fees</item>
+        <item>Interest</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>

@@ -8,10 +8,10 @@
     android:background="@color/design_default_color_on_primary">
 
     <TextView
-        android:id="@+id/tenant_info_title"
+        android:id="@+id/appliance_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tenant Info"
+        android:text="Appliance"
         android:textSize="32sp"
         android:textColor="@color/cardview_dark_background"
         android:textStyle="bold"
@@ -19,7 +19,7 @@
         android:layout_margin="32dp"/>
 
     <TextView
-        android:id="@+id/tenant_infoAddress"
+        android:id="@+id/appliance_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Property Address Here"
@@ -41,20 +41,19 @@
         android:orientation="horizontal"
         android:padding="8dp">
         <TextView
-            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tenant Name: "
+            android:text="Type: "
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/cardview_dark_background"/>
 
-        <EditText
-            android:id="@+id/tenant_name"
-            android:layout_width="225dp"
+        <Spinner
+            android:id="@+id/appliance_type"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="John Smith Jr."
-            android:textSize="14sp" />
+            android:hint="Select Appliance Type"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,43 +63,18 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email: "
+            android:text="Purchase Price: $"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/cardview_dark_background"/>
 
         <EditText
-            android:id="@+id/tenant_email"
-            android:layout_width="250dp"
+            android:id="@+id/appliance_price"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="johnsmithjr@fake.example.com"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
-
-        <TextView
-            android:id="@+id/phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone: "
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_dark_background"/>
-
-        <EditText
-            android:id="@+id/tenant_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="509-123-4567"
+            android:hint="1595.50"
             android:textSize="18sp" />
 
     </LinearLayout>
@@ -112,28 +86,51 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/lease_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lease Start Date: "
+            android:text="Date Purchased: "
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/cardview_dark_background"/>
 
         <EditText
-            android:id="@+id/tenant_lease_start"
+            android:id="@+id/appliance_date_purchased"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="10/01/2020"
+            android:hint="10/23/2020"
             android:textSize="18sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Warranty: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"/>
+
+        <EditText
+            android:id="@+id/appliance_warranty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="10/23/2025"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
 
     <Button
-        android:id="@+id/tenant_edit_saveBut"
+        android:id="@+id/appliance_saveBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Tenant Details"
+        android:text="Save Appliance Record"
         android:layout_marginTop="25dp"
         android:layout_gravity="center_horizontal" />
 

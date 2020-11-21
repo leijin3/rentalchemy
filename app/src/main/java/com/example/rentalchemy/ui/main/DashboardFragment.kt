@@ -9,7 +9,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.rentalchemy.R
+import com.example.rentalchemy.ui.forms.ItemListFragment
 import com.example.rentalchemy.ui.forms.TenantInfoFragment
+import kotlin.math.exp
 
 class DashboardFragment : Fragment() {
 
@@ -18,6 +20,10 @@ class DashboardFragment : Fragment() {
         fun newInstance() = DashboardFragment()
         const val propertyDetailKey = "PropertyDetail"
         const val tenantInfoKey = "TenantInfo"
+        const val maintenanceKey = "Maintenance"
+        const val applianceKey = "Appliance"
+        const val incomeKey = "Income"
+        const val expenseKey = "Expense"
     }
 
     private lateinit var viewModel: MainViewModel
@@ -61,6 +67,55 @@ class DashboardFragment : Fragment() {
             }
         }
 
+        view.findViewById<Button>(R.id.maintenanceBut).apply {
+            setOnClickListener{
+                val maintListFragment = ItemListFragment.newInstance("Maintenance")
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(maintenanceKey)
+                    .replace(R.id.container, maintListFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            }
+        }
+
+        view.findViewById<Button>(R.id.appliancesBut).apply {
+            setOnClickListener{
+                val appliListFragment = ItemListFragment.newInstance("Appliance")
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(applianceKey)
+                    .replace(R.id.container, appliListFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            }
+        }
+
+        view.findViewById<Button>(R.id.incomeBut).apply {
+            setOnClickListener{
+                val incomeListFragment = ItemListFragment.newInstance("Income")
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(incomeKey)
+                    .replace(R.id.container, incomeListFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            }
+        }
+
+        view.findViewById<Button>(R.id.expensesBut).apply {
+            setOnClickListener{
+                val expenseListFragment = ItemListFragment.newInstance("Expense")
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(expenseKey)
+                    .replace(R.id.container, expenseListFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            }
+        }
+
+        //TODO:  Generate report button functionality
 
     }
 
