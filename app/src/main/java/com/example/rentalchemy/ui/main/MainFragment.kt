@@ -20,8 +20,10 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var propertyListFragment: PropertyListFragment
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         return inflater.inflate(R.layout.main_fragment, container, false)
     }

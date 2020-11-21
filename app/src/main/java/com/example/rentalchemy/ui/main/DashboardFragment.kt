@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.forms.ItemListFragment
 import com.example.rentalchemy.ui.forms.TenantInfoFragment
-import kotlin.math.exp
 
 class DashboardFragment : Fragment() {
 
@@ -68,7 +67,7 @@ class DashboardFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.maintenanceBut).apply {
-            setOnClickListener{
+            setOnClickListener {
                 val maintListFragment = ItemListFragment.newInstance("Maintenance")
                 parentFragmentManager
                     .beginTransaction()
@@ -80,7 +79,7 @@ class DashboardFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.appliancesBut).apply {
-            setOnClickListener{
+            setOnClickListener {
                 val appliListFragment = ItemListFragment.newInstance("Appliance")
                 parentFragmentManager
                     .beginTransaction()
@@ -92,7 +91,7 @@ class DashboardFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.incomeBut).apply {
-            setOnClickListener{
+            setOnClickListener {
                 val incomeListFragment = ItemListFragment.newInstance("Income")
                 parentFragmentManager
                     .beginTransaction()
@@ -104,7 +103,7 @@ class DashboardFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.expensesBut).apply {
-            setOnClickListener{
+            setOnClickListener {
                 val expenseListFragment = ItemListFragment.newInstance("Expense")
                 parentFragmentManager
                     .beginTransaction()
