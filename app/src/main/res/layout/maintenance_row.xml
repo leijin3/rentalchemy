@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:id= "@+id/row_description"
+            android:id="@+id/row_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:ellipsize="middle"
+            android:singleLine="true"
             android:text="Fixed leak under kitchen sink.  Repaired faucet
             and pipes, new seal"
-            android:singleLine="true" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="12dp">
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/row_contractor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textSize="18sp"
             android:ellipsize="end"
-            android:text="A-PLUS Plumbing Company"/>
+            android:text="A-PLUS Plumbing Company"
+            android:textSize="18sp" />
+
         <TextView
             android:id="@+id/row_date_finished"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18sp"
-            android:text="12/21/2019"/>
+            android:text="12/21/2019"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/design_default_color_secondary"/>
+        android:background="@color/design_default_color_secondary" />
 
 </LinearLayout>

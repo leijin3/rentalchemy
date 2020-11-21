@@ -18,12 +18,14 @@ class ExpenseFragment : Fragment() {
         resources.getStringArray(R.array.expense_types)
     }
 
-    companion object{
-        fun newInstance()  = ExpenseFragment()
+    companion object {
+        fun newInstance() = ExpenseFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.expense_fragment, container, false)
     }
 
@@ -47,16 +49,18 @@ class ExpenseFragment : Fragment() {
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
-        val recepitURL : String = "path of saved picture"
+        val recepitURL: String = "path of saved picture"
 
-        receiptBut.setOnClickListener{
+        receiptBut.setOnClickListener {
             //TODO:  Camera stuff to take picture, save, get url
         }
 
 
-        saveBut.setOnClickListener{
-            viewModel.addExpense(expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
-                dateTV.text.toString(), recepitURL)
+        saveBut.setOnClickListener {
+            viewModel.addExpense(
+                expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
+                dateTV.text.toString(), recepitURL
+            )
             parentFragmentManager.popBackStack()
         }
     }

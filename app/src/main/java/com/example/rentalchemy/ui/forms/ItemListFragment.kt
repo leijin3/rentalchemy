@@ -1,26 +1,27 @@
 package com.example.rentalchemy.ui.forms
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
-import com.example.rentalchemy.ui.adapters.*
+import com.example.rentalchemy.ui.adapters.AppliListAdapter
+import com.example.rentalchemy.ui.adapters.ExpenseListAdapter
+import com.example.rentalchemy.ui.adapters.IncomeListAdapter
+import com.example.rentalchemy.ui.adapters.MaintListAdapter
 import com.example.rentalchemy.ui.main.MainViewModel
 
-class ItemListFragment : Fragment(){
+class ItemListFragment : Fragment() {
 
-    companion object{
+    companion object {
         val typeKey = "itemType"
-        fun newInstance(itemType: String) : ItemListFragment {
+        fun newInstance(itemType: String): ItemListFragment {
             val frag = ItemListFragment()
             val bundle = Bundle()
             bundle.putString(typeKey, itemType)
@@ -30,6 +31,7 @@ class ItemListFragment : Fragment(){
     }
 
     private val viewModel: MainViewModel by activityViewModels()
+
     //private lateinit var adapter: RecyclerView.Adapter
     private lateinit var type: String
 
@@ -59,8 +61,8 @@ class ItemListFragment : Fragment(){
 
     }
 
-    private fun initAdapter(root: View, type: String){
-        var adapter = when(type) {
+    private fun initAdapter(root: View, type: String) {
+        var adapter = when (type) {
             "Maintenance" -> MaintListAdapter(viewModel)
             "Appliance" -> AppliListAdapter(viewModel)
             "Income" -> IncomeListAdapter(viewModel)
@@ -72,15 +74,15 @@ class ItemListFragment : Fragment(){
         rv.layoutManager = LinearLayoutManager(context)
     }
 
-    private fun addButtonListener(type: String){
+    private fun addButtonListener(type: String) {
         var itemFrag =
-            when(type) {
+            when (type) {
                 "Maintenance" -> MaintenanceFragment.newInstance()
                 "Appliance" -> ApplianceFragment.newInstance()
                 "Income" -> IncomeFragment.newInstance()
                 "Expense" -> ExpenseFragment.newInstance()
                 else -> Fragment()
-        }
+            }
         parentFragmentManager
             .beginTransaction()
             .add(R.id.container, itemFrag)
@@ -88,7 +90,7 @@ class ItemListFragment : Fragment(){
             .commit()
     }
 
-    private fun delButtonListener(type: String){
+    private fun delButtonListener(type: String) {
         //TODO: WRITE ME
         //DELETE only selected item.
 
