@@ -48,17 +48,16 @@ class ExpenseFragment : Fragment() {
         val saveBut = view.findViewById<Button>(R.id.expense_saveBut)
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
+        val propertyId = MainViewModel.selectedProperty?.id!!
 
 
         var receiptURL = "File Name Here"
         viewModel.observeCurrentPhoto().observe(viewLifecycleOwner, {
-            if (it != null) {
-                receiptURL = it.toString()
-                receiptIV.setImageURI(it)
-            }
+            receiptURL = it?.toString() ?: "File Name Here"
+            receiptIV.setImageURI(it)
         })
 
-        receiptBut.setOnClickListener{
+        receiptBut.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
                 .add(R.id.container, CameraFragment.newInstance())
@@ -71,13 +70,16 @@ class ExpenseFragment : Fragment() {
             val validPrice = (amountTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
 
             if(validPrice) {
-                viewModel.addExpense(expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
-                        dateTV.text.toString(), receiptURL)
+                viewModel.addExpense(
+                propertyId,
+                expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
+                dateTV.text.toString(), receiptURL
+            )
                 viewModel.clearCurrentPhoto()
                 parentFragmentManager.popBackStack()
             } else {
                 Toast.makeText(this.context, "Enter a valid price.", Toast.LENGTH_LONG).show()
             }
-        }
+       
     }
 }

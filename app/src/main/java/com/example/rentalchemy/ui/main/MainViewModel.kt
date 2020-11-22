@@ -8,8 +8,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.rentalchemy.database.api.ExpenseRepository
 import com.example.rentalchemy.database.api.JsonServerApi
+import com.example.rentalchemy.database.api.JsonServerApi.Companion.create
 import com.example.rentalchemy.database.api.PropertyRepository
+import com.example.rentalchemy.database.model.Expense
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.Tenant
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +27,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val jsApi = JsonServerApi.create()
     private val propertyRepository = PropertyRepository(jsApi)
+    private val expenseRepository = ExpenseRepository(jsApi)
 
 
     fun fetchProperties() = viewModelScope.launch(
@@ -109,17 +113,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun updateCurrentPhoto(newPhotoName: Uri){
+    fun updateCurrentPhoto(newPhotoName: Uri) {
         currentPhoto.value = newPhotoName
     }
-    fun clearCurrentPhoto(){
+
+    fun clearCurrentPhoto() {
         currentPhoto.value = null
     }
+
     fun observeCurrentPhoto(): LiveData<Uri> {
         return currentPhoto
     }
 
-    fun getTenant() : Tenant{
+    fun getTenant(): Tenant {
         //Write Me
         // Should get tenant info for selected Property from database.  Below for testing only.
         return Tenant(
@@ -140,9 +146,38 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         //Write Me -- similar to above
     }
 
-    fun addExpense(type: String, amount: Float, date: String, receiptURL: String) {
-        //Write Me -- similar to above
-    }
+    fun addExpense(
+        propertyId: Long,
+        type: String,
+        amount: Float,
+        date: String,
+        receiptURL: String
+    ) =
+        viewModelScope.launch(
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO
+        ) {
+
+            val newExpense = Expense(
+                property_id = propertyId,
+                type = type,
+                amount_spent = amount,
+                date_spent = date,
+                receipt_url = receiptURL
+            )
+
+            expenseRepository.add(newExpense) {
+//                if (it?.id != null) {
+//                    // it = newly added property parsed as response
+//                    // it?.id = newly added property ID
+////                    fetchProperties()
+//                    Log.d("XXX", "fetch new")
+//                } else {
+//                    Log.d("XXX", "Error adding new property")
+//                }
+            }
+
+        }
 
     fun addAppliance(type: String, price: Float, date: String, warranty: String) {
         //Write Me -- similar to above

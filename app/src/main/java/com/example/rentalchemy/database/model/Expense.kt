@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class Expense (var id: Long, var property_id: Long, var type: String, var date_spent: String,
-                    var amount_spent: Float, var receipt_url: String){
-}
+data class Expense(
+    var id: Long = Long.MIN_VALUE, var property_id: Long, var type: String, var date_spent: String,
+    var amount_spent: Float, var receipt_url: String
+)
