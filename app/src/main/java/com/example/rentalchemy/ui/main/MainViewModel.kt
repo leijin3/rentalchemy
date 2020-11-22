@@ -1,6 +1,7 @@
 package com.example.rentalchemy.ui.main
 
 import android.app.Application
+import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -19,6 +20,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val fetchedProperties = MutableLiveData<List<Property>>()
     private var userId = MutableLiveData<Int>().apply { value = 1 }
+    private var currentPhoto = MutableLiveData<Uri>()
 
     private val jsApi = JsonServerApi.create()
     private val propertyRepository = PropertyRepository(jsApi)
@@ -106,7 +108,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getTenant(): Tenant {
+
+    fun updateCurrentPhoto(newPhotoName: Uri){
+        currentPhoto.value = newPhotoName
+    }
+    fun clearCurrentPhoto(){
+        currentPhoto.value = null
+    }
+    fun observeCurrentPhoto(): LiveData<Uri> {
+        return currentPhoto
+    }
+
+    fun getTenant() : Tenant{
         //Write Me
         // Should get tenant info for selected Property from database.  Below for testing only.
         return Tenant(
