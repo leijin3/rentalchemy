@@ -48,15 +48,16 @@ class ExpenseFragment : Fragment() {
         val saveBut = view.findViewById<Button>(R.id.expense_saveBut)
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
+        val propertyId = MainViewModel.selectedProperty?.id!!
 
 
         var receiptURL = "File Name Here"
         viewModel.observeCurrentPhoto().observe(viewLifecycleOwner, {
-            receiptURL = it.toString()
+            receiptURL = it?.toString() ?: "File Name Here"
             receiptIV.setImageURI(it)
         })
 
-        receiptBut.setOnClickListener{
+        receiptBut.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
                 .add(R.id.container, CameraFragment.newInstance())
@@ -65,9 +66,12 @@ class ExpenseFragment : Fragment() {
         }
 
 
-        saveBut.setOnClickListener{
-            viewModel.addExpense(expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
-                dateTV.text.toString(), receiptURL)
+        saveBut.setOnClickListener {
+            viewModel.addExpense(
+                propertyId,
+                expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
+                dateTV.text.toString(), receiptURL
+            )
             viewModel.clearCurrentPhoto()
             parentFragmentManager.popBackStack()
         }

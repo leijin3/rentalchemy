@@ -1,6 +1,7 @@
 package com.example.rentalchemy.database.api
 
 import android.util.Log
+import com.example.rentalchemy.database.model.Expense
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.User
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -19,6 +20,8 @@ interface JsonServerApi {
     )
     suspend fun getUserID(@Query("user_name") username: String): User
 
+
+    // Properties
     @GET(
         "properties"
     )
@@ -35,6 +38,23 @@ interface JsonServerApi {
 
     @PUT("properties/{id}")
     fun updateProperty(@Path("id") propertyId: Long, @Body newProperty: Property): Call<Property>
+
+
+    // Expenses
+    @GET(
+        "expenses"
+    )
+    suspend fun getExpenseList(@Query("property_id") propertyId: Long): List<Expense>
+
+    @Headers("Content-Type: application/json")
+    @POST("expenses")
+    fun createExpense(@Body expenseInfo: Expense): Call<Expense>
+
+    @DELETE("expenses/{id}")
+    fun deleteExpense(@Path("id") id: Long): Call<Expense>
+
+    @PUT("expenses/{id}")
+    fun updateExpense(@Path("id") id: Long, @Body newExpense: Expense): Call<Expense>
 
 
     companion object {
