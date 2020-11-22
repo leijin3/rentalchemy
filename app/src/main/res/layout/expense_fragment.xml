@@ -2,51 +2,52 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@color/design_default_color_on_primary">
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_on_primary"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/expense_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Expense"
-        android:textSize="32sp"
-        android:textColor="@color/cardview_dark_background"
-        android:textStyle="bold"
+        android:layout_margin="32dp"
         android:gravity="center_horizontal"
-        android:layout_margin="32dp"/>
+        android:text="Expense"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/expense_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Property Address Here"
-        android:textSize="24sp"
-        android:textColor="@color/design_default_color_secondary"
+        android:layout_marginBottom="12dp"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="12dp"/>
+        android:text="Property Address Here"
+        android:textColor="@color/design_default_color_secondary"
+        android:textSize="24sp" />
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:src="@color/design_default_color_secondary"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="24dp"
+        android:src="@color/design_default_color_secondary" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Type: "
+            android:textColor="@color/cardview_dark_background"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/expense_type"
@@ -66,9 +67,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Amount Spent: $"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/expense_amt_spent"
@@ -89,9 +90,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date Spent: "
+            android:textColor="@color/cardview_dark_background"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/expense_date_spent"
@@ -112,12 +113,12 @@
             android:id="@+id/add_receiptBut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Receipt"/>
+            android:text="Add Receipt" />
 
         <ImageView
             android:id="@+id/receipt_image"
             android:layout_width="200dp"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp" />
 
     </LinearLayout>
 
@@ -125,8 +126,8 @@
         android:id="@+id/expense_saveBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Expense Record"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:layout_gravity="center_horizontal" />
+        android:text="Save Expense Record" />
 
 </LinearLayout>

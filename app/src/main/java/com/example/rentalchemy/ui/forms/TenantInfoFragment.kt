@@ -21,8 +21,10 @@ class TenantInfoFragment : Fragment() {
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.tenant_info_fragment, container, false)
     }
 
@@ -33,14 +35,14 @@ class TenantInfoFragment : Fragment() {
         var property = MainViewModel.selectedProperty
 
         //Show tenant info in view
-        var nameTV : TextView = view.findViewById(R.id.tenant_name)
-        var phoneTV : TextView = view.findViewById(R.id.tenant_phone)
+        var nameTV: TextView = view.findViewById(R.id.tenant_name)
+        var phoneTV: TextView = view.findViewById(R.id.tenant_phone)
         var emailTV: TextView = view.findViewById(R.id.tenant_email)
-        var startTV : TextView = view.findViewById(R.id.tenant_lease_start)
-        var addressTV : TextView = view.findViewById(R.id.tenant_infoAddress)
+        var startTV: TextView = view.findViewById(R.id.tenant_lease_start)
+        var addressTV: TextView = view.findViewById(R.id.tenant_infoAddress)
 
         addressTV.text = property?.streetAddress
-        tenant?.apply{
+        tenant.apply {
             nameTV.text = this.name
             phoneTV.text = this.phone
             emailTV.text = this.email
@@ -48,13 +50,14 @@ class TenantInfoFragment : Fragment() {
         }
 
         // Functions to switch from editing/not editing
-        fun disableEditTexts(){
+        fun disableEditTexts() {
             nameTV.isEnabled = false
             phoneTV.isEnabled = false
             emailTV.isEnabled = false
             startTV.isEnabled = false
         }
-        fun enableEditTexts(){
+
+        fun enableEditTexts() {
             nameTV.isEnabled = true
             phoneTV.isEnabled = true
             emailTV.isEnabled = true
@@ -67,10 +70,10 @@ class TenantInfoFragment : Fragment() {
 
         //set listener for "Edit" button
         val editSaveBut = view.findViewById<Button>(R.id.tenant_edit_saveBut)
-        editSaveBut.setOnClickListener{
-            if(isEditing) {  //Clicked "Save"
+        editSaveBut.setOnClickListener {
+            if (isEditing) {  //Clicked "Save"
                 tenant.name = nameTV.text.toString()
-                tenant.phone= phoneTV.toString()
+                tenant.phone = phoneTV.toString()
                 tenant.email = emailTV.toString()
                 tenant.leaseStart = startTV.toString()
 

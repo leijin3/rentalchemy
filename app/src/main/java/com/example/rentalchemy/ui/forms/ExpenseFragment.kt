@@ -18,12 +18,14 @@ class ExpenseFragment : Fragment() {
         resources.getStringArray(R.array.expense_types)
     }
 
-    companion object{
-        fun newInstance()  = ExpenseFragment()
+    companion object {
+        fun newInstance() = ExpenseFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.expense_fragment, container, false)
     }
 
@@ -46,6 +48,7 @@ class ExpenseFragment : Fragment() {
         val saveBut = view.findViewById<Button>(R.id.expense_saveBut)
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
+
 
         var receiptURL = "File Name Here"
         viewModel.observeCurrentPhoto().observe(viewLifecycleOwner, {

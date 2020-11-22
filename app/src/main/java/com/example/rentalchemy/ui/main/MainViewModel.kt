@@ -108,6 +108,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+
     fun updateCurrentPhoto(newPhotoName: Uri){
         currentPhoto.value = newPhotoName
     }
@@ -121,23 +122,29 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun getTenant() : Tenant{
         //Write Me
         // Should get tenant info for selected Property from database.  Below for testing only.
-        return Tenant(1, 1, "Sally Sutherford", "ssseashells@seashore.com", "509.567.1234",
-        "10/01/2020")
+        return Tenant(
+            1, 1, "Sally Sutherford", "ssseashells@seashore.com", "509.567.1234",
+            "10/01/2020"
+        )
     }
-    fun updateTenant(tenant: Tenant){
+
+    fun updateTenant(tenant: Tenant) {
         //Write Me
     }
 
-    fun addMaintenance(description: String, contractor: String, date : String){
+    fun addMaintenance(description: String, contractor: String, date: String) {
         //Write Me  -- create new MaintenanceItem object, use selectedProperty, save to database
     }
-    fun addIncome(type: String, amount: Float, date: String){
+
+    fun addIncome(type: String, amount: Float, date: String) {
         //Write Me -- similar to above
     }
-    fun addExpense(type: String, amount: Float, date: String, receiptURL: String){
+
+    fun addExpense(type: String, amount: Float, date: String, receiptURL: String) {
         //Write Me -- similar to above
     }
-    fun addAppliance(type: String, price: Float, date: String, warranty: String){
+
+    fun addAppliance(type: String, price: Float, date: String, warranty: String) {
         //Write Me -- similar to above
     }
 

@@ -3,18 +3,17 @@ package com.example.rentalchemy.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.Appliance
-import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
 class AppliListAdapter(private val viewModel: MainViewModel) :
-    ListAdapter<Appliance, AppliListAdapter.VH>(ApplianceDiff()){
-    class ApplianceDiff: DiffUtil.ItemCallback<Appliance>() {
+    ListAdapter<Appliance, AppliListAdapter.VH>(ApplianceDiff()) {
+    class ApplianceDiff : DiffUtil.ItemCallback<Appliance>() {
 
         override fun areItemsTheSame(oldItem: Appliance, newItem: Appliance): Boolean {
             return oldItem.id == newItem.id
@@ -27,6 +26,7 @@ class AppliListAdapter(private val viewModel: MainViewModel) :
                     && oldItem.warranty == newItem.warranty
         }
     }
+
     //View Holder
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var typeTV = itemView.findViewById<TextView>(R.id.row_appliance_type)

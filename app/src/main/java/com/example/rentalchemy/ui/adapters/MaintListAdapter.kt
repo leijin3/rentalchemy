@@ -3,23 +3,26 @@ package com.example.rentalchemy.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
 class MaintListAdapter(private val viewModel: MainViewModel) :
-        ListAdapter<MaintenanceItem, MaintListAdapter.VH>(MaintenanceDiff()){
-    class MaintenanceDiff: DiffUtil.ItemCallback<MaintenanceItem>() {
+    ListAdapter<MaintenanceItem, MaintListAdapter.VH>(MaintenanceDiff()) {
+    class MaintenanceDiff : DiffUtil.ItemCallback<MaintenanceItem>() {
 
         override fun areItemsTheSame(oldItem: MaintenanceItem, newItem: MaintenanceItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: MaintenanceItem, newItem: MaintenanceItem): Boolean {
+        override fun areContentsTheSame(
+            oldItem: MaintenanceItem,
+            newItem: MaintenanceItem
+        ): Boolean {
             return oldItem.description == newItem.description
                     && oldItem.contractor == newItem.contractor
                     && oldItem.date_finished == newItem.date_finished

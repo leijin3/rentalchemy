@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Rentalchemy"
+        android:text="@string/app_name"
         android:textStyle="bold"
         android:textSize="42sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Enter your username: "
+        android:text="@string/enter_your_username"
         app:layout_constraintTop_toBottomOf="@id/main_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameET"
-        android:text="Go to my properties"/>
+        android:text="@string/go_to_my_properties" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

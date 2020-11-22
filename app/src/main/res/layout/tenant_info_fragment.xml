@@ -2,52 +2,53 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@color/design_default_color_on_primary">
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_on_primary"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tenant_info_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tenant Info"
-        android:textSize="32sp"
-        android:textColor="@color/cardview_dark_background"
-        android:textStyle="bold"
+        android:layout_margin="32dp"
         android:gravity="center_horizontal"
-        android:layout_margin="32dp"/>
+        android:text="Tenant Info"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tenant_infoAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Property Address Here"
-        android:textSize="24sp"
-        android:textColor="@color/design_default_color_secondary"
+        android:layout_marginBottom="12dp"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="12dp"/>
+        android:text="Property Address Here"
+        android:textColor="@color/design_default_color_secondary"
+        android:textSize="24sp" />
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:src="@color/design_default_color_secondary"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="24dp"
+        android:src="@color/design_default_color_secondary" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp">
+
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tenant Name: "
+            android:textColor="@color/cardview_dark_background"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/tenant_name"
@@ -68,9 +69,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email: "
+            android:textColor="@color/cardview_dark_background"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/tenant_email"
@@ -92,9 +93,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone: "
+            android:textColor="@color/cardview_dark_background"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/tenant_phone"
@@ -116,9 +117,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lease Start Date: "
+            android:textColor="@color/cardview_dark_background"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/tenant_lease_start"
@@ -133,8 +134,8 @@
         android:id="@+id/tenant_edit_saveBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Tenant Details"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:layout_gravity="center_horizontal" />
+        android:text="Edit Tenant Details" />
 
 </LinearLayout>

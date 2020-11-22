@@ -15,12 +15,14 @@ class MaintenanceFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    companion object{
-        fun newInstance()  = MaintenanceFragment()
+    companion object {
+        fun newInstance() = MaintenanceFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.maintenance_fragment, container, false)
     }
 
@@ -35,9 +37,11 @@ class MaintenanceFragment : Fragment() {
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
-        saveBut.setOnClickListener{
-            viewModel.addMaintenance(descriptionTV.text.toString(), contractorTV.text.toString(),
-                datefinishedTV.text.toString())
+        saveBut.setOnClickListener {
+            viewModel.addMaintenance(
+                descriptionTV.text.toString(), contractorTV.text.toString(),
+                datefinishedTV.text.toString()
+            )
             parentFragmentManager.popBackStack()
         }
     }

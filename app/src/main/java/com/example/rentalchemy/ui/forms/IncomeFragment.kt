@@ -21,12 +21,14 @@ class IncomeFragment : Fragment() {
         resources.getStringArray(R.array.income_types)
     }
 
-    companion object{
-        fun newInstance()  = IncomeFragment()
+    companion object {
+        fun newInstance() = IncomeFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.income_fragment, container, false)
     }
 
@@ -48,9 +50,11 @@ class IncomeFragment : Fragment() {
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
-        saveBut.setOnClickListener{
-            viewModel.addIncome(incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
-                dateTV.text.toString())
+        saveBut.setOnClickListener {
+            viewModel.addIncome(
+                incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
+                dateTV.text.toString()
+            )
             parentFragmentManager.popBackStack()
         }
     }

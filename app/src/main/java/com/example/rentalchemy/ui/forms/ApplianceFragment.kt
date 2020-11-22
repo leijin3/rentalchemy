@@ -22,12 +22,14 @@ class ApplianceFragment : Fragment() {
         resources.getStringArray(R.array.appliance_types)
     }
 
-    companion object{
-        fun newInstance()  = ApplianceFragment()
+    companion object {
+        fun newInstance() = ApplianceFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.appliance_fragment, container, false)
     }
 
@@ -50,9 +52,11 @@ class ApplianceFragment : Fragment() {
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
-        saveBut.setOnClickListener{
-            viewModel.addAppliance(applianceTypeSpinner.selectedItem.toString(), parseFloat(priceTV.text.toString()),
-                dateTV.text.toString(), warrantyTV.text.toString())
+        saveBut.setOnClickListener {
+            viewModel.addAppliance(
+                applianceTypeSpinner.selectedItem.toString(), parseFloat(priceTV.text.toString()),
+                dateTV.text.toString(), warrantyTV.text.toString()
+            )
             parentFragmentManager.popBackStack()
         }
     }
