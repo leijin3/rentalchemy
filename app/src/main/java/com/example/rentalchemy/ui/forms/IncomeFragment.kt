@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
@@ -51,11 +48,17 @@ class IncomeFragment : Fragment() {
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
         saveBut.setOnClickListener {
-            viewModel.addIncome(
-                incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
-                dateTV.text.toString()
-            )
-            parentFragmentManager.popBackStack()
+            val validAmount = (amountTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
+
+            if(validAmount) {
+                viewModel.addIncome(
+                        incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
+                        dateTV.text.toString()
+                )
+                parentFragmentManager.popBackStack()
+            } else {
+                Toast.makeText(this.context, "Enter a valid amount.", Toast.LENGTH_LONG).show()
+            }
         }
     }
 }
