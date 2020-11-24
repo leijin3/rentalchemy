@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
@@ -132,28 +129,40 @@ class PropertyDetailFragment : Fragment() {
 
         editSaveBut.setOnClickListener {
             if (isEditing) { //Clicked "Save"
-                val newProperty: Property = Property(
-                    selectedProperty!!.id,
-                    selectedProperty!!.landlordID,
-                    streetTV.text.toString(),
-                    cityTV.text.toString(),
-                    stateTV.text.toString(),
-                    postalCodeTV.text.toString(),
-                    rentAmtTV.text.toString(),
-                    propertyTypeSpinner.selectedItem.toString(),
-                    parseInt(sqftTV.text.toString()),
-                    parseInt(bedsTV.text.toString()),
-                    parseInt(bathsTV.text.toString()),
-                    costBasisTV.text.toString(),
-                    dateAcqTV.text.toString(),
-                    yearBuiltTV.text.toString(),
-                    parseInt(parkingTV.text.toString())
-                )
-                //How do we set the property id and user Id?
-                viewModel.updateProperty(newProperty)
-                isEditing = false
-                editSaveBut.text = "Edit Property Detail"
-                disableEditTexts()
+                //First check the numeric fields
+                var sqftValid = sqftTV.text.toString().matches("\\d+".toRegex())
+                var bedsValid = bedsTV.text.toString().matches("\\d+".toRegex())
+                var bathsValid = bathsTV.text.toString().matches("\\d+".toRegex())
+                var parkingValid = parkingTV.text.toString().matches("\\d+".toRegex())
+
+                if (sqftValid && bedsValid && bathsValid && parkingValid) {
+                    val newProperty: Property = Property(
+                            selectedProperty!!.id,
+                            selectedProperty!!.landlordID,
+                            streetTV.text.toString(),
+                            cityTV.text.toString(),
+                            stateTV.text.toString(),
+                            postalCodeTV.text.toString(),
+                            rentAmtTV.text.toString(),
+                            propertyTypeSpinner.selectedItem.toString(),
+                            parseInt(sqftTV.text.toString()),
+                            parseInt(bedsTV.text.toString()),
+                            parseInt(bathsTV.text.toString()),
+                            costBasisTV.text.toString(),
+                            dateAcqTV.text.toString(),
+                            yearBuiltTV.text.toString(),
+                            parseInt(parkingTV.text.toString())
+                    )
+                    //TODO:  How do we set the property id and user Id for a brand new property?
+                    // currently the code above crashes if there's not been any properties selected yet.
+
+                    viewModel.updateProperty(newProperty)
+                    isEditing = false
+                    editSaveBut.text = "Edit Property Detail"
+                    disableEditTexts()
+                } else {
+                    Toast.makeText(this.context, "Enter valid numbers for sqft, beds, baths, and parking.", Toast.LENGTH_LONG).show()
+                }
             } else {  //Clicked "Edit"
                 isEditing = true
                 editSaveBut.text = "Save Property Detail"

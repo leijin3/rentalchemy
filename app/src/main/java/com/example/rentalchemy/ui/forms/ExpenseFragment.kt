@@ -52,8 +52,10 @@ class ExpenseFragment : Fragment() {
 
         var receiptURL = "File Name Here"
         viewModel.observeCurrentPhoto().observe(viewLifecycleOwner, {
-            receiptURL = it.toString()
-            receiptIV.setImageURI(it)
+            if (it != null) {
+                receiptURL = it.toString()
+                receiptIV.setImageURI(it)
+            }
         })
 
         receiptBut.setOnClickListener{
@@ -66,10 +68,16 @@ class ExpenseFragment : Fragment() {
 
 
         saveBut.setOnClickListener{
-            viewModel.addExpense(expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
-                dateTV.text.toString(), receiptURL)
-            viewModel.clearCurrentPhoto()
-            parentFragmentManager.popBackStack()
+            val validPrice = (amountTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
+
+            if(validPrice) {
+                viewModel.addExpense(expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
+                        dateTV.text.toString(), receiptURL)
+                viewModel.clearCurrentPhoto()
+                parentFragmentManager.popBackStack()
+            } else {
+                Toast.makeText(this.context, "Enter a valid price.", Toast.LENGTH_LONG).show()
+            }
         }
     }
 }
