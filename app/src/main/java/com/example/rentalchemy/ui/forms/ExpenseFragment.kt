@@ -64,12 +64,14 @@ class ExpenseFragment : Fragment() {
             amountTV.isEnabled = true
             dateTV.isEnabled = true
             receiptBut.isEnabled = true
+            expenseTypeSpinner.isEnabled = true
         }
 
         fun disableEditTexts(){
             amountTV.isEnabled = false
             dateTV.isEnabled = false
             receiptBut.isEnabled = false
+            expenseTypeSpinner.isEnabled = false
         }
 
         if(isEditing) { //Creating new Expense
@@ -77,6 +79,7 @@ class ExpenseFragment : Fragment() {
         } else { //Displaying selected Expense
             saveBut.text = "Edit Expense"
             val currentExpense = MainViewModel.selectedExpense
+            expenseTypeSpinner.setSelection(expenseTypes.indexOf(currentExpense?.type))
             amountTV.text = currentExpense?.amount_spent.toString()
             dateTV.text = currentExpense?.date_spent
             receiptIV.setImageURI(currentExpense?.receipt_url?.toUri())
