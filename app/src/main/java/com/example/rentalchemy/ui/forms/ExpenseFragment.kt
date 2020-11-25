@@ -66,20 +66,23 @@ class ExpenseFragment : Fragment() {
         }
 
 
-        saveBut.setOnClickListener{
+        saveBut.setOnClickListener {
             val validPrice = (amountTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
 
-            if(validPrice) {
+            if (validPrice) {
                 viewModel.addExpense(
-                propertyId,
-                expenseTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
-                dateTV.text.toString(), receiptURL
-            )
+                    propertyId,
+                    expenseTypeSpinner.selectedItem.toString(),
+                    parseFloat(amountTV.text.toString()),
+                    dateTV.text.toString(),
+                    receiptURL
+                )
                 viewModel.clearCurrentPhoto()
                 parentFragmentManager.popBackStack()
             } else {
                 Toast.makeText(this.context, "Enter a valid price.", Toast.LENGTH_LONG).show()
             }
-       
+
+        }
     }
 }
