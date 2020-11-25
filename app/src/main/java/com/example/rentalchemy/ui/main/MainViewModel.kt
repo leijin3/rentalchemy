@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rentalchemy.database.api.JsonServerApi
 import com.example.rentalchemy.database.api.PropertyRepository
+import com.example.rentalchemy.database.model.Expense
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.Tenant
 import kotlinx.coroutines.Dispatchers
@@ -150,6 +151,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     companion object {
         var selectedProperty: Property? = null
+        var selectedExpense: Expense? = null
     }
 
 

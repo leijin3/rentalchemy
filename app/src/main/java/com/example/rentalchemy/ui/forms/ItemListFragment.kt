@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
+import com.example.rentalchemy.database.model.Expense
 import com.example.rentalchemy.ui.adapters.AppliListAdapter
 import com.example.rentalchemy.ui.adapters.ExpenseListAdapter
 import com.example.rentalchemy.ui.adapters.IncomeListAdapter
@@ -61,13 +63,22 @@ class ItemListFragment : Fragment() {
 
     }
 
+    private fun clickExpenseRow(){
+        parentFragmentManager
+                .beginTransaction()
+                .addToBackStack("Expense")
+                .replace(R.id.container, ExpenseFragment.newInstance(false))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit()
+    }
+
     private fun initAdapter(root: View, type: String) {
         var adapter = when (type) {
             "Maintenance" -> MaintListAdapter(viewModel)
             "Appliance" -> AppliListAdapter(viewModel)
             "Income" -> IncomeListAdapter(viewModel)
-            "Expense" -> ExpenseListAdapter(viewModel)
-            else -> ExpenseListAdapter(viewModel)
+            "Expense" -> ExpenseListAdapter(viewModel, ::clickExpenseRow)
+            else -> IncomeListAdapter(viewModel)
         }
         val rv = root.findViewById<RecyclerView>(R.id.item_listRV)
         rv.adapter = adapter
@@ -80,7 +91,7 @@ class ItemListFragment : Fragment() {
                 "Maintenance" -> MaintenanceFragment.newInstance()
                 "Appliance" -> ApplianceFragment.newInstance()
                 "Income" -> IncomeFragment.newInstance()
-                "Expense" -> ExpenseFragment.newInstance()
+                "Expense" -> ExpenseFragment.newInstance(true)
                 else -> Fragment()
             }
         parentFragmentManager

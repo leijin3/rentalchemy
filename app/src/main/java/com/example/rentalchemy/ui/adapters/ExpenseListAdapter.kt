@@ -13,7 +13,8 @@ import com.example.rentalchemy.database.model.Expense
 import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
-class ExpenseListAdapter(private val viewModel: MainViewModel) :
+class ExpenseListAdapter(private val viewModel: MainViewModel,
+    private val expenseClickListener: () -> Unit) :
     ListAdapter<Expense, ExpenseListAdapter.VH>(ExpenseDiff()){
     class ExpenseDiff: DiffUtil.ItemCallback<Expense>() {
 
@@ -55,6 +56,9 @@ class ExpenseListAdapter(private val viewModel: MainViewModel) :
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
 
-        //TODO: onClick for row, highlight selected for possible deletion?
+        holder.itemView.setOnClickListener{
+            MainViewModel.selectedExpense = getItem(position)
+            expenseClickListener()
+        }
     }
 }
