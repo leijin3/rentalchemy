@@ -185,6 +185,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     companion object {
         var selectedProperty: Property? = null
+        var selectedExpense: Expense? = null
     }
 
 
