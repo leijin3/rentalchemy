@@ -7,11 +7,18 @@
 
 - Make sure you have [Node](https://nodejs.org/en/download/) installed
 ```sh
-# install json-server
-npm install -g json-server
+# Install dependencies (only need to run once)
+npm install
 
-# Start JSON Server
-json-server --watch db.json
+# start the REST API Server (running on port 3000)
+npm run json-server
+
+# Or start REST API Server (running on port 3001)
+npm run graphql-server
+
+# Or start both servers
+npm start
+
 
 # Create a branch locally to work on a feature or bug-fix
 git checkout -b my-awesome-branch
