@@ -10,13 +10,13 @@
 # Install dependencies (only need to run once)
 npm install
 
-# start the REST API Server (running on port 3000)
+# Start only the REST API server (running on port 3000)
 npm run json-server
 
-# Or start REST API Server (running on port 3001)
+# Or, start only the GraqhQL server (running on port 3001)
 npm run graphql-server
 
-# Or start both servers
+# Or, start both servers
 npm start
 
 
