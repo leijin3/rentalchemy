@@ -1,0 +1,26 @@
+{
+  "name": "rentalchemy",
+  "version": "1.0.0",
+  "description": "## Getting Started",
+  "main": "index.js",
+  "scripts": {
+    "graphql-server": "json-graphql-server db.json --p 3001",
+    "json-server": "json-server --watch db.json",
+    "start": "json-server --watch db.json && json-graphql-server db.js --p 3001 "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leijin3/rentalchemy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leijin3/rentalchemy/issues"
+  },
+  "homepage": "https://github.com/leijin3/rentalchemy#readme",
+  "devDependencies": {
+    "json-graphql-server": "^2.2.0",
+    "json-server": "^0.16.3"
+  }
+}

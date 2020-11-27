@@ -1,5 +1,5 @@
 {
-  "maintenance": [
+  "maintenances": [
     {
       "id": 1,
       "property_id": 177,
@@ -7001,7 +7001,7 @@
       "date_finished": "2/7/2020"
     }
   ],
-  "income": [
+  "incomes": [
     {
       "id": 1,
       "property_id": 120,
