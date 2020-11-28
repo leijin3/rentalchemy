@@ -1,0 +1,12 @@
+query YearlyExpense($uid:ID! = 1){
+
+  User(id:$uid){
+  	Properties {
+    	st_address
+    	Expenses {
+     	 	amount_spent
+      	date_spent
+    	}
+		}
+  }
+}

@@ -1,6 +1,7 @@
 package com.example.rentalchemy.ui.main
 
 import android.app.Application
+import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
@@ -10,8 +11,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rentalchemy.database.api.ExpenseRepository
 import com.example.rentalchemy.database.api.JsonServerApi
-import com.example.rentalchemy.database.api.JsonServerApi.Companion.create
 import com.example.rentalchemy.database.api.PropertyRepository
+import com.example.rentalchemy.database.api.ReportGenerator
 import com.example.rentalchemy.database.model.Expense
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.Tenant
@@ -19,7 +20,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-    // TODO: Implement the ViewModel
 
     private val fetchedProperties = MutableLiveData<List<Property>>()
     private var userId = MutableLiveData<Int>().apply { value = 1 }
@@ -28,6 +28,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val jsApi = JsonServerApi.create()
     private val propertyRepository = PropertyRepository(jsApi)
     private val expenseRepository = ExpenseRepository(jsApi)
+    private val reportGenerator = ReportGenerator()
 
 
     fun fetchProperties() = viewModelScope.launch(
@@ -181,6 +182,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun addAppliance(type: String, price: Float, date: String, warranty: String) {
         //Write Me -- similar to above
+    }
+
+    fun generateExpenseReport(appContext: Context) {
+        viewModelScope.launch(
+            context = viewModelScope.coroutineContext
+                + Dispatchers.IO){
+        userId.value?.let { reportGenerator.generateReport(appContext, it) }
+        }
     }
 
     companion object {

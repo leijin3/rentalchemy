@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.forms.ItemListFragment
 import com.example.rentalchemy.ui.forms.TenantInfoFragment
@@ -25,7 +26,7 @@ class DashboardFragment : Fragment() {
         const val expenseKey = "Expense"
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -114,7 +115,11 @@ class DashboardFragment : Fragment() {
             }
         }
 
-        //TODO:  Generate report button functionality
+        view.findViewById<Button>(R.id.reportBut).apply {
+            setOnClickListener{
+                viewModel.generateExpenseReport(requireContext())
+            }
+        }
 
     }
 
