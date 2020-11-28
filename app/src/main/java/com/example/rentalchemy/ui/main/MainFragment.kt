@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
+import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
@@ -34,7 +36,7 @@ class MainFragment : Fragment() {
         val enterButton = view.findViewById<Button>(R.id.usernameBut)
         var userNameET = view.findViewById<EditText>(R.id.usernameET)
 
-        enterButton.setOnClickListener {
+        fun doSignIn(){
             if (userNameET.text.isNotEmpty()) {
                 //TODO:  implement checking the username and query for UID, set UID in viewModel
                 propertyListFragment = PropertyListFragment.newInstance()
@@ -46,6 +48,21 @@ class MainFragment : Fragment() {
                     .commit()
             }
         }
+
+        usernameET.setOnEditorActionListener{view, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_DONE -> {
+                    doSignIn()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        enterButton.setOnClickListener {
+            doSignIn()
+        }
     }
+
 
 }

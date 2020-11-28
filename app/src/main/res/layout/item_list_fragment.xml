@@ -22,14 +22,14 @@
         android:layout_marginBottom="12dp"
         android:gravity="center_horizontal"
         android:text="Property Address Here"
-        android:textColor="@color/design_default_color_secondary"
+        android:textColor="@color/dark_red"
         android:textSize="24sp" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginBottom="24dp"
-        android:src="@color/design_default_color_secondary" />
+        android:src="@color/dark_red" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_listRV"
