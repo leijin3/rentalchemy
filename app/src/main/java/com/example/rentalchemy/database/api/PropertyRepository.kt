@@ -8,6 +8,14 @@ import retrofit2.Response
 class PropertyRepository(private val jsApi: JsonServerApi) {
 
     //functions to serve data to the ViewModel
+    suspend fun getUserId(userName: String): Long? {
+        val userList = jsApi.getUserList(userName)
+        return if (userList.size == 1) {
+            userList[0].id
+        } else
+            null
+    }
+
 
     suspend fun getPropertyList(userId: Int): List<Property>? {
         return jsApi.getPropertyList(userId)

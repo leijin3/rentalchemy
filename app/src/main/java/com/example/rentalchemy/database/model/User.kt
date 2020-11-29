@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 import java.util.*
 
 @Serializable
-data class User (var id: Long, var user_Name: String, var created_at: String) {
+data class User(var id: Long, var user_name: String, var created_at: String) {
 }

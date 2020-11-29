@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val fetchedProperties = MutableLiveData<List<Property>>()
-    private var userId = MutableLiveData<Int>().apply { value = 1 }
+    var userId = MutableLiveData<Int>().apply { value = 1 }
     private var currentPhoto = MutableLiveData<Uri>()
 
     private val jsApi = JsonServerApi.create()
@@ -30,6 +30,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val expenseRepository = ExpenseRepository(jsApi)
     private val reportGenerator = ReportGenerator()
 
+
+    fun getUserId(userName: String) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        // Update LiveData from IO dispatcher, use postValue
+        userId.postValue(propertyRepository.getUserId(userName)?.toInt())
+    }
 
     fun fetchProperties() = viewModelScope.launch(
         context = viewModelScope.coroutineContext
@@ -187,12 +195,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun generateExpenseReport(appContext: Context) {
         viewModelScope.launch(
             context = viewModelScope.coroutineContext
-                + Dispatchers.IO){
-        userId.value?.let { reportGenerator.generateReport(appContext, it) }
+                    + Dispatchers.IO
+        ) {
+            userId.value?.let { reportGenerator.generateReport(appContext, it) }
         }
     }
 
     companion object {
+        var landlordID: Long? = null
         var selectedProperty: Property? = null
         var selectedExpense: Expense? = null
     }

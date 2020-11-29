@@ -18,7 +18,7 @@ interface JsonServerApi {
     @GET(
         "users"
     )
-    suspend fun getUserID(@Query("user_name") username: String): User
+    suspend fun getUserList(@Query("user_name") username: String): List<User>
 
 
     // Properties

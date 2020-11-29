@@ -73,7 +73,7 @@ class ItemListFragment : Fragment() {
     }
 
     private fun initAdapter(root: View, type: String) {
-        var adapter = when (type) {
+        val adapter = when (type) {
             "Maintenance" -> MaintListAdapter(viewModel)
             "Appliance" -> AppliListAdapter(viewModel)
             "Income" -> IncomeListAdapter(viewModel)
@@ -86,7 +86,7 @@ class ItemListFragment : Fragment() {
     }
 
     private fun addButtonListener(type: String) {
-        var itemFrag =
+        val itemFrag =
             when (type) {
                 "Maintenance" -> MaintenanceFragment.newInstance()
                 "Appliance" -> ApplianceFragment.newInstance()
