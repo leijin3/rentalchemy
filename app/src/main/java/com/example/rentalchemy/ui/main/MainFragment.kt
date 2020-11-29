@@ -1,6 +1,7 @@
 package com.example.rentalchemy.ui.main
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,8 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
+
+
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var propertyListFragment: PropertyListFragment
 
@@ -34,18 +37,32 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val enterButton = view.findViewById<Button>(R.id.usernameBut)
-        var userNameET = view.findViewById<EditText>(R.id.usernameET)
+        val userNameET = view.findViewById<EditText>(R.id.usernameET)
+
+        userNameET.setOnEditorActionListener { /*v*/_, actionId, event ->
+            // If user has pressed enter,
+            // or if they hit the soft keyboard "GO TO MY PROPERTIES" button
+            if ((event != null
+                        && (event.action == KeyEvent.ACTION_DOWN)
+                        && (event.keyCode == KeyEvent.KEYCODE_ENTER))
+                || (actionId == EditorInfo.IME_ACTION_DONE)
+            ) {
+                enterButton.callOnClick()
+            }
+            false
+        }
 
         fun doSignIn(){
             if (userNameET.text.isNotEmpty()) {
-                //TODO:  implement checking the username and query for UID, set UID in viewModel
-                propertyListFragment = PropertyListFragment.newInstance()
-                parentFragmentManager
-                    .beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.container, propertyListFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .commit()
+                viewModel.getUserId(userNameET.text.toString()).invokeOnCompletion {
+                    propertyListFragment = PropertyListFragment.newInstance()
+                    parentFragmentManager
+                        .beginTransaction()
+                        .addToBackStack(null)
+                        .replace(R.id.container, propertyListFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit()
+                }
             }
         }
 
