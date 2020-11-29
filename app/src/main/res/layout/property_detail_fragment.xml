@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginBottom="24dp"
-        android:src="@color/design_default_color_secondary" />
+        android:src="@color/dark_red" />
 
     <LinearLayout
         android:layout_width="match_parent"

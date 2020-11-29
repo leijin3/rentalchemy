@@ -43,7 +43,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/design_default_color_secondary_variant"
+        android:background="@color/dark_red"
         app:layout_constraintBottom_toTopOf="@id/property_detailBut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

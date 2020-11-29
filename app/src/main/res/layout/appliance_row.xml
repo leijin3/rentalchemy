@@ -65,6 +65,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/design_default_color_secondary" />
+        android:background="@color/dark_red" />
 
 </LinearLayout>
