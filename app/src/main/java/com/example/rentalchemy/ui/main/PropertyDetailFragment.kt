@@ -71,6 +71,8 @@ class PropertyDetailFragment : Fragment() {
         var costBasisTV: TextView = view.findViewById(R.id.detail_cost_basis)
         var yearBuiltTV: TextView = view.findViewById(R.id.detail_year_built)
         var dateAcqTV: TextView = view.findViewById(R.id.detail_date_acquired)
+        var monthAcqTV: TextView = view.findViewById(R.id.detail_month_acquired)
+        var yearAcqTV: TextView = view.findViewById(R.id.detail_year_acquired)
 
 
         if (MainViewModel.selectedProperty != null) {
@@ -91,6 +93,8 @@ class PropertyDetailFragment : Fragment() {
                 costBasisTV.text = this.cost_basis
                 yearBuiltTV.text = this.year_built.takeLast(4)
                 dateAcqTV.text = this.date_acquired
+                monthAcqTV.text = this.month.toString()
+                yearAcqTV.text = this.year.toString()
                 setSpinnerToType(propertyTypeSpinner, this.propertyType)
             }
         }
@@ -108,6 +112,8 @@ class PropertyDetailFragment : Fragment() {
             costBasisTV.isEnabled = true
             yearBuiltTV.isEnabled = true
             dateAcqTV.isEnabled = true
+            monthAcqTV.isEnabled = true
+            yearAcqTV.isEnabled = true
             propertyTypeSpinner.isEnabled = true
         }
 
@@ -124,6 +130,8 @@ class PropertyDetailFragment : Fragment() {
             costBasisTV.isEnabled = false
             yearBuiltTV.isEnabled = false
             dateAcqTV.isEnabled = false
+            monthAcqTV.isEnabled = false
+            yearAcqTV.isEnabled = false
             propertyTypeSpinner.isEnabled = false
         }
 
@@ -134,9 +142,13 @@ class PropertyDetailFragment : Fragment() {
                 var bedsValid = bedsTV.text.toString().matches("\\d+".toRegex())
                 var bathsValid = bathsTV.text.toString().matches("\\d+".toRegex())
                 var parkingValid = parkingTV.text.toString().matches("\\d+".toRegex())
+                var monthValid = monthAcqTV.text.toString().matches("\\d+".toRegex())
+                var yearValid = yearAcqTV.text.toString().matches("\\d{4}".toRegex())
 
-                if (sqftValid && bedsValid && bathsValid && parkingValid) {
+                if (sqftValid && bedsValid && bathsValid && parkingValid && yearValid) {
                     val newProperty: Property = Property(
+                            parseInt(yearAcqTV.text.toString()),
+                            parseInt(monthAcqTV.text.toString()),
                             selectedProperty!!.id,
                             selectedProperty!!.landlordID,
                             streetTV.text.toString(),
@@ -161,7 +173,7 @@ class PropertyDetailFragment : Fragment() {
                     editSaveBut.text = "Edit Property Detail"
                     disableEditTexts()
                 } else {
-                    Toast.makeText(this.context, "Enter valid numbers for sqft, beds, baths, and parking.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this.context, "Enter valid numbers for sqft, beds, baths, parking, month, and year.", Toast.LENGTH_LONG).show()
                 }
             } else {  //Clicked "Edit"
                 isEditing = true
