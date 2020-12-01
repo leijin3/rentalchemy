@@ -18,6 +18,7 @@ import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.Tenant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.time.measureTime
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -54,6 +55,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val dummyPropertyID = 999.toLong()
     private val dummyProperty = Property(
+        year = 2001,
+        month = 1,
         id = dummyPropertyID,
         landlordID = 1,
         streetAddress = "123 Fifth Ave",
@@ -147,15 +150,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         //Write Me
     }
 
-    fun addMaintenance(description: String, contractor: String, date: String) {
+    fun addMaintenance(year: Int, month: Int, description: String, contractor: String, date: String) {
         //Write Me  -- create new MaintenanceItem object, use selectedProperty, save to database
     }
 
-    fun addIncome(type: String, amount: Float, date: String) {
+    fun addIncome(year: Int, month: Int, type: String, amount: Float, date: String) {
         //Write Me -- similar to above
     }
 
     fun addExpense(
+        year: Int,
+        month: Int,
         propertyId: Long,
         type: String,
         amount: Float,
@@ -168,6 +173,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         ) {
 
             val newExpense = Expense(
+                year = year,
+                month = month,
                 property_id = propertyId,
                 type = type,
                 amount_spent = amount,
@@ -188,7 +195,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         }
 
-    fun addAppliance(type: String, price: Float, date: String, warranty: String) {
+    fun addAppliance(year: Int, month: String, type: String, price: Float, date: String, warranty: String) {
         //Write Me -- similar to above
     }
 

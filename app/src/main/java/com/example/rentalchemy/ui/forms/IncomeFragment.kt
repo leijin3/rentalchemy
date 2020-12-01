@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
 import java.lang.Float.parseFloat
+import java.lang.Integer.parseInt
 
 class IncomeFragment : Fragment() {
 
@@ -42,6 +43,8 @@ class IncomeFragment : Fragment() {
 
         val amountTV = view.findViewById<TextView>(R.id.income_amt_received)
         val dateTV = view.findViewById<TextView>(R.id.income_date_received)
+        val yearTV = view.findViewById<TextView>(R.id.income_year_received)
+        val monthTV = view.findViewById<TextView>(R.id.income_month_received)
         val addressTV = view.findViewById<TextView>(R.id.income_address)
         val saveBut = view.findViewById<Button>(R.id.income_saveBut)
 
@@ -49,15 +52,17 @@ class IncomeFragment : Fragment() {
 
         saveBut.setOnClickListener {
             val validAmount = (amountTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
+            val validMonth = (monthTV.text.toString()).matches("\\d{1,2}".toRegex())
+            val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())
 
-            if(validAmount) {
-                viewModel.addIncome(
+            if(validAmount && validMonth && validYear) {
+                viewModel.addIncome( parseInt(yearTV.text.toString()), parseInt(monthTV.text.toString()),
                         incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
                         dateTV.text.toString()
                 )
                 parentFragmentManager.popBackStack()
             } else {
-                Toast.makeText(this.context, "Enter a valid amount.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context, "Enter a valid amount, month, and year", Toast.LENGTH_LONG).show()
             }
         }
     }

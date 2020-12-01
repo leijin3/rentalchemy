@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
+import java.lang.Integer.parseInt
 
 class MaintenanceFragment : Fragment() {
 
@@ -33,12 +34,14 @@ class MaintenanceFragment : Fragment() {
         val descriptionTV = view.findViewById<TextView>(R.id.description)
         val contractorTV = view.findViewById<TextView>(R.id.contractor)
         val datefinishedTV = view.findViewById<TextView>(R.id.date_finished)
+        val monthTV = view.findViewById<TextView>(R.id.month_finished)
+        val yearTV = view.findViewById<TextView>(R.id.year_finished)
         val saveBut = view.findViewById<Button>(R.id.maintenance_saveBut)
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
         saveBut.setOnClickListener {
-            viewModel.addMaintenance(
+            viewModel.addMaintenance( parseInt(yearTV.text.toString()), parseInt(monthTV.text.toString()),
                 descriptionTV.text.toString(), contractorTV.text.toString(),
                 datefinishedTV.text.toString()
             )

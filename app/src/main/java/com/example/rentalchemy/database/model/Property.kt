@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Property(
+    var year: Int,
+    var month: Int,
     var id: Long,
     @SerialName("user_id") var landlordID: Long,
     @SerialName("st_address") var streetAddress: String,

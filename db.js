@@ -34,7 +34,7 @@ expenses = expenses.map((expense) => ({
 
 properties = properties.map((property) => ({
     year: new Date(property.date_acquired).getFullYear(),
-    month: new Date(property.date_spent).getMonth() + 1,
+    month: new Date(property.date_acquired).getMonth() + 1,
     ...property,
 }));
 
