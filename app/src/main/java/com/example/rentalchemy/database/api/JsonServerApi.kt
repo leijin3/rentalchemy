@@ -2,6 +2,7 @@ package com.example.rentalchemy.database.api
 
 import android.util.Log
 import com.example.rentalchemy.database.model.Expense
+import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.User
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -55,6 +56,12 @@ interface JsonServerApi {
 
     @PUT("expenses/{id}")
     fun updateExpense(@Path("id") id: Long, @Body newExpense: Expense): Call<Expense>
+
+    // Maintenance Items
+    @GET(
+        "maintenances"
+    )
+    suspend fun getMaintenanceList(@Query("property_id") propertyId: Long): List<MaintenanceItem>
 
 
     companion object {
