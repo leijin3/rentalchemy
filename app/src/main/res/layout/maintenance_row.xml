@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,7 +17,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="middle"
             android:singleLine="true"
-            android:text="Fixed leak under kitchen sink.  Repaired faucet
+            tools:text="Fixed leak under kitchen sink.  Repaired faucet
             and pipes, new seal"
             android:textSize="18sp" />
 
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ellipsize="end"
-            android:text="A-PLUS Plumbing Company"
+            tools:text="A-PLUS Plumbing Company"
             android:textSize="18sp" />
 
         <TextView
@@ -42,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="12/21/2019"
+            tools:text="12/21/2019"
             android:textSize="18sp" />
     </LinearLayout>
 

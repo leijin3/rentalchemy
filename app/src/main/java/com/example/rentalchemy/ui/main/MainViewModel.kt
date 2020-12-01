@@ -9,25 +9,25 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.rentalchemy.database.api.ExpenseRepository
-import com.example.rentalchemy.database.api.JsonServerApi
-import com.example.rentalchemy.database.api.PropertyRepository
-import com.example.rentalchemy.database.api.ReportGenerator
+import com.example.rentalchemy.database.api.*
 import com.example.rentalchemy.database.model.Expense
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.Tenant
+import com.example.rentalchemy.database.model.MaintenanceItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val fetchedProperties = MutableLiveData<List<Property>>()
-    var userId = MutableLiveData<Int>().apply { value = 1 }
+    private val fetchedMaintenanceItems = MutableLiveData<List<MaintenanceItem>>()
+    private var userId = MutableLiveData<Int>().apply { value = 1 }
     private var currentPhoto = MutableLiveData<Uri>()
 
     private val jsApi = JsonServerApi.create()
     private val propertyRepository = PropertyRepository(jsApi)
     private val expenseRepository = ExpenseRepository(jsApi)
+    private val maintenanceRepository = MaintenanceRepository(jsApi)
     private val reportGenerator = ReportGenerator()
 
 
@@ -47,9 +47,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedProperties.postValue(propertyRepository.getPropertyList(userId.value!!))
     }
 
+    fun fetchMaintenanceItems(propertyId: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        // Update LiveData from IO dispatcher, use postValue
+        fetchedMaintenanceItems.postValue(maintenanceRepository.getMaintenanceList(propertyId))
+    }
+
 
     fun observeProperties(): LiveData<List<Property>> {
         return fetchedProperties
+    }
+
+    fun observeMaintenanceItems(): LiveData<List<MaintenanceItem>> {
+        return fetchedMaintenanceItems
     }
 
     private val dummyPropertyID = 999.toLong()

@@ -6,4 +6,6 @@
     <string name="delete_property">Delete a Property</string>
     <string name="go_to_my_properties">Go to my properties</string>
     <string name="enter_your_username">Enter your username:</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
 </resources>
