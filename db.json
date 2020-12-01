@@ -34472,7 +34472,7 @@
       "num_baths": 3,
       "cost_basis": "$83962.76",
       "date_acquired": "11/18/1987",
-      "year_built": "1939",
+      "year_built": "1939/1/1",
       "parking": 3
     },
     {
@@ -36259,23 +36259,6 @@
       "date_acquired": "9/3/2018",
       "year_built": "7/22/1900",
       "parking": 4
-    },
-    {
-      "id": 999,
-      "user_id": 1,
-      "st_address": "123 Fifth Ave",
-      "city": "New York",
-      "state": "NY",
-      "zip": "10003",
-      "rent_amt": "5000",
-      "type": "apartment",
-      "sqft": 3000,
-      "num_beds": 3,
-      "num_baths": 2,
-      "cost_basis": "2000000",
-      "date_acquired": "2020/01/01",
-      "year_built": "1999",
-      "parking": 2
     }
   ],
   "users": [
