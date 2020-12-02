@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.adapters.MaintListAdapter
-import com.example.rentalchemy.ui.adapters.PropertyListAdapter
 import com.example.rentalchemy.ui.main.MainViewModel
 import java.lang.Integer.parseInt
 
@@ -26,7 +25,8 @@ class MaintenanceFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.maintenance_fragment, container, false)
@@ -49,7 +49,7 @@ class MaintenanceFragment : Fragment() {
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
         saveBut.setOnClickListener {
-            viewModel.addMaintenance( parseInt(yearTV.text.toString()), parseInt(monthTV.text.toString()),
+            viewModel.addMaintenance(parseInt(yearTV.text.toString()), parseInt(monthTV.text.toString()),
                 descriptionTV.text.toString(), contractorTV.text.toString(),
                 dateFinishedTV.text.toString()
             )
@@ -64,7 +64,6 @@ class MaintenanceFragment : Fragment() {
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(context)
     }
-
 
     private fun initMaintenanceItemObservers() {
         viewModel.observeMaintenanceItems().observe(viewLifecycleOwner, {
