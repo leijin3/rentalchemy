@@ -4,8 +4,9 @@ query YearlyExpense($uid:ID! = 1){
   	Properties {
     	st_address
     	Expenses {
+     	 	type
      	 	amount_spent
-      	date_spent
+      	    date_spent
     	}
 		}
   }

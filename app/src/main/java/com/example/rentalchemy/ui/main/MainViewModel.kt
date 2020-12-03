@@ -18,7 +18,6 @@ import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.Tenant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.time.measureTime
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -204,7 +203,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             context = viewModelScope.coroutineContext
                     + Dispatchers.IO
         ) {
-            userId.value?.let { reportGenerator.generateReport(appContext, it) }
+            userId.value?.let { reportGenerator.generateExpenseReport(appContext, it) }
         }
     }
 

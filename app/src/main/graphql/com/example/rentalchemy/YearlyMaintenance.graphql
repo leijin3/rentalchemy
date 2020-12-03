@@ -1,0 +1,10 @@
+query YearlyMaintenance($pid: ID!, $year: Int!) {
+  allMaintenances(filter: {property_id: $pid, year: $year}) {
+    Property {
+      st_address
+    }
+    description
+    contractor
+    date_finished
+  }
+}
