@@ -24,6 +24,7 @@ class DashboardFragment : Fragment() {
         const val applianceKey = "Appliance"
         const val incomeKey = "Income"
         const val expenseKey = "Expense"
+        const val reportKey = "Report"
     }
 
     private val viewModel: MainViewModel by activityViewModels()
@@ -117,7 +118,13 @@ class DashboardFragment : Fragment() {
 
         view.findViewById<Button>(R.id.reportBut).apply {
             setOnClickListener{
-                viewModel.generateExpenseReport(requireContext())
+                val reportFragment = ReportFragment.newInstance()
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(reportKey)
+                    .replace(R.id.container, reportFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
             }
         }
 

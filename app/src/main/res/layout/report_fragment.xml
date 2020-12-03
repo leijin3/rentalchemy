@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_on_primary">
+
+    <TextView
+        android:id="@+id/report_addressTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="12dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1234 Main Street Apt 3" />
+
+    <TextView
+        android:id="@+id/report_cityTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/report_stateTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/report_addressTV"
+        tools:text="Austin" />
+
+    <TextView
+        android:id="@+id/report_stateTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/report_cityTV"
+        app:layout_constraintTop_toBottomOf="@id/report_addressTV"
+        tools:text="Texas" />
+
+    <View
+        android:id="@+id/reportBorder"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/dark_red"
+        app:layout_constraintBottom_toTopOf="@id/yearlyIncomeTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/report_cityTV" />
+
+
+    <TextView
+        android:id="@+id/yearlyIncomeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Income report by year: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/report_income_year"
+        app:layout_constraintTop_toBottomOf="@id/reportBorder"
+        app:layout_constraintBottom_toTopOf="yearlyExpenseTV"/>
+
+    <EditText
+        android:id="@+id/report_income_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Year"
+        app:layout_constraintStart_toEndOf="@id/yearlyIncomeTV"
+        app:layout_constraintTop_toBottomOf="@id/reportBorder"
+        app:layout_constraintEnd_toStartOf="@+id/downloadIncomeBut"
+        app:layout_constraintBottom_toTopOf="report_expense_year"/>
+
+    <Button
+        android:id="@+id/downloadIncomeBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download"
+        app:layout_constraintStart_toEndOf="@id/report_income_year"
+        app:layout_constraintTop_toBottomOf="@id/reportBorder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="downloadExpenseBut"/>
+
+    <TextView
+        android:id="@+id/yearlyExpenseTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expense report by year: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/report_expense_year"
+        app:layout_constraintTop_toBottomOf="@id/yearlyIncomeTV"
+        app:layout_constraintBottom_toTopOf="yearlyMaintTV"/>
+
+    <EditText
+        android:id="@+id/report_expense_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Year"
+        app:layout_constraintStart_toEndOf="@id/yearlyExpenseTV"
+        app:layout_constraintTop_toBottomOf="@id/report_income_year"
+        app:layout_constraintEnd_toStartOf="@+id/downloadExpenseBut"
+        app:layout_constraintBottom_toTopOf="report_maint_year"/>
+
+    <Button
+        android:id="@+id/downloadExpenseBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download"
+        app:layout_constraintStart_toEndOf="@id/report_expense_year"
+        app:layout_constraintTop_toBottomOf="@id/downloadIncomeBut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="downloadMaintBut"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
