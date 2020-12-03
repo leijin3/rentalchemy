@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
 import java.lang.Float.parseFloat
+import java.lang.Integer.parseInt
 
 class ExpenseFragment : Fragment() {
 
@@ -53,6 +54,8 @@ class ExpenseFragment : Fragment() {
 
         val amountTV = view.findViewById<TextView>(R.id.expense_amt_spent)
         val dateTV = view.findViewById<TextView>(R.id.expense_date_spent)
+        val monthTV = view.findViewById<TextView>(R.id.expense_month_spent)
+        val yearTV = view.findViewById<TextView>(R.id.expense_year_spent)
         val receiptIV = view.findViewById<ImageView>(R.id.receipt_image)
         val receiptBut = view.findViewById<Button>(R.id.add_receiptBut)
         val addressTV = view.findViewById<TextView>(R.id.expense_address)
@@ -64,6 +67,8 @@ class ExpenseFragment : Fragment() {
         fun enableEditTexts() {
             amountTV.isEnabled = true
             dateTV.isEnabled = true
+            monthTV.isEnabled = true
+            yearTV.isEnabled = true
             receiptBut.isEnabled = true
             expenseTypeSpinner.isEnabled = true
         }
@@ -71,6 +76,8 @@ class ExpenseFragment : Fragment() {
         fun disableEditTexts() {
             amountTV.isEnabled = false
             dateTV.isEnabled = false
+            monthTV.isEnabled = false
+            yearTV.isEnabled = false
             receiptBut.isEnabled = false
             expenseTypeSpinner.isEnabled = false
         }
@@ -83,6 +90,8 @@ class ExpenseFragment : Fragment() {
             expenseTypeSpinner.setSelection(expenseTypes.indexOf(currentExpense?.type))
             amountTV.text = currentExpense?.amount_spent.toString()
             dateTV.text = currentExpense?.date_spent
+            monthTV.text = currentExpense?.month.toString()
+            yearTV.text = currentExpense?.year.toString()
             receiptIV.setImageURI(currentExpense?.receipt_url?.toUri())
             disableEditTexts()
         }
@@ -105,9 +114,13 @@ class ExpenseFragment : Fragment() {
             if (isEditing) { //User is clicking "Save Expense"
 
                 val validPrice = (amountTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
+                val validMonth = (monthTV.text.toString()).matches("\\d{1,2}".toRegex())
+                val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())
 
-                if (validPrice) {
+                if (validPrice && validMonth && validYear) {
                     viewModel.addExpense(
+                        parseInt(yearTV.text.toString()),
+                        parseInt(monthTV.text.toString()),
                         propertyId,
                         expenseTypeSpinner.selectedItem.toString(),
                         parseFloat(amountTV.text.toString()),
@@ -119,7 +132,7 @@ class ExpenseFragment : Fragment() {
                     disableEditTexts()
                     isEditing = false
                 } else {
-                    Toast.makeText(this.context, "Enter a valid price.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this.context, "Enter a valid price, month, and year.", Toast.LENGTH_LONG).show()
                 }
             } else { //User is clicking "Edit Expense"
                 saveBut.text = "Save Expense"

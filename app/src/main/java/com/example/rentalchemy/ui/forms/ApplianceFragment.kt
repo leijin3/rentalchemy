@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
+import org.w3c.dom.Text
 import java.lang.Float.parseFloat
+import java.lang.Integer.parseInt
 
 
 class ApplianceFragment : Fragment() {
@@ -43,6 +45,8 @@ class ApplianceFragment : Fragment() {
 
         val priceTV = view.findViewById<TextView>(R.id.appliance_price)
         val dateTV = view.findViewById<TextView>(R.id.appliance_date_purchased)
+        val monthTV = view.findViewById<TextView>(R.id.appliance_month_purchased)
+        val yearTV = view.findViewById<TextView>(R.id.appliance_year_purchased)
         val warrantyTV = view.findViewById<TextView>(R.id.appliance_warranty)
         val addressTV = view.findViewById<TextView>(R.id.appliance_address)
         val saveBut = view.findViewById<Button>(R.id.appliance_saveBut)
@@ -51,15 +55,16 @@ class ApplianceFragment : Fragment() {
 
         saveBut.setOnClickListener {
             val validPrice = (priceTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
+            val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())
 
-            if(validPrice) {
-                viewModel.addAppliance(
+            if(validPrice && validYear) {
+                viewModel.addAppliance( parseInt(yearTV.text.toString()), monthTV.text.toString(),
                         applianceTypeSpinner.selectedItem.toString(), parseFloat(priceTV.text.toString()),
                         dateTV.text.toString(), warrantyTV.text.toString()
                 )
                 parentFragmentManager.popBackStack()
             } else {
-                Toast.makeText(this.context, "Enter a valid price.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context, "Enter a valid price and year", Toast.LENGTH_LONG).show()
             }
         }
     }

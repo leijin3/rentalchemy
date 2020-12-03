@@ -1,0 +1,12 @@
+query	YearlyIncome($uid:ID!){
+  User(id:$uid){
+    Properties{
+      st_address
+      Incomes{
+        type
+        amt_received
+        date_received
+      }
+    }
+  }
+}
