@@ -1,12 +1,10 @@
-query	YearlyIncome($uid:ID!){
-  User(id:$uid){
-    Properties{
+query YearlyIncome($pid: ID!, $year: Int!) {
+  allIncomes(filter: {property_id: $pid, year: $year}) {
+    Property {
       st_address
-      Incomes{
-        type
-        amt_received
-        date_received
-      }
     }
+		type
+    date_received
+    amt_received
   }
 }

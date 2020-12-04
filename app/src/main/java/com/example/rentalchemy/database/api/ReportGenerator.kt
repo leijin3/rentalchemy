@@ -13,46 +13,46 @@ import java.io.FileWriter
 
 class ReportGenerator {
 
-    suspend fun generateExpenseReport(context: Context, user_id: Int){
+    suspend fun generateExpenseReport(context: Context, propeprty_id: String, year: Int){
         val response = try {
-            apolloClient.query(YearlyExpenseQuery(user_id.toString())).await()
+            apolloClient.query(YearlyExpenseQuery(propeprty_id, year)).await()
 
         } catch (e: ApolloException) {
             Log.d("YearlyExpense", "Failure", e)
             null
         }
 
-        val properties = response?.data?.user?.properties
+        val expenses = response?.data?.allExpenses
         val filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/expenses.csv"
-        val header = "Address,Type,Amount,Date"
+        val title = expenses?.get(0)?.property?.st_address
 
-        if(properties != null && !response.hasErrors()){
-            exportExpenseCSV(properties, header, filename)
+        if(expenses != null && !response.hasErrors()){
+                exportExpenseCSV(expenses, title.toString(), filename)
         }
 
     }
 
-    suspend fun generateIncomeReport(context: Context, user_id: Int){
+    suspend fun generateIncomeReport(context: Context, property_id: String, year: Int){
         val response = try {
-            apolloClient.query(YearlyIncomeQuery(user_id.toString())).await()
+            apolloClient.query(YearlyIncomeQuery(property_id, year)).await()
 
         } catch (e: ApolloException) {
             Log.d("YearlyIncome", "Failure", e)
             null
         }
 
-        val properties = response?.data?.user?.properties
+        val incomes = response?.data?.allIncomes
         val filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/income.csv"
-        val header = "Address,Type,Amount,Date"
+        val title = incomes?.get(0)?.property?.st_address
 
-        if (properties != null && !response.hasErrors()){
-            exportIncomeCSV(properties, header, filename)
+        if (incomes != null && !response.hasErrors()){
+            exportIncomeCSV(incomes, title.toString(), filename)
         }
     }
 
-    suspend fun generateMaintenanceHistoryReport(context: Context, propeprty_id: Int){
+    suspend fun generateMaintenanceHistoryReport(context: Context, propeprty_id: String){
         val response = try {
-            apolloClient.query(MaintenanceHistoryQuery(propeprty_id.toString())).await()
+            apolloClient.query(MaintenanceHistoryQuery(propeprty_id)).await()
 
         } catch (e: ApolloException) {
             Log.d("MaintenanceHistory", "Failure", e)
@@ -70,9 +70,9 @@ class ReportGenerator {
     }
 
 
-    suspend fun generateYearlyMaintenanceReport(context: Context, propeprty_id: Int, year: Int){
+    suspend fun generateYearlyMaintenanceReport(context: Context, propeprty_id: String, year: Int){
         val response = try {
-            apolloClient.query(YearlyMaintenanceQuery(propeprty_id.toString(), year)).await()
+            apolloClient.query(YearlyMaintenanceQuery(propeprty_id, year)).await()
         } catch (e: ApolloException) {
             Log.d("YearlyMaintenance", "Failure", e)
             null
@@ -90,7 +90,7 @@ class ReportGenerator {
 
     private fun exportYearlyMaintCSV(maintenances: List<YearlyMaintenanceQuery.AllMaintenance?>, header: String, title: String, filename: String) {
         var fileWriter = FileWriter(filename)
-        Log.d("Filename", "$filename")
+        Log.d("Filename", filename)
         fileWriter.append(title)
         fileWriter.append('\n')
         fileWriter.append(header)
@@ -116,7 +116,7 @@ class ReportGenerator {
 
     private fun exportHistoryCSV(maintenances: List<MaintenanceHistoryQuery.Maintenance?>, header: String, title: String?, filename: String) {
         var fileWriter = FileWriter(filename)
-        Log.d("Filename", "$filename")
+        Log.d("Filename", filename)
         fileWriter.append(title)
         fileWriter.append('\n')
         fileWriter.append(header)
@@ -139,58 +139,54 @@ class ReportGenerator {
         fileWriter.close()
     }
 
-    private fun exportIncomeCSV(data: List<YearlyIncomeQuery.Property?>, header: String, filename: String) {
+    private fun exportIncomeCSV(data: List<YearlyIncomeQuery.AllIncome?>, title: String, filename: String) {
 
+        val header = "Type,Amount,Date"
         var fileWriter = FileWriter(filename)
-        Log.d("Filename", "$filename")
+        Log.d("Filename", filename)
+        fileWriter.append(title)
+        fileWriter.append('\n')
         fileWriter.append(header)
         fileWriter.append('\n')
 
-        for (property in data) {
-            if(property != null ) {
-                if (property.incomes != null) {
-                    for (item in property.incomes) {
-                        fileWriter.append(property.st_address)
-                        fileWriter.append(",")
-                        fileWriter.append(item?.type)
-                        fileWriter.append(",")
-                        fileWriter.append(item?.amt_received)
-                        fileWriter.append(",")
-                        fileWriter.append(item?.date_received)
-                        fileWriter.append("\n")
-                    }
-                }
+        for (income in data) {
+            if(income != null ) {
+
+                fileWriter.append(income.type)
+                fileWriter.append(",")
+                fileWriter.append(income.amt_received)
+                fileWriter.append(",")
+                fileWriter.append(income.date_received)
+                fileWriter.append("\n")
             }
         }
         fileWriter.flush()
         fileWriter.close()
-
     }
 
 
-    private fun exportExpenseCSV(data: List<YearlyExpenseQuery.Property?>?, header: String, filename: String){
+    private fun exportExpenseCSV(data: List<YearlyExpenseQuery.AllExpense?>?, title: String, filename: String){
 
+        val header = "Type,Amount,Date"
         var fileWriter = FileWriter(filename)
-        Log.d("Filename", "$filename")
+        Log.d("Filename", filename)
+        fileWriter.append(title)
+        fileWriter.append('\n')
         fileWriter.append(header)
         fileWriter.append('\n')
 
         if (data != null) {
-            for (property in data) {
-                if(property != null ) {
-                    if (property.expenses != null) {
-                        for (item in property.expenses) {
-                            fileWriter.append(property.st_address)
-                            fileWriter.append(",")
-                            fileWriter.append(item?.type)
-                            fileWriter.append(",")
-                            fileWriter.append(item?.amount_spent)
-                            fileWriter.append(",")
-                            fileWriter.append(item?.date_spent)
-                            fileWriter.append("\n")
-                        }
-                    }
+            for (expense in data) {
+                if(expense != null ) {
+                        fileWriter.append(expense.type)
+                        fileWriter.append(",")
+                        fileWriter.append(expense.amount_spent)
+                        fileWriter.append(",")
+                        fileWriter.append(expense.date_spent)
+                        fileWriter.append("\n")
+
                 }
+
             }
         }
         fileWriter.flush()

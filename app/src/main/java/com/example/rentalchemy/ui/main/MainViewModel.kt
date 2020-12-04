@@ -198,12 +198,39 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         //Write Me -- similar to above
     }
 
-    fun generateExpenseReport(appContext: Context) {
+    fun generateExpenseReport(appContext: Context, year: Int) {
         viewModelScope.launch(
             context = viewModelScope.coroutineContext
                     + Dispatchers.IO
         ) {
-            userId.value?.let { reportGenerator.generateExpenseReport(appContext, it) }
+            year?.let { reportGenerator.generateExpenseReport(appContext, selectedProperty?.id.toString(), it) }
+        }
+    }
+
+    fun generateIncomeReport(appContext: Context, year: Int) {
+        viewModelScope.launch(
+                context = viewModelScope.coroutineContext
+                        + Dispatchers.IO
+        ) {
+            year?.let { reportGenerator.generateIncomeReport(appContext, selectedProperty?.id.toString(), it) }
+        }
+    }
+
+    fun generateMaintReport(appContext: Context, year: Int) {
+        viewModelScope.launch(
+                context = viewModelScope.coroutineContext
+                        + Dispatchers.IO
+        ) {
+            year?.let { reportGenerator.generateYearlyMaintenanceReport(appContext, selectedProperty?.id.toString(), it) }
+        }
+    }
+
+    fun generateMaintHistory(appContext: Context) {
+        viewModelScope.launch(
+                context = viewModelScope.coroutineContext
+                        + Dispatchers.IO
+        ) {
+            reportGenerator.generateMaintenanceHistoryReport(appContext, selectedProperty?.id.toString())
         }
     }
 
