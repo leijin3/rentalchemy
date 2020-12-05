@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
+import com.example.rentalchemy.ui.adapters.AppliListAdapter
 import com.example.rentalchemy.ui.adapters.ExpenseListAdapter
 import com.example.rentalchemy.ui.adapters.IncomeListAdapter
 import com.example.rentalchemy.ui.adapters.MaintListAdapter
@@ -32,13 +33,6 @@ class ItemListFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var rv: RecyclerView
-//    private lateinit var maintListAdapter: MaintListAdapter
-//    private lateinit var appliListAdapter:AppliListAdapter
-//    private lateinit var incomeListAdapter: IncomeListAdapter
-//    private lateinit var expenseListAdapter:ExpenseListAdapter
-
-
-
     private lateinit var type: String
 
     override fun onCreateView(
@@ -82,7 +76,7 @@ class ItemListFragment : Fragment() {
         rv = root.findViewById(R.id.item_listRV)
         when (type) {
             "Maintenance" -> viewModel.fetchMaintenanceItems(MainViewModel.selectedProperty!!.id)
-//            "Appliance" -> rv.adapter = AppliListAdapter(viewModel)
+            "Appliance" -> viewModel.fetchAppliances(MainViewModel.selectedProperty!!.id)
             "Income" -> viewModel.fetchIncomes(MainViewModel.selectedProperty!!.id)
             "Expense" -> viewModel.fetchExpenses(MainViewModel.selectedProperty!!.id)
             else -> viewModel.fetchIncomes(MainViewModel.selectedProperty!!.id)
@@ -98,9 +92,11 @@ class ItemListFragment : Fragment() {
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
-//            "Appliance" ->   viewModel.observeAppliances().observe(viewLifecycleOwner, {
-//                adapter.submitList(it)
-//            })
+            "Appliance" ->   viewModel.observeAppliances().observe(viewLifecycleOwner, {
+                val adapter = AppliListAdapter(viewModel)
+                rv.adapter = adapter
+                adapter.submitList(it)
+            })
             "Income" ->   viewModel.observeIncomes().observe(viewLifecycleOwner, {
                 val adapter = IncomeListAdapter(viewModel)
                 rv.adapter = adapter

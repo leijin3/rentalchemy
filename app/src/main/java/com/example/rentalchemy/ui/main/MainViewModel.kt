@@ -20,6 +20,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val fetchedExpenses = MutableLiveData<List<Expense>>()
     private val fetchedIncomeItems = MutableLiveData<List<IncomeItem>>()
     private val fetchedMaintenanceItems = MutableLiveData<List<MaintenanceItem>>()
+    private val fetchedAppliances = MutableLiveData<List<Appliance>>()
+
     private var userId = MutableLiveData<Int>().apply { value = 1 }
     private var currentPhoto = MutableLiveData<Uri>()
 
@@ -28,6 +30,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val expenseRepository = ExpenseRepository(jsApi)
     private val incomeRepository = IncomeRepository(jsApi)
     private val maintenanceRepository = MaintenanceRepository(jsApi)
+    private val applianceRepository = ApplianceRepository(jsApi)
     private val reportGenerator = ReportGenerator()
 
 
@@ -38,6 +41,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         // Update LiveData from IO dispatcher, use postValue
         userId.postValue(propertyRepository.getUserId(userName)?.toInt())
         landlordID = userId.value!!.toLong()
+    }
+
+    fun fetchAppliances(propertyId: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        // Update LiveData from IO dispatcher, use postValue
+        fetchedAppliances.postValue(applianceRepository.getApplianceList(propertyId))
     }
 
     fun fetchProperties() = viewModelScope.launch(
@@ -72,6 +83,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedIncomeItems.postValue(incomeRepository.getIncomeList(propertyId))
     }
 
+    fun observeAppliances(): LiveData<List<Appliance>> {
+        return fetchedAppliances
+    }
 
     fun observeIncomes(): LiveData<List<IncomeItem>> {
         return fetchedIncomeItems
