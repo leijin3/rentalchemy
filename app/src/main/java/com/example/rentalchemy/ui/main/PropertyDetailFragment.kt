@@ -75,10 +75,10 @@ class PropertyDetailFragment : Fragment() {
         val yearAcqTV: TextView = view.findViewById(R.id.detail_year_acquired)
 
 
-        if (MainViewModel.selectedProperty != null) {
+        if (selectedProperty != null) {
             //if there is no current property, this was started from "Add Property".  start with blank, editable form.
 
-            val currentProperty = MainViewModel.selectedProperty
+            val currentProperty = selectedProperty
 
             currentProperty?.apply {
                 streetTV.text = this.streetAddress
@@ -138,12 +138,12 @@ class PropertyDetailFragment : Fragment() {
         editSaveBut.setOnClickListener {
             if (isEditing) { //Clicked "Save"
                 //First check the numeric fields
-                var sqftValid = sqftTV.text.toString().matches("\\d+".toRegex())
-                var bedsValid = bedsTV.text.toString().matches("\\d+".toRegex())
-                var bathsValid = bathsTV.text.toString().matches("\\d+".toRegex())
-                var parkingValid = parkingTV.text.toString().matches("\\d+".toRegex())
-                var monthValid = monthAcqTV.text.toString().matches("\\d+".toRegex())
-                var yearValid = yearAcqTV.text.toString().matches("\\d{4}".toRegex())
+                val sqftValid = sqftTV.text.toString().matches("\\d+".toRegex())
+                val bedsValid = bedsTV.text.toString().matches("\\d+".toRegex())
+                val bathsValid = bathsTV.text.toString().matches("\\d+".toRegex())
+                val parkingValid = parkingTV.text.toString().matches("\\d+".toRegex())
+                val monthValid = monthAcqTV.text.toString().matches("\\d+".toRegex())
+                val yearValid = yearAcqTV.text.toString().matches("\\d{4}".toRegex())
 
                 if (sqftValid && bedsValid && bathsValid && parkingValid && yearValid) {
 

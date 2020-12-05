@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
+import java.lang.Float
 
 class MaintenanceFragment : Fragment() {
 
@@ -51,34 +53,41 @@ class MaintenanceFragment : Fragment() {
         val propertyId = MainViewModel.selectedProperty?.id!!
 
         fun enableEditTexts() {
-            descriptionTV.isEnabled = true
-            contractorTV.isEnabled = true
-            dateFinishedTV.isEnabled = true
-            monthTV.isEnabled = true
-            yearTV.isEnabled = true
+            isEditing = true
+            descriptionTV.isEnabled = isEditing
+            contractorTV.isEnabled = isEditing
+            dateFinishedTV.isEnabled = isEditing
+            monthTV.isEnabled = isEditing
+            yearTV.isEnabled = isEditing
+            saveBut.text = "Save Maintenance Item"
 
         }
 
         fun disableEditTexts() {
-            descriptionTV.isEnabled = false
-            contractorTV.isEnabled = false
-            dateFinishedTV.isEnabled = false
-            monthTV.isEnabled = false
-            yearTV.isEnabled = false
+            isEditing = false
+            descriptionTV.isEnabled = isEditing
+            contractorTV.isEnabled = isEditing
+            dateFinishedTV.isEnabled = isEditing
+            monthTV.isEnabled = isEditing
+            yearTV.isEnabled = isEditing
+            saveBut.text = "Edit Maintenance Item"
+
         }
 
-        if (isEditing) { //Creating new Expense
-            saveBut.text = "Save Maintenance Item"
-        } else { //Displaying selected Expense
-            saveBut.text = "Edit Maintenance Item"
-//            val currentExpense = MainViewModel.selectedExpense
-//            expenseTypeSpinner.setSelection(expenseTypes.indexOf(currentExpense?.type))
-//            amountTV.text = currentExpense?.amount_spent.toString()
-//            dateTV.text = currentExpense?.date_spent
-//            monthTV.text = currentExpense?.month.toString()
-//            yearTV.text = currentExpense?.year.toString()
-//            receiptIV.setImageURI(currentExpense?.receipt_url?.toUri())
-//            disableEditTexts()
+        saveBut.setOnClickListener {
+            if (isEditing) {
+                viewModel.createMaintenanceItem(
+                    yearTV.text.toString().toInt(),
+                    monthTV.text.toString().toInt(),
+                    descriptionTV.text.toString(),
+                    contractorTV.text.toString(),
+                    dateFinishedTV.text.toString(),
+                )
+                disableEditTexts()
+            } else {
+                enableEditTexts()
+            }
+
         }
     }
 }

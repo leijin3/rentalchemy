@@ -171,6 +171,35 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun createMaintenanceItem(
+        year: Int,
+        month: Int,
+        description: String,
+        contractor: String,
+        date_finished: String
+
+    ) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        val newMaintenanceItem = MaintenanceItem(
+            year = year,
+            month = month,
+            property_id = selectedProperty!!.id,
+            description = description,
+            contractor = contractor,
+            date_finished = date_finished,
+        )
+        maintenanceRepository.create(newMaintenanceItem) {
+            if (it?.id != null) {
+                fetchMaintenanceItems(selectedProperty!!.id)
+                Log.d("XXX", "fetch new")
+            } else {
+                Log.d("XXX", "Error adding new property")
+            }
+        }
+    }
+
     fun deleteMaintenanceItem(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
