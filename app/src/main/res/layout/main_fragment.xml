@@ -50,6 +50,7 @@
         android:autofillHints="Your user name"
         android:imeOptions="actionDone"
         android:inputType="text"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_prompt" />

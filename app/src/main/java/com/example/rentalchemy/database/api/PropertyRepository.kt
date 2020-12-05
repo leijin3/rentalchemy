@@ -31,8 +31,6 @@ class PropertyRepository(private val jsApi: JsonServerApi) {
                 override fun onResponse(call: Call<Property>, response: Response<Property>) {
                     val addProperty = response.body()
                     onResult(addProperty)
-
-
                 }
             }
         )

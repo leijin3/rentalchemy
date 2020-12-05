@@ -4,9 +4,9 @@
   "description": "## Getting Started",
   "main": "index.js",
   "scripts": {
-    "graphql-server": "json-graphql-server db.js --p 3001",
+    "graphql-server": "json-graphql-server db.json --p 3001",
     "json-server": "json-server --watch db.json",
-    "start": "json-graphql-server db.js --p 3001 & json-server --watch db.json"
+    "start": "json-graphql-server db.json --p 3001 & json-server --watch db.json"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,10 @@
   "devDependencies": {
     "json-graphql-server": "^2.2.0",
     "json-server": "^0.16.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.4.0"
   }
 }

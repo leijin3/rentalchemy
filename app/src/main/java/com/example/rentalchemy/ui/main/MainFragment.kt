@@ -1,25 +1,25 @@
 package com.example.rentalchemy.ui.main
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
-import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
     }
-
 
 
     private val viewModel: MainViewModel by activityViewModels()
@@ -47,14 +47,16 @@ class MainFragment : Fragment() {
                         && (event.keyCode == KeyEvent.KEYCODE_ENTER))
                 || (actionId == EditorInfo.IME_ACTION_DONE)
             ) {
+                hideKeyboard()
                 enterButton.callOnClick()
             }
             false
         }
 
-        fun doSignIn(){
+        fun doSignIn() {
             if (userNameET.text.isNotEmpty()) {
                 viewModel.getUserId(userNameET.text.toString()).invokeOnCompletion {
+
                     propertyListFragment = PropertyListFragment.newInstance()
                     parentFragmentManager
                         .beginTransaction()
@@ -66,19 +68,14 @@ class MainFragment : Fragment() {
             }
         }
 
-        usernameET.setOnEditorActionListener{view, actionId, event ->
-            return@setOnEditorActionListener when (actionId) {
-                EditorInfo.IME_ACTION_DONE -> {
-                    doSignIn()
-                    true
-                }
-                else -> false
-            }
-        }
-
         enterButton.setOnClickListener {
             doSignIn()
         }
+    }
+
+    private fun hideKeyboard() {
+        val imm = activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
 
