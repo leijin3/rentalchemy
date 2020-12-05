@@ -1,6 +1,9 @@
 package com.example.rentalchemy.database.api
 
+import android.app.DownloadManager
 import android.content.Context
+import android.content.Context.DOWNLOAD_SERVICE
+import android.os.Environment
 import android.os.Environment.DIRECTORY_DOWNLOADS
 import android.util.Log
 import com.apollographql.apollo.coroutines.await
@@ -9,9 +12,13 @@ import com.example.rentalchemy.MaintenanceHistoryQuery
 import com.example.rentalchemy.YearlyExpenseQuery
 import com.example.rentalchemy.YearlyIncomeQuery
 import com.example.rentalchemy.YearlyMaintenanceQuery
+import java.io.File
 import java.io.FileWriter
 
+
 class ReportGenerator {
+
+    private val downloadDirectory = Environment.DIRECTORY_DOWNLOADS
 
     suspend fun generateExpenseReport(context: Context, propeprty_id: String, year: Int){
         val response = try {
@@ -65,7 +72,7 @@ class ReportGenerator {
         var filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/" + title + "history.csv"
 
         if(maintenances != null && !response.hasErrors()){
-            exportHistoryCSV(maintenances,header, title, filename)
+            exportHistoryCSV(maintenances, header, title, filename, context)
         }
     }
 
@@ -89,6 +96,7 @@ class ReportGenerator {
     }
 
     private fun exportYearlyMaintCSV(maintenances: List<YearlyMaintenanceQuery.AllMaintenance?>, header: String, title: String, filename: String) {
+
         var fileWriter = FileWriter(filename)
         Log.d("Filename", filename)
         fileWriter.append(title)
@@ -111,10 +119,11 @@ class ReportGenerator {
 
         fileWriter.flush()
         fileWriter.close()
+
     }
 
 
-    private fun exportHistoryCSV(maintenances: List<MaintenanceHistoryQuery.Maintenance?>, header: String, title: String?, filename: String) {
+    private fun exportHistoryCSV(maintenances: List<MaintenanceHistoryQuery.Maintenance?>, header: String, title: String?, filename: String, context: Context) {
         var fileWriter = FileWriter(filename)
         Log.d("Filename", filename)
         fileWriter.append(title)
@@ -137,6 +146,7 @@ class ReportGenerator {
 
         fileWriter.flush()
         fileWriter.close()
+
     }
 
     private fun exportIncomeCSV(data: List<YearlyIncomeQuery.AllIncome?>, title: String, filename: String) {

@@ -59,8 +59,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/report_income_year"
-        app:layout_constraintTop_toBottomOf="@id/reportBorder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/report_cityTV"
         app:layout_constraintBottom_toTopOf="@id/yearlyExpenseTV"/>
 
     <EditText
@@ -68,10 +68,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter Year"
-        app:layout_constraintStart_toEndOf="@id/yearlyIncomeTV"
-        app:layout_constraintTop_toBottomOf="@id/reportBorder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yearlyIncomeTV"
         app:layout_constraintEnd_toStartOf="@+id/downloadIncomeBut"
-        app:layout_constraintBottom_toTopOf="@id/report_expense_year"/>
+        app:layout_constraintBottom_toTopOf="@id/yearlyExpenseTV"/>
 
     <Button
         android:id="@+id/downloadIncomeBut"
@@ -79,9 +79,9 @@
         android:layout_height="wrap_content"
         android:text="Download"
         app:layout_constraintStart_toEndOf="@id/report_income_year"
-        app:layout_constraintTop_toBottomOf="@id/reportBorder"
+        app:layout_constraintTop_toBottomOf="@id/yearlyIncomeTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/downloadExpenseBut"/>
+        app:layout_constraintBottom_toTopOf="@id/yearlyExpenseTV"/>
 
     <TextView
         android:id="@+id/yearlyExpenseTV"
@@ -91,19 +91,19 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/report_expense_year"
-        app:layout_constraintTop_toBottomOf="@id/yearlyIncomeTV"
-        app:layout_constraintBottom_toTopOf="@id/yearlyMaintTV"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/report_income_year"
+        app:layout_constraintBottom_toTopOf="@id/report_expense_year"/>
 
     <EditText
         android:id="@+id/report_expense_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter Year"
-        app:layout_constraintStart_toEndOf="@id/yearlyExpenseTV"
-        app:layout_constraintTop_toBottomOf="@id/report_income_year"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yearlyExpenseTV"
         app:layout_constraintEnd_toStartOf="@+id/downloadExpenseBut"
-        app:layout_constraintBottom_toTopOf="@id/report_maint_year"/>
+        app:layout_constraintBottom_toTopOf="@id/yearlyMaintTV"/>
 
     <Button
         android:id="@+id/downloadExpenseBut"
@@ -111,9 +111,9 @@
         android:layout_height="wrap_content"
         android:text="Download"
         app:layout_constraintStart_toEndOf="@id/report_expense_year"
-        app:layout_constraintTop_toBottomOf="@id/downloadIncomeBut"
+        app:layout_constraintTop_toBottomOf="@id/yearlyExpenseTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/downloadMaintBut"/>
+        app:layout_constraintBottom_toTopOf="@id/yearlyMaintTV"/>
 
     <TextView
         android:id="@+id/yearlyMaintTV"
@@ -123,17 +123,17 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/report_maint_year"
-        app:layout_constraintTop_toBottomOf="@id/yearlyExpenseTV"
-        app:layout_constraintBottom_toTopOf="@id/maintHistoryBut"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/report_expense_year"
+        app:layout_constraintBottom_toTopOf="@id/report_maint_year"/>
 
     <EditText
         android:id="@+id/report_maint_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter Year"
-        app:layout_constraintStart_toEndOf="@id/yearlyMaintTV"
-        app:layout_constraintTop_toBottomOf="@id/report_expense_year"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yearlyMaintTV"
         app:layout_constraintEnd_toStartOf="@+id/downloadMaintBut"
         app:layout_constraintBottom_toTopOf="@+id/maintHistoryBut"/>
 
@@ -143,7 +143,7 @@
         android:layout_height="wrap_content"
         android:text="Download"
         app:layout_constraintStart_toEndOf="@id/report_maint_year"
-        app:layout_constraintTop_toBottomOf="@id/downloadExpenseBut"
+        app:layout_constraintTop_toBottomOf="@id/yearlyMaintTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/maintHistoryBut"/>
 
@@ -151,6 +151,7 @@
         android:id="@+id/maintHistoryBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Download Full Maintenance History"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/yearlyMaintTV"

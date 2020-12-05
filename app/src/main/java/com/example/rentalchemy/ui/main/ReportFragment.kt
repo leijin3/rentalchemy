@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
@@ -28,6 +29,11 @@ class ReportFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val (_, _, _, _, streetAddress, city, state, _) = MainViewModel.selectedProperty!!
+        view.findViewById<TextView>(R.id.report_addressTV).text = streetAddress
+        view.findViewById<TextView>(R.id.report_cityTV).text = city
+        view.findViewById<TextView>(R.id.report_stateTV).text = state
 
         downloadIncomeBut.setOnClickListener{
             report_income_year.text?.apply {
