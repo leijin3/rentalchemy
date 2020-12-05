@@ -22,7 +22,7 @@ class ExpenseFragment : Fragment() {
     }
 
     companion object {
-        val editKey = "isEditing"
+        const val editKey = "isEditing"
         fun newInstance(isEditing: Boolean): ExpenseFragment {
             val frag = ExpenseFragment()
             val bundle = Bundle()

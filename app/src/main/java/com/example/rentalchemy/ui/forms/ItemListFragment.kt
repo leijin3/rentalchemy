@@ -63,13 +63,35 @@ class ItemListFragment : Fragment() {
 
     }
 
-    private fun expenseClickListener(){
-        parentFragmentManager
+    private fun itemClickListener() {
+        when (type) {
+            "Maintenance" ->
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack("Maintenance")
+                    .replace(R.id.container, MaintenanceFragment.newInstance(false))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            "Appliance" -> parentFragmentManager
+                .beginTransaction()
+                .addToBackStack("Appliance")
+                .replace(R.id.container, ApplianceFragment.newInstance(false))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit()
+            "Income" -> parentFragmentManager
+                .beginTransaction()
+                .addToBackStack("Income")
+                .replace(R.id.container, IncomeFragment.newInstance(false))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit()
+            "Expense" -> parentFragmentManager
                 .beginTransaction()
                 .addToBackStack("Expense")
                 .replace(R.id.container, ExpenseFragment.newInstance(false))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit()
+        }
+
     }
 
     private fun initAdapter(root: View, type: String) {
@@ -87,23 +109,23 @@ class ItemListFragment : Fragment() {
     private fun initObservers(type: String) {
 
         when (type) {
-            "Maintenance" ->   viewModel.observeMaintenanceItems().observe(viewLifecycleOwner, {
-                val adapter = MaintListAdapter(viewModel)
+            "Maintenance" -> viewModel.observeMaintenanceItems().observe(viewLifecycleOwner, {
+                val adapter = MaintListAdapter(viewModel, ::itemClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
-            "Appliance" ->   viewModel.observeAppliances().observe(viewLifecycleOwner, {
+            "Appliance" -> viewModel.observeAppliances().observe(viewLifecycleOwner, {
                 val adapter = AppliListAdapter(viewModel)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
-            "Income" ->   viewModel.observeIncomes().observe(viewLifecycleOwner, {
+            "Income" -> viewModel.observeIncomes().observe(viewLifecycleOwner, {
                 val adapter = IncomeListAdapter(viewModel)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
-            "Expense" ->   viewModel.observeExpenses().observe(viewLifecycleOwner) {
-                val adapter = ExpenseListAdapter(viewModel, ::expenseClickListener)
+            "Expense" -> viewModel.observeExpenses().observe(viewLifecycleOwner) {
+                val adapter = ExpenseListAdapter(viewModel, ::itemClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             }
@@ -115,9 +137,9 @@ class ItemListFragment : Fragment() {
     private fun addButtonListener(type: String) {
         val itemFrag =
             when (type) {
-                "Maintenance" -> MaintenanceFragment.newInstance()
-                "Appliance" -> ApplianceFragment.newInstance()
-                "Income" -> IncomeFragment.newInstance()
+                "Maintenance" -> MaintenanceFragment.newInstance(true)
+                "Appliance" -> ApplianceFragment.newInstance(false)
+                "Income" -> IncomeFragment.newInstance(false)
                 "Expense" -> ExpenseFragment.newInstance(true)
                 else -> Fragment()
             }

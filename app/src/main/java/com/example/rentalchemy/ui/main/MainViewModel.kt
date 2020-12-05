@@ -315,6 +315,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         var landlordID: Long? = null
         var selectedProperty: Property? = null
         var selectedExpense: Expense? = null
+        var selectedMaintenanceItem: MaintenanceItem? = null
     }
 
 

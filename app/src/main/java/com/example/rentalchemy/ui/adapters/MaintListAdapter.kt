@@ -11,7 +11,10 @@ import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
-class MaintListAdapter(private val viewModel: MainViewModel) :
+class MaintListAdapter(
+    private val viewModel: MainViewModel,
+    private val itemClickListener: () -> Unit
+) :
     ListAdapter<MaintenanceItem, MaintListAdapter.VH>(MaintenanceDiff()) {
     class MaintenanceDiff : DiffUtil.ItemCallback<MaintenanceItem>() {
 
@@ -53,6 +56,10 @@ class MaintListAdapter(private val viewModel: MainViewModel) :
         holder.bind(getItem(position))
 
         //TODO: onClick for row, highlight selected for possible deletion?
+        holder.itemView.setOnClickListener {
+            MainViewModel.selectedMaintenanceItem = getItem(position)
+            itemClickListener()
+        }
     }
 
 

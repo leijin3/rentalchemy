@@ -15,12 +15,21 @@ import java.lang.Integer.parseInt
 class IncomeFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
+    private var isEditing: Boolean = false
+
     private val incomeTypes: Array<String> by lazy {
         resources.getStringArray(R.array.income_types)
     }
 
     companion object {
-        fun newInstance() = IncomeFragment()
+        const val editKey = "isEditing"
+        fun newInstance(isEditing: Boolean): IncomeFragment {
+            val frag = IncomeFragment()
+            val bundle = Bundle()
+            bundle.putBoolean(MaintenanceFragment.editKey, isEditing)
+            frag.arguments = bundle
+            return frag
+        }
     }
 
     override fun onCreateView(
@@ -55,14 +64,19 @@ class IncomeFragment : Fragment() {
             val validMonth = (monthTV.text.toString()).matches("\\d{1,2}".toRegex())
             val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())
 
-            if(validAmount && validMonth && validYear) {
-                viewModel.addIncome( parseInt(yearTV.text.toString()), parseInt(monthTV.text.toString()),
-                        incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
-                        dateTV.text.toString()
+            if (validAmount && validMonth && validYear) {
+                viewModel.addIncome(
+                    parseInt(yearTV.text.toString()), parseInt(monthTV.text.toString()),
+                    incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
+                    dateTV.text.toString()
                 )
                 parentFragmentManager.popBackStack()
             } else {
-                Toast.makeText(this.context, "Enter a valid amount, month, and year", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this.context,
+                    "Enter a valid amount, month, and year",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
