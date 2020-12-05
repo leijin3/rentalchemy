@@ -4,9 +4,9 @@
   "description": "## Getting Started",
   "main": "index.js",
   "scripts": {
-    "graphql-server": "json-graphql-server db.js --p 3001",
+    "graphql-server": "json-graphql-server db.json --p 3001",
     "json-server": "json-server --watch db.json",
-    "start": "json-graphql-server db.js --p 3001 & json-server --watch db.json"
+    "start": "json-graphql-server db.json --p 3001 & json-server --watch db.json"
   },
   "repository": {
     "type": "git",

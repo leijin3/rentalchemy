@@ -1,8 +1,11 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
-const db = require('./db');
-const { users } = require('./db');
+const fs = require('fs');
+
+let rawData = fs.readFileSync('db.json');
+const db = JSON.parse(rawData);
+
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
 type Users {
