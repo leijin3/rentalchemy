@@ -65,7 +65,7 @@ class IncomeFragment : Fragment() {
             val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())
 
             if (validAmount && validMonth && validYear) {
-                viewModel.addIncome(
+                viewModel.createIncomeItem(
                     parseInt(yearTV.text.toString()), parseInt(monthTV.text.toString()),
                     incomeTypeSpinner.selectedItem.toString(), parseFloat(amountTV.text.toString()),
                     dateTV.text.toString()

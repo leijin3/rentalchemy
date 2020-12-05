@@ -263,6 +263,35 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+
+    fun createIncomeItem(
+        year: Int,
+        month: Int,
+        type: String,
+        amt_received: Float,
+        date_received: String,
+    ) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        val newIncomeItem = IncomeItem(
+            year = year,
+            month = month,
+            property_id = selectedProperty!!.id,
+            type = type,
+            amt_received = amt_received,
+            date_received = date_received,
+        )
+        incomeRepository.create(newIncomeItem) {
+            if (it?.id != null) {
+                fetchIncomes(selectedProperty!!.id)
+            } else {
+                Log.d("XXX", "Error adding new income")
+            }
+        }
+    }
+
+
     fun deleteIncomeItem(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
