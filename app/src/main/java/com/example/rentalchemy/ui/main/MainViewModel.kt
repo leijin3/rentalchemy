@@ -177,7 +177,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         description: String,
         contractor: String,
         date_finished: String
-
     ) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
@@ -366,21 +365,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         //Write Me
     }
 
-    fun addMaintenance(
-        year: Int,
-        month: Int,
-        description: String,
-        contractor: String,
-        date: String
-    ) {
-        //Write Me  -- create new MaintenanceItem object, use selectedProperty, save to database
-    }
-
-    fun addIncome(year: Int, month: Int, type: String, amount: Float, date: String) {
-        //Write Me -- similar to above
-    }
-
-    fun addExpense(
+    fun createExpense(
         year: Int,
         month: Int,
         propertyId: Long,
@@ -393,7 +378,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             context = viewModelScope.coroutineContext
                     + Dispatchers.IO
         ) {
-
             val newExpense = Expense(
                 year = year,
                 month = month,
@@ -405,29 +389,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             )
 
             expenseRepository.add(newExpense) {
-//                if (it?.id != null) {
-//                    // it = newly added property parsed as response
-//                    // it?.id = newly added property ID
-////                    fetchProperties()
-//                    Log.d("XXX", "fetch new")
-//                } else {
-//                    Log.d("XXX", "Error adding new property")
-//                }
+                if (it?.id != null) {
+                    fetchExpenses(selectedProperty!!.id)
+                } else {
+                    Log.d("XXX", "Error adding new expense")
+                }
             }
-
         }
-
-    fun addAppliance(
-        year: Int,
-        month: String,
-        type: String,
-        price: Float,
-        date: String,
-        warranty: String
-    ) {
-        //Write Me -- similar to above
-    }
-
+    
     fun generateExpenseReport(appContext: Context, year: Int) {
         viewModelScope.launch(
             context = viewModelScope.coroutineContext
