@@ -80,17 +80,14 @@ class CameraFragment : Fragment(){
     }
 
     private fun takePhoto() {
-        // Get a stable reference of the modifiable image capture use case
+
         val imageCapture = imageCapture ?: return
 
-        // Create timestamped output file to hold the image
         val photoFile = File(outputDirectory, SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg")
 
-        // Create output options object which contains file + metadata
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-        // Setup image capture listener which is triggered after photo has
-        // been taken
+        // Setup image capture listener which is triggered after photo has been taken
         imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(safeContext), object : ImageCapture.OnImageSavedCallback {
             override fun onError(exc: ImageCaptureException) {
                 Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
