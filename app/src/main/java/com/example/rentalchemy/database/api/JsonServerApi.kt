@@ -20,63 +20,91 @@ interface JsonServerApi {
 
 
     // Appliances
+    @Headers("Content-Type: application/json")
+    @POST("appliances")
+    fun createAppliance(@Body applianceInfo: Appliance): Call<Appliance>
+
     @GET(
         "appliances"
     )
     suspend fun getApplianceList(@Query("property_id") propertyId: Long): List<Appliance>
 
+    @PUT("appliances/{id}")
+    fun updateAppliance(
+        @Path("id") propertyId: Long,
+        @Body newAppliance: Appliance
+    ): Call<Appliance>
+
     @DELETE("appliances/{id}")
     fun deleteAppliance(@Path("id") id: Long): Call<Appliance>
 
+
     // Properties
+    @Headers("Content-Type: application/json")
+    @POST("properties")
+    fun createProperty(@Body propertyInfo: Property): Call<Property>
+
     @GET(
         "properties"
     )
     suspend fun getPropertyList(@Query("user_id") userId: Int): List<Property>
 
-
-    @Headers("Content-Type: application/json")
-    @POST("properties")
-    fun createProperty(@Body propertyInfo: Property): Call<Property>
+    @PUT("properties/{id}")
+    fun updateProperty(@Path("id") propertyId: Long, @Body newProperty: Property): Call<Property>
 
 
     @DELETE("properties/{id}")
     fun deleteProperty(@Path("id") propertyId: Long): Call<Property>
 
-    @PUT("properties/{id}")
-    fun updateProperty(@Path("id") propertyId: Long, @Body newProperty: Property): Call<Property>
-
 
     // Expenses
+    @Headers("Content-Type: application/json")
+    @POST("expenses")
+    fun createExpense(@Body expenseInfo: Expense): Call<Expense>
+
     @GET(
         "expenses"
     )
     suspend fun getExpenseList(@Query("property_id") propertyId: Long): List<Expense>
 
-    @Headers("Content-Type: application/json")
-    @POST("expenses")
-    fun createExpense(@Body expenseInfo: Expense): Call<Expense>
+    @PUT("expenses/{id}")
+    fun updateExpense(@Path("id") id: Long, @Body newExpense: Expense): Call<Expense>
 
     @DELETE("expenses/{id}")
     fun deleteExpense(@Path("id") id: Long): Call<Expense>
 
-    @PUT("expenses/{id}")
-    fun updateExpense(@Path("id") id: Long, @Body newExpense: Expense): Call<Expense>
-
     // Maintenance Items
+    @Headers("Content-Type: application/json")
+    @POST("maintenances")
+    fun createMaintenanceItem(@Body maintenanceItemInfo: MaintenanceItem): Call<MaintenanceItem>
+
     @GET(
         "maintenances"
     )
     suspend fun getMaintenanceList(@Query("property_id") propertyId: Long): List<MaintenanceItem>
 
+    @PUT("maintenances/{id}")
+    fun updateMaintenanceItem(
+        @Path("id") id: Long,
+        @Body newMaintenanceItem: MaintenanceItem
+    ): Call<MaintenanceItem>
+
     @DELETE("maintenances/{id}")
     fun deleteMaintenanceItem(@Path("id") id: Long): Call<MaintenanceItem>
 
+
     // Incomes
+    @Headers("Content-Type: application/json")
+    @POST("incomes")
+    fun createMaintenanceItem(@Body incomeItemInfo: IncomeItem): Call<IncomeItem>
+
     @GET(
         "incomes"
     )
     suspend fun getIncomeList(@Query("property_id") propertyId: Long): List<IncomeItem>
+
+    @PUT("incomes/{id}")
+    fun updateIncomeItem(@Path("id") id: Long, @Body newIncomeItem: IncomeItem): Call<IncomeItem>
 
     @DELETE("incomes/{id}")
     fun deleteIncomeItem(@Path("id") id: Long): Call<IncomeItem>
@@ -92,10 +120,6 @@ interface JsonServerApi {
 
         fun create(): JsonServerApi = create(httpurl)
         private fun create(httpUrl: HttpUrl): JsonServerApi {
-            Log.d(
-                "XXX",
-                "create: httpurl = " + httpurl.toString() + " contentType = " + contentType.type
-            )
             // https://github.com/JakeWharton/retrofit2-kotlinx-serialization-converter
             return Retrofit.Builder()
                 .baseUrl(httpUrl)
