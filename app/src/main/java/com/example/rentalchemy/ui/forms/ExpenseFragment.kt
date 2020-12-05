@@ -118,7 +118,7 @@ class ExpenseFragment : Fragment() {
                 val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())
 
                 if (validPrice && validMonth && validYear) {
-                    viewModel.addExpense(
+                    viewModel.createExpense(
                         parseInt(yearTV.text.toString()),
                         parseInt(monthTV.text.toString()),
                         propertyId,

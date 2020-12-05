@@ -43,44 +43,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         landlordID = userId.value!!.toLong()
     }
 
-    fun fetchAppliances(propertyId: Long) = viewModelScope.launch(
-        context = viewModelScope.coroutineContext
-                + Dispatchers.IO
-    ) {
-        // Update LiveData from IO dispatcher, use postValue
-        fetchedAppliances.postValue(applianceRepository.getApplianceList(propertyId))
-    }
-
-    fun fetchProperties() = viewModelScope.launch(
-        context = viewModelScope.coroutineContext
-                + Dispatchers.IO
-    ) {
-        // Update LiveData from IO dispatcher, use postValue
-        fetchedProperties.postValue(propertyRepository.getPropertyList(userId.value!!))
-    }
-
-    fun fetchMaintenanceItems(propertyId: Long) = viewModelScope.launch(
-        context = viewModelScope.coroutineContext
-                + Dispatchers.IO
-    ) {
-        // Update LiveData from IO dispatcher, use postValue
-        fetchedMaintenanceItems.postValue(maintenanceRepository.getMaintenanceList(propertyId))
-    }
-
-    fun fetchExpenses(propertyId: Long) = viewModelScope.launch(
-        context = viewModelScope.coroutineContext
-                + Dispatchers.IO
-    ) {
-        // Update LiveData from IO dispatcher, use postValue
-        fetchedExpenses.postValue(expenseRepository.getExpenseList(propertyId))
-    }
-
-    fun fetchIncomes(propertyId: Long) = viewModelScope.launch(
-        context = viewModelScope.coroutineContext
-                + Dispatchers.IO
-    ) {
-        // Update LiveData from IO dispatcher, use postValue
-        fetchedIncomeItems.postValue(incomeRepository.getIncomeList(propertyId))
+    fun getTenant(): Tenant {
+        //TODO: Should get tenant info for selected Property from database.  Below for testing only.
+        return Tenant(
+            1, 1, "Sally Sutherford", "ssseashells@seashore.com", "509.567.1234",
+            "10/01/2020"
+        )
     }
 
     fun observeAppliances(): LiveData<List<Appliance>> {
@@ -104,6 +72,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return fetchedExpenses
     }
 
+    // Property
     fun createProperty(
         year: Int,
         month: Int,
@@ -154,6 +123,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun fetchProperties() = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        fetchedProperties.postValue(propertyRepository.getPropertyList(userId.value!!))
+    }
+
+    fun updateProperty(newProperty: Property) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+
+        propertyRepository.updateProperty(selectedProperty!!.id, newProperty) {
+            if (it?.id != null) {
+                selectedProperty = newProperty
+                Toast.makeText(getApplication(), "Property updated!", Toast.LENGTH_SHORT).show()
+            } else {
+                Log.d("XXX", "Not updated")
+            }
+        }
+    }
 
     fun deleteProperty(propertyID: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
@@ -171,13 +161,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // Maintenance
     fun createMaintenanceItem(
         year: Int,
         month: Int,
         description: String,
         contractor: String,
         date_finished: String
-
     ) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
@@ -200,6 +190,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun fetchMaintenanceItems(propertyId: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        fetchedMaintenanceItems.postValue(maintenanceRepository.getMaintenanceList(propertyId))
+    }
+
     fun deleteMaintenanceItem(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
@@ -217,6 +214,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // Appliance
     fun createAppliance(
         year: Int,
         month: Int,
@@ -247,6 +245,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun fetchAppliances(propertyId: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        // Update LiveData from IO dispatcher, use postValue
+        fetchedAppliances.postValue(applianceRepository.getApplianceList(propertyId))
+    }
+
+    // TODO: updateAppliances(id: Long)
+
     fun deleteAppliance(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
@@ -264,6 +272,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
+    // Income
     fun createIncomeItem(
         year: Int,
         month: Int,
@@ -291,6 +300,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun fetchIncomes(propertyId: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        fetchedIncomeItems.postValue(incomeRepository.getIncomeList(propertyId))
+    }
+
+    // TODO: updateIncomeItem(id: Long)
 
     fun deleteIncomeItem(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
@@ -307,6 +324,49 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+
+    // Expense
+    fun createExpense(
+        year: Int,
+        month: Int,
+        propertyId: Long,
+        type: String,
+        amount: Float,
+        date: String,
+        receiptURL: String
+    ) =
+        viewModelScope.launch(
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO
+        ) {
+            val newExpense = Expense(
+                year = year,
+                month = month,
+                property_id = propertyId,
+                type = type,
+                amount_spent = amount,
+                date_spent = date,
+                receipt_url = receiptURL
+            )
+
+            expenseRepository.add(newExpense) {
+                if (it?.id != null) {
+                    fetchExpenses(selectedProperty!!.id)
+                } else {
+                    Log.d("XXX", "Error adding new expense")
+                }
+            }
+        }
+
+    fun fetchExpenses(propertyId: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        fetchedExpenses.postValue(expenseRepository.getExpenseList(propertyId))
+    }
+
+    // TODO: updateExpense(id: Long)
 
     fun deleteExpense(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
@@ -325,21 +385,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun updateProperty(newProperty: Property) = viewModelScope.launch(
-        context = viewModelScope.coroutineContext
-                + Dispatchers.IO
-    ) {
+    // Tenant
 
-        propertyRepository.updateProperty(selectedProperty!!.id, newProperty) {
-            if (it?.id != null) {
-                selectedProperty = newProperty
-                Toast.makeText(getApplication(), "Property updated!", Toast.LENGTH_SHORT).show()
-            } else {
-                Log.d("XXX", "Not updated")
-            }
-        }
-    }
+    // TODO: createTenant(propertyId: Long)
 
+    // TODO: fetchTenants(propertyId: Long)
+
+    // TODO: updateTenant(id: Long)
+
+    // TODO: deleteTenant(id: Long)
 
     fun updateCurrentPhoto(newPhotoName: Uri) {
         currentPhoto.value = newPhotoName
@@ -351,81 +405,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun observeCurrentPhoto(): LiveData<Uri> {
         return currentPhoto
-    }
-
-    fun getTenant(): Tenant {
-        //Write Me
-        // Should get tenant info for selected Property from database.  Below for testing only.
-        return Tenant(
-            1, 1, "Sally Sutherford", "ssseashells@seashore.com", "509.567.1234",
-            "10/01/2020"
-        )
-    }
-
-    fun updateTenant(tenant: Tenant) {
-        //Write Me
-    }
-
-    fun addMaintenance(
-        year: Int,
-        month: Int,
-        description: String,
-        contractor: String,
-        date: String
-    ) {
-        //Write Me  -- create new MaintenanceItem object, use selectedProperty, save to database
-    }
-
-    fun addIncome(year: Int, month: Int, type: String, amount: Float, date: String) {
-        //Write Me -- similar to above
-    }
-
-    fun addExpense(
-        year: Int,
-        month: Int,
-        propertyId: Long,
-        type: String,
-        amount: Float,
-        date: String,
-        receiptURL: String
-    ) =
-        viewModelScope.launch(
-            context = viewModelScope.coroutineContext
-                    + Dispatchers.IO
-        ) {
-
-            val newExpense = Expense(
-                year = year,
-                month = month,
-                property_id = propertyId,
-                type = type,
-                amount_spent = amount,
-                date_spent = date,
-                receipt_url = receiptURL
-            )
-
-            expenseRepository.add(newExpense) {
-//                if (it?.id != null) {
-//                    // it = newly added property parsed as response
-//                    // it?.id = newly added property ID
-////                    fetchProperties()
-//                    Log.d("XXX", "fetch new")
-//                } else {
-//                    Log.d("XXX", "Error adding new property")
-//                }
-            }
-
-        }
-
-    fun addAppliance(
-        year: Int,
-        month: String,
-        type: String,
-        price: Float,
-        date: String,
-        warranty: String
-    ) {
-        //Write Me -- similar to above
     }
 
     fun generateExpenseReport(appContext: Context, year: Int) {

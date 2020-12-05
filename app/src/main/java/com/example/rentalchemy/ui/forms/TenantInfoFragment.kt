@@ -77,7 +77,7 @@ class TenantInfoFragment : Fragment() {
                 tenant.email = emailTV.toString()
                 tenant.leaseStart = startTV.toString()
 
-                viewModel.updateTenant(tenant)
+//                viewModel.updateTenant(tenant)
                 editSaveBut.text = "Edit Tenant Info"
                 disableEditTexts()
                 isEditing = false
