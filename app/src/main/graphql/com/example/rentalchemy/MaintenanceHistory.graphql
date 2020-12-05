@@ -1,0 +1,10 @@
+query MaintenanceHistory($pid:ID!){
+  Property(id:$pid){
+    st_address
+    Maintenances{
+      description
+      contractor
+      date_finished
+    }
+  }
+}

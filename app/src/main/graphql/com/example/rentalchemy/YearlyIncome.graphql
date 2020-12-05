@@ -1,0 +1,10 @@
+query YearlyIncome($pid: ID!, $year: Int!) {
+  allIncomes(filter: {property_id: $pid, year: $year}) {
+    Property {
+      st_address
+    }
+		type
+    date_received
+    amt_received
+  }
+}

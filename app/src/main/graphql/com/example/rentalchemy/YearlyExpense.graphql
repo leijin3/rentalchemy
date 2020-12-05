@@ -1,12 +1,10 @@
-query YearlyExpense($uid:ID! = 1){
-
-  User(id:$uid){
-  	Properties {
-    	st_address
-    	Expenses {
-     	 	amount_spent
-      	date_spent
-    	}
-		}
+query YearlyExpense($pid: ID!, $year: Int!) {
+  allExpenses(filter: {property_id: $pid, year: $year}) {
+    Property {
+      st_address
+    }
+    type
+    date_spent
+    amount_spent
   }
 }
