@@ -9,7 +9,7 @@ class ExpenseRepository(private val jsApi: JsonServerApi) {
 
     //functions to serve data to the ViewModel
 
-    suspend fun getExpenseList(propertyId: Long): List<Expense>? {
+    suspend fun getExpenseList(propertyId: Long): List<Expense> {
         return jsApi.getExpenseList(propertyId)
     }
 
