@@ -66,6 +66,8 @@ interface JsonServerApi {
     )
     suspend fun getMaintenanceList(@Query("property_id") propertyId: Long): List<MaintenanceItem>
 
+    @DELETE("maintenances/{id}")
+    fun deleteMaintenanceItem(@Path("id") id: Long): Call<MaintenanceItem>
 
     // Incomes
     @GET(

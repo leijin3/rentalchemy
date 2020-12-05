@@ -16,7 +16,9 @@ import com.example.rentalchemy.ui.adapters.AppliListAdapter
 import com.example.rentalchemy.ui.adapters.ExpenseListAdapter
 import com.example.rentalchemy.ui.adapters.IncomeListAdapter
 import com.example.rentalchemy.ui.adapters.MaintListAdapter
+import com.example.rentalchemy.ui.main.DashboardFragment
 import com.example.rentalchemy.ui.main.MainViewModel
+import com.example.rentalchemy.ui.main.PropertyListFragment
 
 class ItemListFragment : Fragment() {
 
@@ -51,7 +53,6 @@ class ItemListFragment : Fragment() {
         val itemTitleTV = view.findViewById<TextView>(R.id.item_list_title)
         val addressTV = view.findViewById<TextView>(R.id.item_address)
         val addBut = view.findViewById<Button>(R.id.add_itemBut)
-        val delBut = view.findViewById<Button>(R.id.delete_itemBut)
 
         itemTitleTV.text = type
         addressTV.text = MainViewModel.selectedProperty?.streetAddress
@@ -59,7 +60,6 @@ class ItemListFragment : Fragment() {
         initAdapter(view, type)
         initObservers(type)
         addBut.setOnClickListener { addButtonListener(type) }
-        delBut.setOnClickListener { delButtonListener(type) }
 
     }
 
@@ -94,6 +94,22 @@ class ItemListFragment : Fragment() {
 
     }
 
+
+    private fun itemLongClickListener() {
+        when (type) {
+            "Maintenance" -> deleteMaintenanceItem(MainViewModel.selectedMaintenanceItem!!.id.toLong())
+//            "Appliance" ->
+//            "Income" ->
+//            "Expense" ->
+        }
+    }
+
+    private fun deleteMaintenanceItem(id: Long) {
+        viewModel.deleteMaintenanceItem(id)
+    }
+
+
+
     private fun initAdapter(root: View, type: String) {
         rv = root.findViewById(R.id.item_listRV)
         when (type) {
@@ -110,7 +126,7 @@ class ItemListFragment : Fragment() {
 
         when (type) {
             "Maintenance" -> viewModel.observeMaintenanceItems().observe(viewLifecycleOwner, {
-                val adapter = MaintListAdapter(viewModel, ::itemClickListener)
+                val adapter = MaintListAdapter(viewModel, ::itemClickListener, ::itemLongClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
@@ -129,7 +145,6 @@ class ItemListFragment : Fragment() {
                 rv.adapter = adapter
                 adapter.submitList(it)
             }
-//            else -> IncomeListAdapter(viewModel)
         }
 
     }
@@ -150,10 +165,8 @@ class ItemListFragment : Fragment() {
             .commit()
     }
 
-    private fun delButtonListener(type: String) {
-        //TODO: WRITE ME
-        //DELETE only selected item.
 
-    }
+
+
 
 }

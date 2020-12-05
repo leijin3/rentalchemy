@@ -37,10 +37,6 @@ class MaintenanceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        initAdapter(view)
-//        initMaintenanceItemObservers()
-//        MainViewModel.selectedProperty?.let { viewModel.fetchMaintenanceItems(it.id) }
-
         isEditing = arguments?.getBoolean(ExpenseFragment.editKey) ?: false
 
         val addressTV = view.findViewById<TextView>(R.id.maintenance_address)

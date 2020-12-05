@@ -13,7 +13,8 @@ import com.example.rentalchemy.ui.main.MainViewModel
 
 class MaintListAdapter(
     private val viewModel: MainViewModel,
-    private val itemClickListener: () -> Unit
+    private val itemClickListener: () -> Unit,
+    private val itemLongClickListener: () -> Unit
 ) :
     ListAdapter<MaintenanceItem, MaintListAdapter.VH>(MaintenanceDiff()) {
     class MaintenanceDiff : DiffUtil.ItemCallback<MaintenanceItem>() {
@@ -59,6 +60,12 @@ class MaintListAdapter(
         holder.itemView.setOnClickListener {
             MainViewModel.selectedMaintenanceItem = getItem(position)
             itemClickListener()
+        }
+
+        holder.itemView.setOnLongClickListener {
+            MainViewModel.selectedMaintenanceItem = getItem(position)
+            itemLongClickListener()
+            false
         }
     }
 

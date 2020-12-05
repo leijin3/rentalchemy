@@ -170,6 +170,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun deleteMaintenanceItem(id: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+
+        maintenanceRepository.delete(id) {
+            if (it?.id != null) {
+
+                Log.d("XXX", "not deleted!")
+            } else {
+                Toast.makeText(getApplication(), "Property deleted!", Toast.LENGTH_SHORT).show()
+                fetchProperties()
+            }
+        }
+    }
+
 
     fun updateProperty(newProperty: Property) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
