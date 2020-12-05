@@ -90,6 +90,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun observeIncomes(): LiveData<List<IncomeItem>> {
         return fetchedIncomeItems
     }
+
     fun observeProperties(): LiveData<List<Property>> {
         return fetchedProperties
     }
@@ -180,7 +181,56 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
                 Log.d("XXX", "not deleted!")
             } else {
-                Toast.makeText(getApplication(), "Property deleted!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(getApplication(), "Maintenance Item deleted!", Toast.LENGTH_SHORT)
+                    .show()
+                fetchProperties()
+            }
+        }
+    }
+
+    fun deleteAppliance(id: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+
+        applianceRepository.delete(id) {
+            if (it?.id != null) {
+
+                Log.d("XXX", "not deleted!")
+            } else {
+                Toast.makeText(getApplication(), "Appliance deleted!", Toast.LENGTH_SHORT).show()
+                fetchProperties()
+            }
+        }
+    }
+
+    fun deleteIncomeItem(id: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+
+        incomeRepository.delete(id) {
+            if (it?.id != null) {
+
+                Log.d("XXX", "not deleted!")
+            } else {
+                Toast.makeText(getApplication(), "Income Item deleted!", Toast.LENGTH_SHORT).show()
+                fetchProperties()
+            }
+        }
+    }
+
+    fun deleteExpense(id: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+
+        expenseRepository.delete(id) {
+            if (it?.id != null) {
+
+                Log.d("XXX", "not deleted!")
+            } else {
+                Toast.makeText(getApplication(), "Expense deleted!", Toast.LENGTH_SHORT).show()
                 fetchProperties()
             }
         }
@@ -295,34 +345,55 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             context = viewModelScope.coroutineContext
                     + Dispatchers.IO
         ) {
-            year.let { reportGenerator.generateExpenseReport(appContext, selectedProperty?.id.toString(), it) }
+            year.let {
+                reportGenerator.generateExpenseReport(
+                    appContext,
+                    selectedProperty?.id.toString(),
+                    it
+                )
+            }
         }
     }
 
     fun generateIncomeReport(appContext: Context, year: Int) {
         viewModelScope.launch(
-                context = viewModelScope.coroutineContext
-                        + Dispatchers.IO
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO
         ) {
-            year.let { reportGenerator.generateIncomeReport(appContext, selectedProperty?.id.toString(), it) }
+            year.let {
+                reportGenerator.generateIncomeReport(
+                    appContext,
+                    selectedProperty?.id.toString(),
+                    it
+                )
+            }
         }
     }
 
     fun generateMaintReport(appContext: Context, year: Int) {
         viewModelScope.launch(
-                context = viewModelScope.coroutineContext
-                        + Dispatchers.IO
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO
         ) {
-            year.let { reportGenerator.generateYearlyMaintenanceReport(appContext, selectedProperty?.id.toString(), it) }
+            year.let {
+                reportGenerator.generateYearlyMaintenanceReport(
+                    appContext,
+                    selectedProperty?.id.toString(),
+                    it
+                )
+            }
         }
     }
 
     fun generateMaintHistory(appContext: Context) {
         viewModelScope.launch(
-                context = viewModelScope.coroutineContext
-                        + Dispatchers.IO
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO
         ) {
-            reportGenerator.generateMaintenanceHistoryReport(appContext, selectedProperty?.id.toString())
+            reportGenerator.generateMaintenanceHistoryReport(
+                appContext,
+                selectedProperty?.id.toString()
+            )
         }
     }
 
@@ -332,6 +403,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         var selectedProperty: Property? = null
         var selectedExpense: Expense? = null
         var selectedMaintenanceItem: MaintenanceItem? = null
+        var selectedAppliance: Appliance? = null
+        var selectedIncomeItem: IncomeItem? = null
     }
 
 

@@ -14,7 +14,8 @@ import com.example.rentalchemy.ui.main.MainViewModel
 
 class ExpenseListAdapter(
     private val viewModel: MainViewModel,
-    private val itemClickListener: () -> Unit
+    private val itemClickListener: () -> Unit,
+    private val itemLongClickListener: () -> Unit
 ) :
     ListAdapter<Expense, ExpenseListAdapter.VH>(ExpenseDiff()) {
     class ExpenseDiff : DiffUtil.ItemCallback<Expense>() {
@@ -60,6 +61,12 @@ class ExpenseListAdapter(
         holder.itemView.setOnClickListener {
             MainViewModel.selectedExpense = getItem(position)
             itemClickListener()
+        }
+
+        holder.itemView.setOnLongClickListener {
+            MainViewModel.selectedExpense = getItem(position)
+            itemLongClickListener()
+            false
         }
     }
 }

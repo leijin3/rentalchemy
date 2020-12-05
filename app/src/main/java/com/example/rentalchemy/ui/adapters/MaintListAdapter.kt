@@ -56,7 +56,6 @@ class MaintListAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
 
-        //TODO: onClick for row, highlight selected for possible deletion?
         holder.itemView.setOnClickListener {
             MainViewModel.selectedMaintenanceItem = getItem(position)
             itemClickListener()

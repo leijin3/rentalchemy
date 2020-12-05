@@ -97,17 +97,12 @@ class ItemListFragment : Fragment() {
 
     private fun itemLongClickListener() {
         when (type) {
-            "Maintenance" -> deleteMaintenanceItem(MainViewModel.selectedMaintenanceItem!!.id.toLong())
-//            "Appliance" ->
-//            "Income" ->
-//            "Expense" ->
+            "Maintenance" -> viewModel.deleteMaintenanceItem(MainViewModel.selectedMaintenanceItem!!.id.toLong())
+            "Appliance" -> viewModel.deleteAppliance(MainViewModel.selectedAppliance!!.id.toLong())
+            "Income" -> viewModel.deleteIncomeItem(MainViewModel.selectedIncomeItem!!.id.toLong())
+            "Expense" -> viewModel.deleteExpense(MainViewModel.selectedExpense!!.id.toLong())
         }
     }
-
-    private fun deleteMaintenanceItem(id: Long) {
-        viewModel.deleteMaintenanceItem(id)
-    }
-
 
 
     private fun initAdapter(root: View, type: String) {
@@ -126,22 +121,29 @@ class ItemListFragment : Fragment() {
 
         when (type) {
             "Maintenance" -> viewModel.observeMaintenanceItems().observe(viewLifecycleOwner, {
-                val adapter = MaintListAdapter(viewModel, ::itemClickListener, ::itemLongClickListener)
+                val adapter =
+                    MaintListAdapter(viewModel, ::itemClickListener, ::itemLongClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
             "Appliance" -> viewModel.observeAppliances().observe(viewLifecycleOwner, {
-                val adapter = AppliListAdapter(viewModel)
+                val adapter =
+                    AppliListAdapter(viewModel, ::itemClickListener, ::itemLongClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
             "Income" -> viewModel.observeIncomes().observe(viewLifecycleOwner, {
-                val adapter = IncomeListAdapter(viewModel)
+                val adapter =
+                    IncomeListAdapter(viewModel, ::itemClickListener, ::itemLongClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
             "Expense" -> viewModel.observeExpenses().observe(viewLifecycleOwner) {
-                val adapter = ExpenseListAdapter(viewModel, ::itemClickListener)
+                val adapter = ExpenseListAdapter(
+                    viewModel,
+                    ::itemClickListener,
+                    ::itemLongClickListener
+                )
                 rv.adapter = adapter
                 adapter.submitList(it)
             }
@@ -164,9 +166,6 @@ class ItemListFragment : Fragment() {
             .addToBackStack(type)
             .commit()
     }
-
-
-
 
 
 }

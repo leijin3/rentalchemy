@@ -11,7 +11,11 @@ import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.Appliance
 import com.example.rentalchemy.ui.main.MainViewModel
 
-class AppliListAdapter(private val viewModel: MainViewModel) :
+class AppliListAdapter(
+    private val viewModel: MainViewModel,
+    private val itemClickListener: () -> Unit,
+    private val itemLongClickListener: () -> Unit
+) :
     ListAdapter<Appliance, AppliListAdapter.VH>(ApplianceDiff()) {
     class ApplianceDiff : DiffUtil.ItemCallback<Appliance>() {
 
@@ -52,6 +56,15 @@ class AppliListAdapter(private val viewModel: MainViewModel) :
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
 
-        //TODO: onClick for row, highlight selected for possible deletion?
+        holder.itemView.setOnClickListener {
+            MainViewModel.selectedAppliance = getItem(position)
+            itemClickListener()
+        }
+
+        holder.itemView.setOnLongClickListener {
+            MainViewModel.selectedAppliance = getItem(position)
+            itemLongClickListener()
+            false
+        }
     }
 }

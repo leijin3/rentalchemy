@@ -25,6 +25,9 @@ interface JsonServerApi {
     )
     suspend fun getApplianceList(@Query("property_id") propertyId: Long): List<Appliance>
 
+    @DELETE("appliances/{id}")
+    fun deleteAppliance(@Path("id") id: Long): Call<Appliance>
+
     // Properties
     @GET(
         "properties"
@@ -74,6 +77,9 @@ interface JsonServerApi {
         "incomes"
     )
     suspend fun getIncomeList(@Query("property_id") propertyId: Long): List<IncomeItem>
+
+    @DELETE("incomes/{id}")
+    fun deleteIncomeItem(@Path("id") id: Long): Call<IncomeItem>
 
     companion object {
 
