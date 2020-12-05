@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val fetchedProperties = MutableLiveData<List<Property>>()
+    private val fetchedExpenses = MutableLiveData<List<Expense>>()
     private val fetchedMaintenanceItems = MutableLiveData<List<MaintenanceItem>>()
     private var userId = MutableLiveData<Int>().apply { value = 1 }
     private var currentPhoto = MutableLiveData<Uri>()
@@ -56,6 +57,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedMaintenanceItems.postValue(maintenanceRepository.getMaintenanceList(propertyId))
     }
 
+    fun fetchExpenses(propertyId: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        // Update LiveData from IO dispatcher, use postValue
+        fetchedExpenses.postValue(expenseRepository.getExpenseList(propertyId))
+    }
+
 
     fun observeProperties(): LiveData<List<Property>> {
         return fetchedProperties
@@ -65,6 +74,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return fetchedMaintenanceItems
     }
 
+
+    fun observeExpenses(): LiveData<List<Expense>> {
+        return fetchedExpenses
+    }
 
     fun createProperty(
         year: Int,
@@ -242,7 +255,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             context = viewModelScope.coroutineContext
                     + Dispatchers.IO
         ) {
-            year?.let { reportGenerator.generateExpenseReport(appContext, selectedProperty?.id.toString(), it) }
+            year.let { reportGenerator.generateExpenseReport(appContext, selectedProperty?.id.toString(), it) }
         }
     }
 
@@ -251,7 +264,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 context = viewModelScope.coroutineContext
                         + Dispatchers.IO
         ) {
-            year?.let { reportGenerator.generateIncomeReport(appContext, selectedProperty?.id.toString(), it) }
+            year.let { reportGenerator.generateIncomeReport(appContext, selectedProperty?.id.toString(), it) }
         }
     }
 
@@ -260,7 +273,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 context = viewModelScope.coroutineContext
                         + Dispatchers.IO
         ) {
-            year?.let { reportGenerator.generateYearlyMaintenanceReport(appContext, selectedProperty?.id.toString(), it) }
+            year.let { reportGenerator.generateYearlyMaintenanceReport(appContext, selectedProperty?.id.toString(), it) }
         }
     }
 
@@ -272,6 +285,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             reportGenerator.generateMaintenanceHistoryReport(appContext, selectedProperty?.id.toString())
         }
     }
+
 
     companion object {
         var landlordID: Long? = null
