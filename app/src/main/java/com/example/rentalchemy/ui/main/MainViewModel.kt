@@ -10,10 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rentalchemy.database.api.*
-import com.example.rentalchemy.database.model.Expense
-import com.example.rentalchemy.database.model.MaintenanceItem
-import com.example.rentalchemy.database.model.Property
-import com.example.rentalchemy.database.model.Tenant
+import com.example.rentalchemy.database.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,6 +18,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val fetchedProperties = MutableLiveData<List<Property>>()
     private val fetchedExpenses = MutableLiveData<List<Expense>>()
+    private val fetchedIncomeItems = MutableLiveData<List<IncomeItem>>()
     private val fetchedMaintenanceItems = MutableLiveData<List<MaintenanceItem>>()
     private var userId = MutableLiveData<Int>().apply { value = 1 }
     private var currentPhoto = MutableLiveData<Uri>()
@@ -28,6 +26,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val jsApi = JsonServerApi.create()
     private val propertyRepository = PropertyRepository(jsApi)
     private val expenseRepository = ExpenseRepository(jsApi)
+    private val incomeRepository = IncomeRepository(jsApi)
     private val maintenanceRepository = MaintenanceRepository(jsApi)
     private val reportGenerator = ReportGenerator()
 
@@ -65,7 +64,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedExpenses.postValue(expenseRepository.getExpenseList(propertyId))
     }
 
+    fun fetchIncomes(propertyId: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        // Update LiveData from IO dispatcher, use postValue
+        fetchedIncomeItems.postValue(incomeRepository.getIncomeList(propertyId))
+    }
 
+
+    fun observeIncomes(): LiveData<List<IncomeItem>> {
+        return fetchedIncomeItems
+    }
     fun observeProperties(): LiveData<List<Property>> {
         return fetchedProperties
     }

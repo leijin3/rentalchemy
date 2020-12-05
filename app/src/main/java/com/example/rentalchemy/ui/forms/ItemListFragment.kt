@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.adapters.ExpenseListAdapter
+import com.example.rentalchemy.ui.adapters.IncomeListAdapter
 import com.example.rentalchemy.ui.adapters.MaintListAdapter
 import com.example.rentalchemy.ui.main.MainViewModel
 
@@ -82,9 +83,9 @@ class ItemListFragment : Fragment() {
         when (type) {
             "Maintenance" -> viewModel.fetchMaintenanceItems(MainViewModel.selectedProperty!!.id)
 //            "Appliance" -> rv.adapter = AppliListAdapter(viewModel)
-//            "Income" -> rv.adapter = IncomeListAdapter(viewModel)
+            "Income" -> viewModel.fetchIncomes(MainViewModel.selectedProperty!!.id)
             "Expense" -> viewModel.fetchExpenses(MainViewModel.selectedProperty!!.id)
-//            else -> rv.adapter = IncomeListAdapter(viewModel)
+            else -> viewModel.fetchIncomes(MainViewModel.selectedProperty!!.id)
         }
         rv.layoutManager = LinearLayoutManager(context)
     }
@@ -100,9 +101,11 @@ class ItemListFragment : Fragment() {
 //            "Appliance" ->   viewModel.observeAppliances().observe(viewLifecycleOwner, {
 //                adapter.submitList(it)
 //            })
-//            "Income" ->   viewModel.observeIncomes().observe(viewLifecycleOwner, {
-//                adapter.submitList(it)
-//            })
+            "Income" ->   viewModel.observeIncomes().observe(viewLifecycleOwner, {
+                val adapter = IncomeListAdapter(viewModel)
+                rv.adapter = adapter
+                adapter.submitList(it)
+            })
             "Expense" ->   viewModel.observeExpenses().observe(viewLifecycleOwner) {
                 val adapter = ExpenseListAdapter(viewModel, ::expenseClickListener)
                 rv.adapter = adapter

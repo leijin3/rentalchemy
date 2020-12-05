@@ -1,10 +1,7 @@
 package com.example.rentalchemy.database.api
 
 import android.util.Log
-import com.example.rentalchemy.database.model.Expense
-import com.example.rentalchemy.database.model.MaintenanceItem
-import com.example.rentalchemy.database.model.Property
-import com.example.rentalchemy.database.model.User
+import com.example.rentalchemy.database.model.*
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.HttpUrl
@@ -63,6 +60,12 @@ interface JsonServerApi {
     )
     suspend fun getMaintenanceList(@Query("property_id") propertyId: Long): List<MaintenanceItem>
 
+
+    // Incomes
+    @GET(
+        "incomes"
+    )
+    suspend fun getIncomeList(@Query("property_id") propertyId: Long): List<IncomeItem>
 
     companion object {
 
