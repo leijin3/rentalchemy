@@ -74,7 +74,7 @@ class ItemListFragment : Fragment() {
                     .commit()
             "Appliance" -> parentFragmentManager
                 .beginTransaction()
-                .addToBackStack("Appliance")
+                .addToBackStack("Appliances")
                 .replace(R.id.container, ApplianceFragment.newInstance(false))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit()
@@ -86,7 +86,7 @@ class ItemListFragment : Fragment() {
                 .commit()
             "Expense" -> parentFragmentManager
                 .beginTransaction()
-                .addToBackStack("Expense")
+                .addToBackStack("Expenses")
                 .replace(R.id.container, ExpenseFragment.newInstance(false))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit()

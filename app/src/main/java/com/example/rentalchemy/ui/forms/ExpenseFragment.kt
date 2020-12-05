@@ -9,6 +9,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
+import com.example.rentalchemy.R.*
 import com.example.rentalchemy.ui.main.MainViewModel
 import java.lang.Float.parseFloat
 import java.lang.Integer.parseInt
@@ -18,7 +19,7 @@ class ExpenseFragment : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
     private var isEditing: Boolean = false
     private val expenseTypes: Array<String> by lazy {
-        resources.getStringArray(R.array.expense_types)
+        resources.getStringArray(array.expense_types)
     }
 
     companion object {
@@ -36,7 +37,7 @@ class ExpenseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.expense_fragment, container, false)
+        return inflater.inflate(layout.expense_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +46,7 @@ class ExpenseFragment : Fragment() {
         val expenseTypeSpinner: Spinner = view.findViewById(R.id.expense_type)
         val expenseTypeAdapter = ArrayAdapter.createFromResource(
             this.requireContext(),
-            R.array.expense_types, android.R.layout.simple_spinner_item
+            array.expense_types, android.R.layout.simple_spinner_item
         )
         expenseTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         expenseTypeSpinner.adapter = expenseTypeAdapter
@@ -128,6 +129,7 @@ class ExpenseFragment : Fragment() {
                         receiptURL
                     )
                     viewModel.clearCurrentPhoto()
+                    receiptIV.setImageURI(receiptURL.toUri())
                     saveBut.text = "Edit Expense"
                     disableEditTexts()
                     isEditing = false

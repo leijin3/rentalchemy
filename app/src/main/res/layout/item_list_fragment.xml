@@ -22,14 +22,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:gravity="center_horizontal"
-        android:textColor="@color/design_default_color_secondary"
+        android:textColor="@color/dark_red"
         android:textSize="24sp"
         tools:text="Property Address Here" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="0dp"
         android:src="@color/dark_red" />
 
     <androidx.recyclerview.widget.RecyclerView
