@@ -48,9 +48,14 @@ class MaintenanceFragment : Fragment() {
         val monthTV = view.findViewById<TextView>(R.id.month_finished)
         val yearTV = view.findViewById<TextView>(R.id.year_finished)
         val saveBut = view.findViewById<Button>(R.id.maintenance_saveBut)
+        if (isEditing) {
+            saveBut.text = "Save Maintenance Item"
+        } else {
+            saveBut.text = "Edit Maintenance Item"
+        }
+
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
-        val propertyId = MainViewModel.selectedProperty?.id!!
 
         fun enableEditTexts() {
             isEditing = true

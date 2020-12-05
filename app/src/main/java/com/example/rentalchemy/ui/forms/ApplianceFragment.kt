@@ -64,14 +64,19 @@ class ApplianceFragment : Fragment() {
             val validPrice = (priceTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
             val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())
 
-            if(validPrice && validYear) {
-                viewModel.addAppliance( parseInt(yearTV.text.toString()), monthTV.text.toString(),
-                        applianceTypeSpinner.selectedItem.toString(), parseFloat(priceTV.text.toString()),
-                        dateTV.text.toString(), warrantyTV.text.toString()
+            if (validPrice && validYear) {
+                viewModel.createAppliance(
+                    parseInt(yearTV.text.toString()),
+                    monthTV.text.toString().toInt(),
+                    applianceTypeSpinner.selectedItem.toString(),
+                    parseFloat(priceTV.text.toString()),
+                    dateTV.text.toString(),
+                    warrantyTV.text.toString()
                 )
                 parentFragmentManager.popBackStack()
             } else {
-                Toast.makeText(this.context, "Enter a valid price and year", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context, "Enter a valid price and year", Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }

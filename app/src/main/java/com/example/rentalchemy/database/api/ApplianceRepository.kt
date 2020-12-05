@@ -11,6 +11,21 @@ class ApplianceRepository(private val jsApi: JsonServerApi) {
         return jsApi.getApplianceList(propertyId)
     }
 
+    fun create(applianceInfo: Appliance, onResult: (Appliance?) -> Unit) {
+        jsApi.createAppliance(applianceInfo).enqueue(
+            object : Callback<Appliance> {
+                override fun onFailure(call: Call<Appliance>, t: Throwable) {
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Appliance>, response: Response<Appliance>) {
+                    val newAppliance = response.body()
+                    onResult(newAppliance)
+                }
+            }
+        )
+    }
+
     fun delete(id: Long, onResult: (MaintenanceItem?) -> Unit) {
         jsApi.deleteAppliance(id).enqueue(
             object : Callback<Appliance> {
