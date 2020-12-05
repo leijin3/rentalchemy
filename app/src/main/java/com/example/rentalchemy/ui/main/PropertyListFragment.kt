@@ -1,7 +1,6 @@
 package com.example.rentalchemy.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +43,7 @@ class PropertyListFragment : Fragment() {
         // can refer to that?
         view.findViewById<Button>(R.id.add_propertyBut).apply {
             setOnClickListener {
-                addProperty()
+//                addProperty()
                 MainViewModel.selectedProperty = null
                 //MainViewModel.selectedProperty = viewModel.createNewProperty()
                 parentFragmentManager
@@ -59,19 +58,19 @@ class PropertyListFragment : Fragment() {
         // TODO: Delete me, for testing purpose only
         view.findViewById<Button>(R.id.delete_propertyBut).apply {
             setOnClickListener {
-                deleteProperty()
+//                deleteProperty()
             }
         }
 
     }
 
-    private fun deleteProperty() {
-        viewModel.deleteDummyProperty()
-    }
+//    private fun deleteProperty() {
+//        viewModel.deleteDummyProperty()
+//    }
 
-    private fun addProperty() {
-        viewModel.createDummyProperty()
-    }
+//    private fun addProperty() {
+//        viewModel.createDummyProperty()
+//    }
 
     // Set up the adapter
     private fun initAdapter(root: View) {

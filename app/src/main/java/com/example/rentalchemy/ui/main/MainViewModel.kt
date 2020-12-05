@@ -11,12 +11,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rentalchemy.database.api.*
 import com.example.rentalchemy.database.model.Expense
+import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.database.model.Property
 import com.example.rentalchemy.database.model.Tenant
-import com.example.rentalchemy.database.model.MaintenanceItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.time.measureTime
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -38,6 +37,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     ) {
         // Update LiveData from IO dispatcher, use postValue
         userId.postValue(propertyRepository.getUserId(userName)?.toInt())
+        landlordID = userId.value!!.toLong()
     }
 
     fun fetchProperties() = viewModelScope.launch(
@@ -65,61 +65,74 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return fetchedMaintenanceItems
     }
 
-    private val dummyPropertyID = 999.toLong()
-    private val dummyProperty = Property(
-        year = 2001,
-        month = 1,
-        id = dummyPropertyID,
-        landlordID = 1,
-        streetAddress = "123 Fifth Ave",
-        city = "New York",
-        state = "NY",
-        zip = "10003",
-        rent_amt = "5000",
-        propertyType = "apartment",
-        sqft = 3000,
-        num_beds = 3,
-        num_baths = 2,
-        cost_basis = "2000000",
-        date_acquired = "2020/01/01",
-        year_built = "1999",
-        parking = 2
-    )
 
+    fun createProperty(
+        year: Int,
+        month: Int,
+        landlordID: Long,
+        streetAddress: String,
+        city: String,
+        state: String,
+        zip: String,
+        rent_amt: String,
+        propertyType: String,
+        sqft: Int,
+        num_beds: Int,
+        num_baths: Int,
+        cost_basis: String,
+        date_acquired: String,
+        year_built: String,
+        parking: Int
 
-    fun createDummyProperty() = viewModelScope.launch(
+    ) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
     ) {
-        propertyRepository.createProperty(dummyProperty) {
+        val newProperty = Property(
+            year = year,
+            month = month,
+            landlordID = landlordID,
+            streetAddress = streetAddress,
+            city = city,
+            state = state,
+            zip = zip,
+            rent_amt = rent_amt,
+            propertyType = propertyType,
+            sqft = sqft,
+            num_beds = num_beds,
+            num_baths = num_baths,
+            cost_basis = cost_basis,
+            date_acquired = date_acquired,
+            year_built = year_built,
+            parking = parking
+        )
+        propertyRepository.createProperty(newProperty) {
             if (it?.id != null) {
-                // it = newly added property parsed as response
-                // it?.id = newly added property ID
                 fetchProperties()
                 Log.d("XXX", "fetch new")
             } else {
                 Log.d("XXX", "Error adding new property")
             }
         }
-
     }
 
-    fun deleteDummyProperty() = viewModelScope.launch(
-        context = viewModelScope.coroutineContext
-                + Dispatchers.IO
-    ) {
 
-        propertyRepository.deleteProperty(dummyPropertyID) {
-            if (it?.id != null) {
-                // it = newly added property parsed as response
-                // it?.id = newly added property ID
-                Log.d("XXX", "not deleted!")
-            } else {
-                Toast.makeText(getApplication(), "Property deleted!", Toast.LENGTH_SHORT).show()
-                fetchProperties()
-            }
-        }
-    }
+//    fun deleteDummyProperty() = viewModelScope.launch(
+//        context = viewModelScope.coroutineContext
+//                + Dispatchers.IO
+//    ) {
+//
+//        propertyRepository.deleteProperty(dummyPropertyID) {
+//            if (it?.id != null) {
+//                // it = newly added property parsed as response
+//                // it?.id = newly added property ID
+//                Log.d("XXX", "not deleted!")
+//            } else {
+//                Toast.makeText(getApplication(), "Property deleted!", Toast.LENGTH_SHORT).show()
+//                fetchProperties()
+//            }
+//        }
+//    }
 
     fun updateProperty(newProperty: Property) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
@@ -162,7 +175,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         //Write Me
     }
 
-    fun addMaintenance(year: Int, month: Int, description: String, contractor: String, date: String) {
+    fun addMaintenance(
+        year: Int,
+        month: Int,
+        description: String,
+        contractor: String,
+        date: String
+    ) {
         //Write Me  -- create new MaintenanceItem object, use selectedProperty, save to database
     }
 
@@ -207,7 +226,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         }
 
-    fun addAppliance(year: Int, month: String, type: String, price: Float, date: String, warranty: String) {
+    fun addAppliance(
+        year: Int,
+        month: String,
+        type: String,
+        price: Float,
+        date: String,
+        warranty: String
+    ) {
         //Write Me -- similar to above
     }
 
