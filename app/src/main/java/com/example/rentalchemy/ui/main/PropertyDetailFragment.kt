@@ -147,9 +147,6 @@ class PropertyDetailFragment : Fragment() {
 
                 if (sqftValid && bedsValid && bathsValid && parkingValid && yearValid) {
 
-                    //TODO:  How do we set the property id and user Id for a brand new property?
-                    // currently the code above crashes if there's not been any properties selected yet.
-
                     if (selectedProperty == null) {
                         viewModel.createProperty(
                             parseInt(yearAcqTV.text.toString()),

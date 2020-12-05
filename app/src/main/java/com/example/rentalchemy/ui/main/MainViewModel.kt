@@ -117,22 +117,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-//    fun deleteDummyProperty() = viewModelScope.launch(
-//        context = viewModelScope.coroutineContext
-//                + Dispatchers.IO
-//    ) {
-//
-//        propertyRepository.deleteProperty(dummyPropertyID) {
-//            if (it?.id != null) {
-//                // it = newly added property parsed as response
-//                // it?.id = newly added property ID
-//                Log.d("XXX", "not deleted!")
-//            } else {
-//                Toast.makeText(getApplication(), "Property deleted!", Toast.LENGTH_SHORT).show()
-//                fetchProperties()
-//            }
-//        }
-//    }
+    fun deleteProperty(propertyID: Long) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+
+        propertyRepository.deleteProperty(propertyID) {
+            if (it?.id != null) {
+
+                Log.d("XXX", "not deleted!")
+            } else {
+                Toast.makeText(getApplication(), "Property deleted!", Toast.LENGTH_SHORT).show()
+                fetchProperties()
+            }
+        }
+    }
+
 
     fun updateProperty(newProperty: Property) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
