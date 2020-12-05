@@ -80,7 +80,7 @@ class ItemListFragment : Fragment() {
     private fun initAdapter(root: View, type: String) {
         rv = root.findViewById(R.id.item_listRV)
         when (type) {
-//            "Maintenance" -> viewModel.fetchMaintenanceItems(MainViewModel.selectedProperty!!.id)
+            "Maintenance" -> viewModel.fetchMaintenanceItems(MainViewModel.selectedProperty!!.id)
 //            "Appliance" -> rv.adapter = AppliListAdapter(viewModel)
 //            "Income" -> rv.adapter = IncomeListAdapter(viewModel)
             "Expense" -> viewModel.fetchExpenses(MainViewModel.selectedProperty!!.id)
