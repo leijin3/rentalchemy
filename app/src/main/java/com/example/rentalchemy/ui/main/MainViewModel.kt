@@ -217,6 +217,36 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun createAppliance(
+        year: Int,
+        month: Int,
+        type: String,
+        price: Float,
+        date_purchased: String,
+        warranty: String
+    ) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        val newAppliance = Appliance(
+            year = year,
+            month = month,
+            property_id = selectedProperty!!.id,
+            type = type,
+            price = price,
+            date_purchased = date_purchased,
+            warranty = warranty
+
+        )
+        applianceRepository.create(newAppliance) {
+            if (it?.id != null) {
+                fetchAppliances(selectedProperty!!.id)
+            } else {
+                Log.d("XXX", "Error adding new appliance")
+            }
+        }
+    }
+
     fun deleteAppliance(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO

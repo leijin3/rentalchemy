@@ -16,8 +16,8 @@ class MaintenanceRepository(private val jsApi: JsonServerApi) {
                 }
 
                 override fun onResponse(call: Call<MaintenanceItem>, response: Response<MaintenanceItem>) {
-                    val addProperty = response.body()
-                    onResult(addProperty)
+                    val newMaintenanceItem = response.body()
+                    onResult(newMaintenanceItem)
                 }
             }
         )
