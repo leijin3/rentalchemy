@@ -1,9 +1,7 @@
 package com.example.rentalchemy.database.api
 
-import android.app.DownloadManager
+
 import android.content.Context
-import android.content.Context.DOWNLOAD_SERVICE
-import android.os.Environment
 import android.os.Environment.DIRECTORY_DOWNLOADS
 import android.util.Log
 import com.apollographql.apollo.coroutines.await
@@ -12,13 +10,10 @@ import com.example.rentalchemy.MaintenanceHistoryQuery
 import com.example.rentalchemy.YearlyExpenseQuery
 import com.example.rentalchemy.YearlyIncomeQuery
 import com.example.rentalchemy.YearlyMaintenanceQuery
-import java.io.File
 import java.io.FileWriter
 
 
 class ReportGenerator {
-
-    private val downloadDirectory = Environment.DIRECTORY_DOWNLOADS
 
     suspend fun generateExpenseReport(context: Context, propeprty_id: String, year: Int){
         val response = try {
@@ -30,11 +25,12 @@ class ReportGenerator {
         }
 
         val expenses = response?.data?.allExpenses
-        val filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/expenses.csv"
-        val title = expenses?.get(0)?.property?.st_address
+        val title = expenses?.get(0)?.property?.st_address + " " + year.toString()
+        val filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/" + title + "expenses.csv"
+
 
         if(expenses != null && !response.hasErrors()){
-                exportExpenseCSV(expenses, title.toString(), filename)
+                exportExpenseCSV(expenses, title, filename)
         }
 
     }
@@ -49,11 +45,12 @@ class ReportGenerator {
         }
 
         val incomes = response?.data?.allIncomes
-        val filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/income.csv"
-        val title = incomes?.get(0)?.property?.st_address
+        val title = incomes?.get(0)?.property?.st_address + year.toString()
+        val filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/" + title + "income.csv"
+
 
         if (incomes != null && !response.hasErrors()){
-            exportIncomeCSV(incomes, title.toString(), filename)
+            exportIncomeCSV(incomes, title, filename)
         }
     }
 
@@ -86,9 +83,10 @@ class ReportGenerator {
         }
 
         val maintenances = response?.data?.allMaintenances
-        val filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/" + year + "yearlyMaint.csv"
-        val header = "Description,Contractor,Date"
         val title = maintenances?.get(0)?.property?.st_address + "  " + year.toString()
+        val filename = context.getExternalFilesDir(DIRECTORY_DOWNLOADS).toString() + "/" + title + "yearlyMaint.csv"
+        val header = "Description,Contractor,Date"
+
 
         if (maintenances != null && !response.hasErrors()){
             exportYearlyMaintCSV(maintenances, header, title, filename)
@@ -107,10 +105,10 @@ class ReportGenerator {
 
         for (item in maintenances){
             if (item != null){
-                fileWriter.append(item.description)
-                fileWriter.append('\n')
-                fileWriter.append(item.contractor)
-                fileWriter.append('\n')
+                fileWriter.append(item.description.replace(",", " "))
+                fileWriter.append(",")
+                fileWriter.append(item.contractor.replace(",", " "))
+                fileWriter.append(",")
                 fileWriter.append(item.date_finished)
                 fileWriter.append('\n')
 
@@ -134,10 +132,10 @@ class ReportGenerator {
 
         for (item in maintenances){
             if (item != null){
-                fileWriter.append(item.description)
-                fileWriter.append('\n')
-                fileWriter.append(item.contractor)
-                fileWriter.append('\n')
+                fileWriter.append(item.description.replace(",", " "))
+                fileWriter.append(",")
+                fileWriter.append(item.contractor.replace(",", " "))
+                fileWriter.append(",")
                 fileWriter.append(item.date_finished)
                 fileWriter.append('\n')
 
