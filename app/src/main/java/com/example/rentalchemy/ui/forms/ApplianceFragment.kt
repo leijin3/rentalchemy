@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
 import com.example.rentalchemy.ui.main.MainViewModel
-import org.w3c.dom.Text
 import java.lang.Float.parseFloat
 import java.lang.Integer.parseInt
 
@@ -17,12 +16,20 @@ import java.lang.Integer.parseInt
 class ApplianceFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
+    private var isEditing: Boolean = false
     private val applianceTypes: Array<String> by lazy {
         resources.getStringArray(R.array.appliance_types)
     }
 
     companion object {
-        fun newInstance() = ApplianceFragment()
+        const val editKey = "isEditing"
+        fun newInstance(isEditing: Boolean): ApplianceFragment {
+            val frag = ApplianceFragment()
+            val bundle = Bundle()
+            bundle.putBoolean(editKey, isEditing)
+            frag.arguments = bundle
+            return frag
+        }
     }
 
     override fun onCreateView(

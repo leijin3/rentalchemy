@@ -4,18 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.Expense
-import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
 class ExpenseListAdapter(
     private val viewModel: MainViewModel,
-    private val expenseClickListener: () -> Unit
+    private val itemClickListener: () -> Unit,
+    private val itemLongClickListener: () -> Unit
 ) :
     ListAdapter<Expense, ExpenseListAdapter.VH>(ExpenseDiff()) {
     class ExpenseDiff : DiffUtil.ItemCallback<Expense>() {
@@ -60,7 +60,13 @@ class ExpenseListAdapter(
 
         holder.itemView.setOnClickListener {
             MainViewModel.selectedExpense = getItem(position)
-            expenseClickListener()
+            itemClickListener()
+        }
+
+        holder.itemView.setOnLongClickListener {
+            MainViewModel.selectedExpense = getItem(position)
+            itemLongClickListener()
+            false
         }
     }
 }

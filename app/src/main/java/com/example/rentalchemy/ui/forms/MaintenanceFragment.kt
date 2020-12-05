@@ -8,20 +8,23 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalchemy.R
-import com.example.rentalchemy.ui.adapters.MaintListAdapter
 import com.example.rentalchemy.ui.main.MainViewModel
-import java.lang.Integer.parseInt
 
 class MaintenanceFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
-    private lateinit var adapter: MaintListAdapter
+    private var isEditing: Boolean = false
 
     companion object {
-        fun newInstance() = MaintenanceFragment()
+        const val editKey = "isEditing"
+        fun newInstance(isEditing: Boolean): MaintenanceFragment {
+            val frag = MaintenanceFragment()
+            val bundle = Bundle()
+            bundle.putBoolean(editKey, isEditing)
+            frag.arguments = bundle
+            return frag
+        }
     }
 
     override fun onCreateView(
@@ -34,9 +37,7 @@ class MaintenanceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAdapter(view)
-        initMaintenanceItemObservers()
-        MainViewModel.selectedProperty?.let { viewModel.fetchMaintenanceItems(it.id) }
+        isEditing = arguments?.getBoolean(ExpenseFragment.editKey) ?: false
 
         val addressTV = view.findViewById<TextView>(R.id.maintenance_address)
         val descriptionTV = view.findViewById<TextView>(R.id.description)
@@ -47,27 +48,37 @@ class MaintenanceFragment : Fragment() {
         val saveBut = view.findViewById<Button>(R.id.maintenance_saveBut)
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
+        val propertyId = MainViewModel.selectedProperty?.id!!
 
-        saveBut.setOnClickListener {
-            viewModel.addMaintenance(parseInt(yearTV.text.toString()), parseInt(monthTV.text.toString()),
-                descriptionTV.text.toString(), contractorTV.text.toString(),
-                dateFinishedTV.text.toString()
-            )
-            parentFragmentManager.popBackStack()
+        fun enableEditTexts() {
+            descriptionTV.isEnabled = true
+            contractorTV.isEnabled = true
+            dateFinishedTV.isEnabled = true
+            monthTV.isEnabled = true
+            yearTV.isEnabled = true
+
         }
-    }
 
-    // Set up the adapter
-    private fun initAdapter(root: View) {
-        adapter = MaintListAdapter(viewModel)
-        val rv = root.findViewById<RecyclerView>(R.id.item_listRV)
-        rv.adapter = adapter
-        rv.layoutManager = LinearLayoutManager(context)
-    }
+        fun disableEditTexts() {
+            descriptionTV.isEnabled = false
+            contractorTV.isEnabled = false
+            dateFinishedTV.isEnabled = false
+            monthTV.isEnabled = false
+            yearTV.isEnabled = false
+        }
 
-    private fun initMaintenanceItemObservers() {
-        viewModel.observeMaintenanceItems().observe(viewLifecycleOwner, {
-            adapter.submitList(it)
-        })
+        if (isEditing) { //Creating new Expense
+            saveBut.text = "Save Maintenance Item"
+        } else { //Displaying selected Expense
+            saveBut.text = "Edit Maintenance Item"
+//            val currentExpense = MainViewModel.selectedExpense
+//            expenseTypeSpinner.setSelection(expenseTypes.indexOf(currentExpense?.type))
+//            amountTV.text = currentExpense?.amount_spent.toString()
+//            dateTV.text = currentExpense?.date_spent
+//            monthTV.text = currentExpense?.month.toString()
+//            yearTV.text = currentExpense?.year.toString()
+//            receiptIV.setImageURI(currentExpense?.receipt_url?.toUri())
+//            disableEditTexts()
+        }
     }
 }

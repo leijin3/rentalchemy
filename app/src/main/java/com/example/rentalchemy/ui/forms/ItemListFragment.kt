@@ -16,7 +16,9 @@ import com.example.rentalchemy.ui.adapters.AppliListAdapter
 import com.example.rentalchemy.ui.adapters.ExpenseListAdapter
 import com.example.rentalchemy.ui.adapters.IncomeListAdapter
 import com.example.rentalchemy.ui.adapters.MaintListAdapter
+import com.example.rentalchemy.ui.main.DashboardFragment
 import com.example.rentalchemy.ui.main.MainViewModel
+import com.example.rentalchemy.ui.main.PropertyListFragment
 
 class ItemListFragment : Fragment() {
 
@@ -51,7 +53,6 @@ class ItemListFragment : Fragment() {
         val itemTitleTV = view.findViewById<TextView>(R.id.item_list_title)
         val addressTV = view.findViewById<TextView>(R.id.item_address)
         val addBut = view.findViewById<Button>(R.id.add_itemBut)
-        val delBut = view.findViewById<Button>(R.id.delete_itemBut)
 
         itemTitleTV.text = type
         addressTV.text = MainViewModel.selectedProperty?.streetAddress
@@ -59,18 +60,50 @@ class ItemListFragment : Fragment() {
         initAdapter(view, type)
         initObservers(type)
         addBut.setOnClickListener { addButtonListener(type) }
-        delBut.setOnClickListener { delButtonListener(type) }
 
     }
 
-    private fun expenseClickListener(){
-        parentFragmentManager
+    private fun itemClickListener() {
+        when (type) {
+            "Maintenance" ->
+                parentFragmentManager
+                    .beginTransaction()
+                    .addToBackStack("Maintenance")
+                    .replace(R.id.container, MaintenanceFragment.newInstance(false))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit()
+            "Appliance" -> parentFragmentManager
+                .beginTransaction()
+                .addToBackStack("Appliance")
+                .replace(R.id.container, ApplianceFragment.newInstance(false))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit()
+            "Income" -> parentFragmentManager
+                .beginTransaction()
+                .addToBackStack("Income")
+                .replace(R.id.container, IncomeFragment.newInstance(false))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit()
+            "Expense" -> parentFragmentManager
                 .beginTransaction()
                 .addToBackStack("Expense")
                 .replace(R.id.container, ExpenseFragment.newInstance(false))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit()
+        }
+
     }
+
+
+    private fun itemLongClickListener() {
+        when (type) {
+            "Maintenance" -> viewModel.deleteMaintenanceItem(MainViewModel.selectedMaintenanceItem!!.id.toLong())
+            "Appliance" -> viewModel.deleteAppliance(MainViewModel.selectedAppliance!!.id.toLong())
+            "Income" -> viewModel.deleteIncomeItem(MainViewModel.selectedIncomeItem!!.id.toLong())
+            "Expense" -> viewModel.deleteExpense(MainViewModel.selectedExpense!!.id.toLong())
+        }
+    }
+
 
     private fun initAdapter(root: View, type: String) {
         rv = root.findViewById(R.id.item_listRV)
@@ -87,27 +120,33 @@ class ItemListFragment : Fragment() {
     private fun initObservers(type: String) {
 
         when (type) {
-            "Maintenance" ->   viewModel.observeMaintenanceItems().observe(viewLifecycleOwner, {
-                val adapter = MaintListAdapter(viewModel)
+            "Maintenance" -> viewModel.observeMaintenanceItems().observe(viewLifecycleOwner, {
+                val adapter =
+                    MaintListAdapter(viewModel, ::itemClickListener, ::itemLongClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
-            "Appliance" ->   viewModel.observeAppliances().observe(viewLifecycleOwner, {
-                val adapter = AppliListAdapter(viewModel)
+            "Appliance" -> viewModel.observeAppliances().observe(viewLifecycleOwner, {
+                val adapter =
+                    AppliListAdapter(viewModel, ::itemClickListener, ::itemLongClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
-            "Income" ->   viewModel.observeIncomes().observe(viewLifecycleOwner, {
-                val adapter = IncomeListAdapter(viewModel)
+            "Income" -> viewModel.observeIncomes().observe(viewLifecycleOwner, {
+                val adapter =
+                    IncomeListAdapter(viewModel, ::itemClickListener, ::itemLongClickListener)
                 rv.adapter = adapter
                 adapter.submitList(it)
             })
-            "Expense" ->   viewModel.observeExpenses().observe(viewLifecycleOwner) {
-                val adapter = ExpenseListAdapter(viewModel, ::expenseClickListener)
+            "Expense" -> viewModel.observeExpenses().observe(viewLifecycleOwner) {
+                val adapter = ExpenseListAdapter(
+                    viewModel,
+                    ::itemClickListener,
+                    ::itemLongClickListener
+                )
                 rv.adapter = adapter
                 adapter.submitList(it)
             }
-//            else -> IncomeListAdapter(viewModel)
         }
 
     }
@@ -115,9 +154,9 @@ class ItemListFragment : Fragment() {
     private fun addButtonListener(type: String) {
         val itemFrag =
             when (type) {
-                "Maintenance" -> MaintenanceFragment.newInstance()
-                "Appliance" -> ApplianceFragment.newInstance()
-                "Income" -> IncomeFragment.newInstance()
+                "Maintenance" -> MaintenanceFragment.newInstance(true)
+                "Appliance" -> ApplianceFragment.newInstance(false)
+                "Income" -> IncomeFragment.newInstance(false)
                 "Expense" -> ExpenseFragment.newInstance(true)
                 else -> Fragment()
             }
@@ -128,10 +167,5 @@ class ItemListFragment : Fragment() {
             .commit()
     }
 
-    private fun delButtonListener(type: String) {
-        //TODO: WRITE ME
-        //DELETE only selected item.
-
-    }
 
 }

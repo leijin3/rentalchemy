@@ -11,7 +11,11 @@ import com.example.rentalchemy.R
 import com.example.rentalchemy.database.model.IncomeItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
-class IncomeListAdapter(private val viewModel: MainViewModel) :
+class IncomeListAdapter(
+    private val viewModel: MainViewModel,
+    private val itemClickListener: () -> Unit,
+    private val itemLongClickListener: () -> Unit
+) :
     ListAdapter<IncomeItem, IncomeListAdapter.VH>(IncomeItemDiff()) {
     class IncomeItemDiff : DiffUtil.ItemCallback<IncomeItem>() {
 
@@ -49,8 +53,15 @@ class IncomeListAdapter(private val viewModel: MainViewModel) :
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
 
-        //TODO: onClick for row, highlight selected for possible deletion?
+        holder.itemView.setOnClickListener {
+            MainViewModel.selectedIncomeItem = getItem(position)
+            itemClickListener()
+        }
+
+        holder.itemView.setOnLongClickListener {
+            MainViewModel.selectedIncomeItem = getItem(position)
+            itemLongClickListener()
+            false
+        }
     }
-
-
 }
