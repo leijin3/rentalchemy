@@ -13,10 +13,12 @@ import com.example.rentalchemy.database.model.Expense
 import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
 
-class ExpenseListAdapter(private val viewModel: MainViewModel,
-    private val expenseClickListener: () -> Unit) :
-    ListAdapter<Expense, ExpenseListAdapter.VH>(ExpenseDiff()){
-    class ExpenseDiff: DiffUtil.ItemCallback<Expense>() {
+class ExpenseListAdapter(
+    private val viewModel: MainViewModel,
+    private val expenseClickListener: () -> Unit
+) :
+    ListAdapter<Expense, ExpenseListAdapter.VH>(ExpenseDiff()) {
+    class ExpenseDiff : DiffUtil.ItemCallback<Expense>() {
 
         override fun areItemsTheSame(oldItem: Expense, newItem: Expense): Boolean {
             return oldItem.id == newItem.id
@@ -56,7 +58,7 @@ class ExpenseListAdapter(private val viewModel: MainViewModel,
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             MainViewModel.selectedExpense = getItem(position)
             expenseClickListener()
         }

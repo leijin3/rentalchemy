@@ -59,26 +59,26 @@ class PropertyDetailFragment : Fragment() {
             editSaveBut.text = "Save Property Detail"
         }
 
-        var streetTV: TextView = view.findViewById(R.id.detail_street)
-        var cityTV: TextView = view.findViewById(R.id.detail_city)
-        var stateTV: TextView = view.findViewById(R.id.detail_state)
-        var postalCodeTV: TextView = view.findViewById(R.id.detail_zip)
-        var rentAmtTV: TextView = view.findViewById(R.id.detail_rent_amt)
-        var sqftTV: TextView = view.findViewById(R.id.detail_sqft)
-        var bedsTV: TextView = view.findViewById(R.id.detail_num_beds)
-        var bathsTV: TextView = view.findViewById(R.id.detail_num_baths)
-        var parkingTV: TextView = view.findViewById(R.id.detail_parking)
-        var costBasisTV: TextView = view.findViewById(R.id.detail_cost_basis)
-        var yearBuiltTV: TextView = view.findViewById(R.id.detail_year_built)
-        var dateAcqTV: TextView = view.findViewById(R.id.detail_date_acquired)
-        var monthAcqTV: TextView = view.findViewById(R.id.detail_month_acquired)
-        var yearAcqTV: TextView = view.findViewById(R.id.detail_year_acquired)
+        val streetTV: TextView = view.findViewById(R.id.detail_street)
+        val cityTV: TextView = view.findViewById(R.id.detail_city)
+        val stateTV: TextView = view.findViewById(R.id.detail_state)
+        val postalCodeTV: TextView = view.findViewById(R.id.detail_zip)
+        val rentAmtTV: TextView = view.findViewById(R.id.detail_rent_amt)
+        val sqftTV: TextView = view.findViewById(R.id.detail_sqft)
+        val bedsTV: TextView = view.findViewById(R.id.detail_num_beds)
+        val bathsTV: TextView = view.findViewById(R.id.detail_num_baths)
+        val parkingTV: TextView = view.findViewById(R.id.detail_parking)
+        val costBasisTV: TextView = view.findViewById(R.id.detail_cost_basis)
+        val yearBuiltTV: TextView = view.findViewById(R.id.detail_year_built)
+        val dateAcqTV: TextView = view.findViewById(R.id.detail_date_acquired)
+        val monthAcqTV: TextView = view.findViewById(R.id.detail_month_acquired)
+        val yearAcqTV: TextView = view.findViewById(R.id.detail_year_acquired)
 
 
         if (MainViewModel.selectedProperty != null) {
             //if there is no current property, this was started from "Add Property".  start with blank, editable form.
 
-            var currentProperty = MainViewModel.selectedProperty
+            val currentProperty = MainViewModel.selectedProperty
 
             currentProperty?.apply {
                 streetTV.text = this.streetAddress
@@ -146,7 +146,32 @@ class PropertyDetailFragment : Fragment() {
                 var yearValid = yearAcqTV.text.toString().matches("\\d{4}".toRegex())
 
                 if (sqftValid && bedsValid && bathsValid && parkingValid && yearValid) {
-                    val newProperty: Property = Property(
+
+                    //TODO:  How do we set the property id and user Id for a brand new property?
+                    // currently the code above crashes if there's not been any properties selected yet.
+
+                    if (selectedProperty == null) {
+                        viewModel.createProperty(
+                            parseInt(yearAcqTV.text.toString()),
+                            parseInt(monthAcqTV.text.toString()),
+                            MainViewModel.landlordID!!,
+                            streetTV.text.toString(),
+                            cityTV.text.toString(),
+                            stateTV.text.toString(),
+                            postalCodeTV.text.toString(),
+                            rentAmtTV.text.toString(),
+                            propertyTypeSpinner.selectedItem.toString(),
+                            parseInt(sqftTV.text.toString()),
+                            parseInt(bedsTV.text.toString()),
+                            parseInt(bathsTV.text.toString()),
+                            costBasisTV.text.toString(),
+                            dateAcqTV.text.toString(),
+                            yearBuiltTV.text.toString(),
+                            parseInt(parkingTV.text.toString())
+                        )
+
+                    } else {
+                        val newProperty = Property(
                             parseInt(yearAcqTV.text.toString()),
                             parseInt(monthAcqTV.text.toString()),
                             selectedProperty!!.id,
@@ -164,16 +189,18 @@ class PropertyDetailFragment : Fragment() {
                             dateAcqTV.text.toString(),
                             yearBuiltTV.text.toString(),
                             parseInt(parkingTV.text.toString())
-                    )
-                    //TODO:  How do we set the property id and user Id for a brand new property?
-                    // currently the code above crashes if there's not been any properties selected yet.
-
-                    viewModel.updateProperty(newProperty)
+                        )
+                        viewModel.updateProperty(newProperty)
+                    }
                     isEditing = false
                     editSaveBut.text = "Edit Property Detail"
                     disableEditTexts()
                 } else {
-                    Toast.makeText(this.context, "Enter valid numbers for sqft, beds, baths, parking, month, and year.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this.context,
+                        "Enter valid numbers for sqft, beds, baths, parking, month, and year.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             } else {  //Clicked "Edit"
                 isEditing = true
