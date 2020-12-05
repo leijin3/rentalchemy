@@ -13,7 +13,8 @@ import com.example.rentalchemy.ui.main.MainViewModel
 
 class PropertyListAdapter(
     private val viewModel: MainViewModel,
-    private val propertyClickListener: () -> Unit
+    private val propertyClickListener: () -> Unit,
+    private val propertyLongClickListener: () -> Unit
 ) : ListAdapter<Property, PropertyListAdapter.VH>(PropertyDiff()) {
     class PropertyDiff : DiffUtil.ItemCallback<Property>() {
 
@@ -55,5 +56,12 @@ class PropertyListAdapter(
             propertyClickListener()
             MainViewModel.selectedProperty = getItem(position)
         }
+
+        holder.itemView.setOnLongClickListener {
+            MainViewModel.selectedProperty = getItem(position)
+            propertyLongClickListener()
+            false
+        }
+//
     }
 }

@@ -37,44 +37,27 @@ class PropertyListFragment : Fragment() {
         initPropertyObservers()
         viewModel.fetchProperties()
 
-
-        //For now, set selectedProperty to null so that the fragment knows we're creating a new
-        //property.  Maybe the addProperty() method can create a new, empty property and the viewModel
-        // can refer to that?
         view.findViewById<Button>(R.id.add_propertyBut).apply {
             setOnClickListener {
-//                addProperty()
                 MainViewModel.selectedProperty = null
-                //MainViewModel.selectedProperty = viewModel.createNewProperty()
                 parentFragmentManager
                     .beginTransaction()
                     .add(R.id.container, PropertyDetailFragment.newInstance(isEditing = true))
                     .addToBackStack("PropertyDetail")
                     .commit()
             }
-
         }
-
-        // TODO: Delete me, for testing purpose only
-        view.findViewById<Button>(R.id.delete_propertyBut).apply {
-            setOnClickListener {
-//                deleteProperty()
-            }
-        }
-
     }
 
-//    private fun deleteProperty() {
-//        viewModel.deleteDummyProperty()
-//    }
+    private fun deleteProperty(propertyID: Long) {
+        viewModel.deleteProperty(propertyID)
+    }
 
-//    private fun addProperty() {
-//        viewModel.createDummyProperty()
-//    }
 
     // Set up the adapter
     private fun initAdapter(root: View) {
-        adapter = PropertyListAdapter(viewModel, ::propertyClickListener)
+        adapter =
+            PropertyListAdapter(viewModel, ::propertyClickListener, ::propertyLongClickListener)
         val rv = root.findViewById<RecyclerView>(R.id.property_listRV)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(context)
@@ -95,5 +78,10 @@ class PropertyListFragment : Fragment() {
             .replace(R.id.container, dashboardFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             .commit()
+    }
+
+    private fun propertyLongClickListener() {
+        // Delete Current Property
+        deleteProperty(MainViewModel.selectedProperty!!.id.toLong())
     }
 }

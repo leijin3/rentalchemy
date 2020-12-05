@@ -36,7 +36,6 @@ class PropertyRepository(private val jsApi: JsonServerApi) {
         )
     }
 
-
     fun deleteProperty(propertyId: Long, onResult: (Property?) -> Unit) {
         jsApi.deleteProperty(propertyId).enqueue(
             object : Callback<Property> {
