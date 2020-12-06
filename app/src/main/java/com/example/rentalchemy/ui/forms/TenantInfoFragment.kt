@@ -31,15 +31,15 @@ class TenantInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var tenant = viewModel.getTenant()
-        var property = MainViewModel.selectedProperty
+        val tenant = viewModel.getTenant()
+        val property = MainViewModel.selectedProperty
 
         //Show tenant info in view
-        var nameTV: TextView = view.findViewById(R.id.tenant_name)
-        var phoneTV: TextView = view.findViewById(R.id.tenant_phone)
-        var emailTV: TextView = view.findViewById(R.id.tenant_email)
-        var startTV: TextView = view.findViewById(R.id.tenant_lease_start)
-        var addressTV: TextView = view.findViewById(R.id.tenant_infoAddress)
+        val nameTV: TextView = view.findViewById(R.id.tenant_name)
+        val phoneTV: TextView = view.findViewById(R.id.tenant_phone)
+        val emailTV: TextView = view.findViewById(R.id.tenant_email)
+        val startTV: TextView = view.findViewById(R.id.tenant_lease_start)
+        val addressTV: TextView = view.findViewById(R.id.tenant_infoAddress)
 
         addressTV.text = property?.streetAddress
         tenant.apply {
