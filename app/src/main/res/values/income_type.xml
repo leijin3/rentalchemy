@@ -2,11 +2,11 @@
 <resources>
 
     <string-array name="income_types">
-        <item>Rent</item>
-        <item>Deposit</item>
-        <item>Late Fees</item>
-        <item>Interest</item>
-        <item>Other</item>
+        <item>rent</item>
+        <item>deposit</item>
+        <item>late fees</item>
+        <item>interest</item>
+        <item>other</item>
     </string-array>
 
 </resources>
