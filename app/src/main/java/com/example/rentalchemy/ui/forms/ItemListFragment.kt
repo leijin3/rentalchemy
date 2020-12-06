@@ -152,10 +152,10 @@ class ItemListFragment : Fragment() {
     private fun addButtonListener(type: String) {
         val itemFrag =
             when (type) {
-                "Maintenance" -> MaintenanceFragment.newInstance(false)
-                "Appliance" -> ApplianceFragment.newInstance(false)
-                "Income" -> IncomeFragment.newInstance(false)
-                "Expense" -> ExpenseFragment.newInstance(false)
+                "Maintenance" -> MaintenanceFragment.newInstance(true)
+                "Appliance" -> ApplianceFragment.newInstance(true)
+                "Income" -> IncomeFragment.newInstance(true)
+                "Expense" -> ExpenseFragment.newInstance(true)
                 else -> Fragment()
             }
         parentFragmentManager
