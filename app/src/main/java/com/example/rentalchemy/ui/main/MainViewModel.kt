@@ -366,7 +366,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 receipt_url = receiptURL
             )
 
-            expenseRepository.add(newExpense) {
+            expenseRepository.create(newExpense) {
                 if (it?.id != null) {
                     fetchExpenses(selectedProperty!!.id)
                 } else {
@@ -382,7 +382,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedExpenses.postValue(expenseRepository.getExpenseList(propertyId))
     }
 
-    // TODO: updateExpense(id: Long)
+    fun updateExpense(newExpense: Expense) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        expenseRepository.update(selectedExpense!!.id, newExpense) {
+            if (it?.id != null) {
+                selectedExpense = newExpense
+                Toast.makeText(getApplication(), "Expense updated!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Log.d("XXX", "Expense Not updated")
+            }
+        }
+    }
 
     fun deleteExpense(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
