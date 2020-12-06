@@ -225,7 +225,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             } else {
                 Toast.makeText(getApplication(), "Maintenance Item deleted!", Toast.LENGTH_SHORT)
                     .show()
-                fetchProperties()
+                fetchMaintenanceItems(selectedProperty!!.id)
             }
         }
     }
@@ -295,7 +295,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 Log.d("XXX", "not deleted!")
             } else {
                 Toast.makeText(getApplication(), "Appliance deleted!", Toast.LENGTH_SHORT).show()
-                fetchProperties()
+                fetchAppliances(selectedProperty!!.id)
             }
         }
     }
@@ -362,7 +362,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 Log.d("XXX", "not deleted!")
             } else {
                 Toast.makeText(getApplication(), "Income Item deleted!", Toast.LENGTH_SHORT).show()
-                fetchProperties()
+                fetchIncomes(selectedProperty!!.id)
             }
         }
     }
@@ -434,7 +434,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 Log.d("XXX", "not deleted!")
             } else {
                 Toast.makeText(getApplication(), "Expense deleted!", Toast.LENGTH_SHORT).show()
-                fetchProperties()
+                fetchExpenses(selectedProperty!!.id)
             }
         }
     }

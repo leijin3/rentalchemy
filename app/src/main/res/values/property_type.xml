@@ -2,11 +2,11 @@
 <resources>
 
     <string-array name="property_types">
-        <item>House</item>
-        <item>Duplex</item>
-        <item>Apartment</item>
-        <item>Townhouse</item>
-        <item>Other</item>
+        <item>house</item>
+        <item>duplex</item>
+        <item>apartment</item>
+        <item>townhouse</item>
+        <item>other</item>
     </string-array>
 
 </resources>

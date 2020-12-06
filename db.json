@@ -4529,15 +4529,6 @@
     },
     {
       "year": 2020,
-      "month": 7,
-      "id": 504,
-      "property_id": 56,
-      "description": "Nullam porttitor lacus at turpis.",
-      "contractor": "Crist, Tillman and Larkin",
-      "date_finished": "7/6/2020"
-    },
-    {
-      "year": 2020,
       "month": 3,
       "id": 505,
       "property_id": 22,
@@ -8471,15 +8462,6 @@
     },
     {
       "year": 2020,
-      "month": 10,
-      "id": 942,
-      "property_id": 181,
-      "description": "Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
-      "contractor": "Lindgren Inc",
-      "date_finished": "10/1/2020"
-    },
-    {
-      "year": 2020,
       "month": 7,
       "id": 943,
       "property_id": 246,
@@ -8666,15 +8648,6 @@
       "description": "Nulla tellus.",
       "contractor": "Yost, Schuster and Bashirian",
       "date_finished": "12/4/2019"
-    },
-    {
-      "year": 2020,
-      "month": 6,
-      "id": 964,
-      "property_id": 181,
-      "description": "Etiam vel augue. Vestibulum rutrum rutrum neque.",
-      "contractor": "Powlowski Inc",
-      "date_finished": "6/13/2020"
     },
     {
       "year": 2020,
@@ -18306,16 +18279,6 @@
       "warranty": "4/6/2022"
     },
     {
-      "year": 2005,
-      "month": null,
-      "id": 32,
-      "property_id": 20,
-      "type": "dishwasher",
-      "price": "1765.31",
-      "date_purchased": "8/10/2005",
-      "warranty": "11/17/2023"
-    },
-    {
       "year": 2018,
       "month": null,
       "id": 33,
@@ -22226,16 +22189,6 @@
       "warranty": "2/25/2018"
     },
     {
-      "year": 2003,
-      "month": null,
-      "id": 424,
-      "property_id": 20,
-      "type": "dishwasher",
-      "price": "3462.98",
-      "date_purchased": "3/31/2003",
-      "warranty": "4/3/2023"
-    },
-    {
       "year": 2010,
       "month": null,
       "id": 425,
@@ -23304,16 +23257,6 @@
       "price": "4539.00",
       "date_purchased": "6/30/2015",
       "warranty": "6/6/2017"
-    },
-    {
-      "year": 2003,
-      "month": null,
-      "id": 533,
-      "property_id": 20,
-      "type": "fridge",
-      "price": "4223.83",
-      "date_purchased": "10/9/2003",
-      "warranty": "11/10/2019"
     },
     {
       "year": 2001,
@@ -25606,16 +25549,6 @@
       "warranty": "2/4/2021"
     },
     {
-      "year": 2011,
-      "month": null,
-      "id": 763,
-      "property_id": 31,
-      "type": "HVAC",
-      "price": "3681.26",
-      "date_purchased": "8/1/2011",
-      "warranty": "1/19/2026"
-    },
-    {
       "year": 2006,
       "month": null,
       "id": 764,
@@ -27716,16 +27649,6 @@
       "warranty": "8/13/2017"
     },
     {
-      "year": 2008,
-      "month": null,
-      "id": 974,
-      "property_id": 220,
-      "type": "dishwasher",
-      "price": "4194.90",
-      "date_purchased": "10/14/2008",
-      "warranty": "5/31/2029"
-    },
-    {
       "year": 2004,
       "month": null,
       "id": 975,
@@ -27874,16 +27797,6 @@
       "price": "3886.71",
       "date_purchased": "6/17/2006",
       "warranty": "5/18/2018"
-    },
-    {
-      "year": 2010,
-      "month": null,
-      "id": 990,
-      "property_id": 56,
-      "type": "HVAC",
-      "price": "4675.24",
-      "date_purchased": "8/31/2010",
-      "warranty": "8/4/2024"
     },
     {
       "year": 2012,
@@ -32318,16 +32231,6 @@
       "receipt_url": "http://dummyimage.com/217x145.bmp/cc0000/ffffff"
     },
     {
-      "year": 2020,
-      "month": 5,
-      "id": 434,
-      "property_id": 181,
-      "type": "utility",
-      "date_spent": "5/25/2020",
-      "amount_spent": "2236.88",
-      "receipt_url": "http://dummyimage.com/165x188.bmp/cc0000/ffffff"
-    },
-    {
       "year": 2018,
       "month": 1,
       "id": 435,
@@ -35188,16 +35091,6 @@
       "receipt_url": "http://dummyimage.com/113x197.bmp/dddddd/000000"
     },
     {
-      "year": 2020,
-      "month": 5,
-      "id": 721,
-      "property_id": 181,
-      "type": "office",
-      "date_spent": "5/10/2020",
-      "amount_spent": "1920.50",
-      "receipt_url": "http://dummyimage.com/215x141.bmp/5fa2dd/ffffff"
-    },
-    {
       "year": 2016,
       "month": 6,
       "id": 722,
@@ -36678,16 +36571,6 @@
       "receipt_url": "http://dummyimage.com/170x190.bmp/5fa2dd/ffffff"
     },
     {
-      "year": 2020,
-      "month": 6,
-      "id": 870,
-      "property_id": 181,
-      "type": "travel",
-      "date_spent": "6/14/2020",
-      "amount_spent": "1518.62",
-      "receipt_url": "http://dummyimage.com/199x189.bmp/ff4444/ffffff"
-    },
-    {
       "year": 2014,
       "month": 11,
       "id": 871,
@@ -37168,16 +37051,6 @@
       "receipt_url": "http://dummyimage.com/225x184.bmp/dddddd/000000"
     },
     {
-      "year": 2017,
-      "month": 4,
-      "id": 919,
-      "property_id": 56,
-      "type": "repair",
-      "date_spent": "4/29/2017",
-      "amount_spent": "4037.20",
-      "receipt_url": "http://dummyimage.com/140x249.bmp/ff4444/ffffff"
-    },
-    {
       "year": 2019,
       "month": 12,
       "id": 920,
@@ -37348,16 +37221,6 @@
       "receipt_url": "http://dummyimage.com/107x148.bmp/5fa2dd/ffffff"
     },
     {
-      "year": 2016,
-      "month": 5,
-      "id": 937,
-      "property_id": 220,
-      "type": "hoa",
-      "date_spent": "5/8/2016",
-      "amount_spent": "3244.94",
-      "receipt_url": "http://dummyimage.com/221x145.bmp/cc0000/ffffff"
-    },
-    {
       "year": 2013,
       "month": 3,
       "id": 938,
@@ -37446,16 +37309,6 @@
       "date_spent": "9/21/2020",
       "amount_spent": "3249.25",
       "receipt_url": "http://dummyimage.com/140x250.bmp/5fa2dd/ffffff"
-    },
-    {
-      "year": 2015,
-      "month": 8,
-      "id": 947,
-      "property_id": 56,
-      "type": "tax",
-      "date_spent": "8/13/2015",
-      "amount_spent": "1958.69",
-      "receipt_url": "http://dummyimage.com/204x175.bmp/ff4444/ffffff"
     },
     {
       "year": 2017,
@@ -38036,16 +37889,6 @@
       "amount_spent": 3827.97,
       "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-12-53-52-451.jpg",
       "id": 1006
-    },
-    {
-      "year": 2017,
-      "month": 11,
-      "property_id": 33,
-      "type": "Utility",
-      "date_spent": "11/15/2017",
-      "amount_spent": 3827.97,
-      "receipt_url": "File Name Here",
-      "id": 1007
     },
     {
       "year": 2017,
@@ -44212,25 +44055,6 @@
       "date_acquired": "1/26/2014",
       "year_built": "2/20/1901",
       "parking": 3
-    },
-    {
-      "year": 1992,
-      "month": 9,
-      "id": 219,
-      "user_id": 2,
-      "st_address": "3979 Schlimgen Road",
-      "city": "Dallas",
-      "state": "Texas",
-      "zip": "75260",
-      "rent_amt": "$2467.36",
-      "type": "house",
-      "sqft": 1705,
-      "num_beds": 3,
-      "num_baths": 4,
-      "cost_basis": "$469491.73",
-      "date_acquired": "9/29/1992",
-      "year_built": "7/22/1989",
-      "parking": 0
     },
     {
       "year": 2007,

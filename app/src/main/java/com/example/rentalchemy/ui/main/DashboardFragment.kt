@@ -21,9 +21,9 @@ class DashboardFragment : Fragment() {
         const val propertyDetailKey = "PropertyDetail"
         const val tenantInfoKey = "TenantInfo"
         const val maintenanceKey = "Maintenance"
-        const val applianceKey = "Appliance"
+        const val applianceKey = "Appliances"
         const val incomeKey = "Income"
-        const val expenseKey = "Expense"
+        const val expenseKey = "Expenses"
         const val reportKey = "Report"
     }
 

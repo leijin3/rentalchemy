@@ -66,6 +66,9 @@ class ExpenseFragment : Fragment() {
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
+        val propertyId = MainViewModel.selectedProperty?.id!!
+        var receiptURL = "File Name Here"
+
         fun enableEditTexts() {
             amountTV.isEnabled = true
             dateTV.isEnabled = true
@@ -86,6 +89,12 @@ class ExpenseFragment : Fragment() {
 
         if (isEditing) { //Creating new Expense
             saveBut.text = "Save Expense"
+
+            viewModel.observeCurrentPhoto().observe(viewLifecycleOwner, {
+                receiptURL = it?.toString() ?: "File Name Here"
+                receiptIV.setImageURI(receiptURL.toUri())
+            })
+
         } else { //Displaying selected Expense
             saveBut.text = "Edit Expense"
             val currentExpense = MainViewModel.selectedExpense
@@ -97,12 +106,6 @@ class ExpenseFragment : Fragment() {
             receiptIV.setImageURI(currentExpense?.receipt_url?.toUri())
             disableEditTexts()
         }
-
-        var receiptURL = "File Name Here"
-        viewModel.observeCurrentPhoto().observe(viewLifecycleOwner, {
-            receiptURL = it?.toString() ?: "File Name Here"
-            receiptIV.setImageURI(it)
-        })
 
         receiptBut.setOnClickListener {
             parentFragmentManager
@@ -134,7 +137,7 @@ class ExpenseFragment : Fragment() {
 
                     )
                     viewModel.clearCurrentPhoto()
-                    receiptIV.setImageURI(receiptURL.toUri())
+                    receiptIV.setImageURI(MainViewModel.selectedExpense?.receipt_url?.toUri())
                     saveBut.text = "Edit Expense"
                     disableEditTexts()
                     isEditing = false

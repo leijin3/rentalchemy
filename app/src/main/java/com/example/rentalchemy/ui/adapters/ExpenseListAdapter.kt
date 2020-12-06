@@ -59,8 +59,10 @@ class ExpenseListAdapter(
         holder.bind(getItem(position))
 
         holder.itemView.setOnClickListener {
+
             MainViewModel.selectedExpense = getItem(position)
             itemClickListener()
+
         }
 
         holder.itemView.setOnLongClickListener {

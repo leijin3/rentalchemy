@@ -58,7 +58,7 @@ class AppliListAdapter(
 
         holder.itemView.setOnClickListener {
             MainViewModel.selectedAppliance = getItem(position)
-            itemClickListener()
+            //itemClickListener()
         }
 
         holder.itemView.setOnLongClickListener {
