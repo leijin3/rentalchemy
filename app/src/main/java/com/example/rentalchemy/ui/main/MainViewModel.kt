@@ -269,7 +269,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedAppliances.postValue(applianceRepository.getApplianceList(propertyId))
     }
 
-    // TODO: updateAppliances(id: Long)
+    fun updateAppliances(newAppliance: Appliance) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        applianceRepository.update(selectedAppliance!!.id, newAppliance) {
+            if (it?.id != null) {
+                selectedAppliance = newAppliance
+                Toast.makeText(getApplication(), "Appliance updated!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Log.d("XXX", "Appliance Not updated")
+            }
+        }
+    }
 
     fun deleteAppliance(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
@@ -323,7 +336,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedIncomeItems.postValue(incomeRepository.getIncomeList(propertyId))
     }
 
-    // TODO: updateIncomeItem(id: Long)
+    fun updateIncomeItem(newIncomeItem: IncomeItem) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        incomeRepository.update(selectedIncomeItem!!.id, newIncomeItem) {
+            if (it?.id != null) {
+                selectedIncomeItem = newIncomeItem
+                Toast.makeText(getApplication(), "Income item updated!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Log.d("XXX", "Income Not updated")
+            }
+        }
+    }
 
     fun deleteIncomeItem(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext

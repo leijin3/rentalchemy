@@ -65,7 +65,6 @@ class ExpenseFragment : Fragment() {
         val saveBut = view.findViewById<Button>(R.id.expense_saveBut)
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
-        val propertyId = MainViewModel.selectedProperty?.id!!
 
         fun enableEditTexts() {
             amountTV.isEnabled = true
