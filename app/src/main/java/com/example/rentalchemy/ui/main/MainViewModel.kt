@@ -226,6 +226,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 Toast.makeText(getApplication(), "Maintenance Item deleted!", Toast.LENGTH_SHORT)
                     .show()
                 fetchMaintenanceItems(selectedProperty!!.id)
+                selectedMaintenanceItem = null
             }
         }
     }
@@ -296,6 +297,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             } else {
                 Toast.makeText(getApplication(), "Appliance deleted!", Toast.LENGTH_SHORT).show()
                 fetchAppliances(selectedProperty!!.id)
+                selectedAppliance = null
             }
         }
     }
@@ -363,6 +365,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             } else {
                 Toast.makeText(getApplication(), "Income Item deleted!", Toast.LENGTH_SHORT).show()
                 fetchIncomes(selectedProperty!!.id)
+                selectedIncomeItem  = null
             }
         }
     }
@@ -435,6 +438,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             } else {
                 Toast.makeText(getApplication(), "Expense deleted!", Toast.LENGTH_SHORT).show()
                 fetchExpenses(selectedProperty!!.id)
+                selectedExpense = null
             }
         }
     }

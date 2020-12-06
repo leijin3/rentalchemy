@@ -89,7 +89,6 @@ class ExpenseFragment : Fragment() {
 
         if (isEditing) { //Creating new Expense
             saveBut.text = "Save Expense"
-
             viewModel.observeCurrentPhoto().observe(viewLifecycleOwner, {
                 receiptURL = it?.toString() ?: "File Name Here"
                 receiptIV.setImageURI(receiptURL.toUri())
@@ -137,7 +136,7 @@ class ExpenseFragment : Fragment() {
 
                     )
                     viewModel.clearCurrentPhoto()
-                    receiptIV.setImageURI(MainViewModel.selectedExpense?.receipt_url?.toUri())
+                    receiptIV.setImageURI(receiptURL.toUri())
                     saveBut.text = "Edit Expense"
                     disableEditTexts()
                     isEditing = false
