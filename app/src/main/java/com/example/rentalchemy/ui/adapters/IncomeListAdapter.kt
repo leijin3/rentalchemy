@@ -55,7 +55,7 @@ class IncomeListAdapter(
 
         holder.itemView.setOnClickListener {
             MainViewModel.selectedIncomeItem = getItem(position)
-            itemClickListener()
+            //itemClickListener()
         }
 
         holder.itemView.setOnLongClickListener {

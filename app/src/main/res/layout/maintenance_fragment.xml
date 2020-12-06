@@ -11,9 +11,9 @@
         android:id="@+id/maintenance_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:editable="false"
+        android:padding="12dp"
         android:gravity="center_horizontal"
+        android:text="Maintenance"
         android:textColor="@color/cardview_dark_background"
         android:textSize="32sp"
         android:textStyle="bold" />

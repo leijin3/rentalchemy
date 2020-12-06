@@ -3,12 +3,12 @@
 
     <string-array name="appliance_types">
         <item>HVAC</item>
-        <item>Dishwasher</item>
-        <item>Washer</item>
-        <item>Dryer</item>
-        <item>Fridge</item>
-        <item>Range</item>
-        <item>Other</item>
+        <item>dishwasher</item>
+        <item>washer</item>
+        <item>dryer</item>
+        <item>fridge</item>
+        <item>range</item>
+        <item>other</item>
     </string-array>
 
 </resources>

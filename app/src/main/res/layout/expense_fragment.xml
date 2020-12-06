@@ -11,9 +11,9 @@
         android:id="@+id/expense_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
+        android:padding="12dp"
         android:gravity="center_horizontal"
-        android:text="Expenses"
+        android:text="Expense"
         android:textColor="@color/cardview_dark_background"
         android:textSize="32sp"
         android:textStyle="bold" />
