@@ -2,7 +2,7 @@
 classified 73 files      72 unique files.                              
        2 files ignored.
 
-github.com/AlDanial/cloc v 1.88  T=0.12 s (622.2 files/s, 47389.0 lines/s)
+github.com/AlDanial/cloc v 1.88  T=0.10 s (704.6 files/s, 53715.3 lines/s)
 -----------------------------------------------------------------------------------------------------------------------
 File                                                                                blank        comment           code
 -----------------------------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ File                                                                            
 ./java/com/example/rentalchemy/ui/forms/ItemListFragment.kt                            24              0            145
 ./res/layout/report_fragment.xml                                                       17              0            145
 ./res/layout/maintenance_fragment.xml                                                  27              0            138
-./java/com/example/rentalchemy/ui/forms/ExpenseFragment.kt                             20              0            136
+./java/com/example/rentalchemy/ui/forms/ExpenseFragment.kt                             22              0            137
 ./res/layout/income_fragment.xml                                                       27              0            133
 ./res/layout/tenant_info_fragment.xml                                                  23              0            118
 ./java/com/example/rentalchemy/ui/main/DashboardFragment.kt                            20              0            116
@@ -31,14 +31,14 @@ File                                                                            
 ./java/com/example/rentalchemy/ui/main/MainFragment.kt                                 16              2             64
 ./res/layout/appliance_row.xml                                                         11              0             63
 ./res/layout/main_fragment.xml                                                          7              0             61
-./java/com/example/rentalchemy/ui/adapters/ExpenseListAdapter.kt                       11              1             60
+./java/com/example/rentalchemy/ui/adapters/ExpenseListAdapter.kt                       13              1             60
 ./java/com/example/rentalchemy/database/api/MaintenanceRepository.kt                   10              0             59
-./java/com/example/rentalchemy/ui/adapters/AppliListAdapter.kt                         11              1             58
-./java/com/example/rentalchemy/ui/adapters/MaintListAdapter.kt                         14              1             58
 ./java/com/example/rentalchemy/database/api/ApplianceRepository.kt                     10              0             57
+./java/com/example/rentalchemy/ui/adapters/AppliListAdapter.kt                         11              2             57
 ./res/layout/expense_row.xml                                                           12              0             57
 ./java/com/example/rentalchemy/database/api/IncomeRepository.kt                        10              0             55
-./java/com/example/rentalchemy/ui/adapters/IncomeListAdapter.kt                        11              1             55
+./java/com/example/rentalchemy/ui/adapters/IncomeListAdapter.kt                        11              2             54
+./java/com/example/rentalchemy/ui/adapters/MaintListAdapter.kt                         14              5             54
 ./java/com/example/rentalchemy/ui/adapters/PropertyListAdapter.kt                      11              2             54
 ./java/com/example/rentalchemy/database/api/PropertyRepository.kt                      12              4             53
 ./res/layout/maintenance_row.xml                                                        8              0             50
@@ -79,16 +79,16 @@ File                                                                            
 ./res/values/ic_home_background.xml                                                     0              0              4
 ./graphql/com/example/rentalchemy/schema.json                                           0              0              1
 -----------------------------------------------------------------------------------------------------------------------
-SUM:                                                                                  818             59           4607
+SUM:                                                                                  822             65           4602
 -----------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-Kotlin                          34            520             49           2570
+Kotlin                          34            524             55           2565
 XML                             33            298             10           1996
 GraphQL                          4              0              0             40
 JSON                             1              0              0              1
 -------------------------------------------------------------------------------
-SUM:                            72            818             59           4607
+SUM:                            72            822             65           4602
 -------------------------------------------------------------------------------
