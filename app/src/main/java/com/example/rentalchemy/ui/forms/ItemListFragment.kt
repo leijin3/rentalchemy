@@ -16,9 +16,7 @@ import com.example.rentalchemy.ui.adapters.AppliListAdapter
 import com.example.rentalchemy.ui.adapters.ExpenseListAdapter
 import com.example.rentalchemy.ui.adapters.IncomeListAdapter
 import com.example.rentalchemy.ui.adapters.MaintListAdapter
-import com.example.rentalchemy.ui.main.DashboardFragment
 import com.example.rentalchemy.ui.main.MainViewModel
-import com.example.rentalchemy.ui.main.PropertyListFragment
 
 class ItemListFragment : Fragment() {
 
@@ -154,10 +152,10 @@ class ItemListFragment : Fragment() {
     private fun addButtonListener(type: String) {
         val itemFrag =
             when (type) {
-                "Maintenance" -> MaintenanceFragment.newInstance(true)
+                "Maintenance" -> MaintenanceFragment.newInstance(false)
                 "Appliance" -> ApplianceFragment.newInstance(false)
                 "Income" -> IncomeFragment.newInstance(false)
-                "Expense" -> ExpenseFragment.newInstance(true)
+                "Expense" -> ExpenseFragment.newInstance(false)
                 else -> Fragment()
             }
         parentFragmentManager
