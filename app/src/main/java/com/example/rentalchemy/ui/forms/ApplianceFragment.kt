@@ -60,6 +60,20 @@ class ApplianceFragment : Fragment() {
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
+        if (MainViewModel.selectedAppliance != null) {
+
+            val currentAppliance = MainViewModel.selectedAppliance
+
+            currentAppliance?.apply {
+                yearTV.text = this.year.toString()
+                monthTV.text = this.month.toString()
+                applianceTypeSpinner.setSelection(applianceTypes.indexOf(currentAppliance.type))
+                priceTV.text = this.price.toString()
+                dateTV.text = this.date_purchased
+                warrantyTV.text = this.warranty
+            }
+        }
+
         saveBut.setOnClickListener {
             val validPrice = (priceTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
             val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())

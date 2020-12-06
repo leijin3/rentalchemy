@@ -7,9 +7,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ApplianceRepository(private val jsApi: JsonServerApi) {
-    suspend fun getApplianceList(propertyId: Long): List<Appliance> {
-        return jsApi.getApplianceList(propertyId)
-    }
 
     fun create(applianceInfo: Appliance, onResult: (Appliance?) -> Unit) {
         jsApi.createAppliance(applianceInfo).enqueue(
@@ -20,6 +17,31 @@ class ApplianceRepository(private val jsApi: JsonServerApi) {
 
                 override fun onResponse(call: Call<Appliance>, response: Response<Appliance>) {
                     val newAppliance = response.body()
+                    onResult(newAppliance)
+                }
+            }
+        )
+    }
+
+    suspend fun getApplianceList(propertyId: Long): List<Appliance> {
+        return jsApi.getApplianceList(propertyId)
+    }
+
+    fun update(
+        id: Long,
+        newAppliance: Appliance,
+        onResult: (Appliance?) -> Unit
+    ) {
+        jsApi.updateAppliance(id, newAppliance).enqueue(
+            object : Callback<Appliance> {
+                override fun onFailure(call: Call<Appliance>, t: Throwable) {
+                    onResult(null)
+                }
+
+                override fun onResponse(
+                    call: Call<Appliance>,
+                    response: Response<Appliance>
+                ) {
                     onResult(newAppliance)
                 }
             }
