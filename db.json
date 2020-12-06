@@ -6869,15 +6869,6 @@
     },
     {
       "year": 2020,
-      "month": 4,
-      "id": 765,
-      "property_id": 33,
-      "description": "Nunc rhoncus dui vel sem.",
-      "contractor": "Heaney, Kirlin and Gutmann",
-      "date_finished": "4/23/2020"
-    },
-    {
-      "year": 2020,
       "month": 8,
       "id": 766,
       "property_id": 233,
@@ -8012,15 +8003,6 @@
     },
     {
       "year": 2020,
-      "month": 10,
-      "id": 892,
-      "property_id": 33,
-      "description": "Morbi quis tortor id nulla ultrices aliquet.",
-      "contractor": "Bashirian LLC",
-      "date_finished": "10/29/2020"
-    },
-    {
-      "year": 2020,
       "month": 6,
       "id": 893,
       "property_id": 174,
@@ -8765,15 +8747,6 @@
       "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
       "contractor": "Reichel LLC",
       "date_finished": "6/25/2020"
-    },
-    {
-      "year": 2020,
-      "month": 3,
-      "id": 978,
-      "property_id": 33,
-      "description": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      "contractor": "Wuckert Inc",
-      "date_finished": "3/11/2020"
     },
     {
       "year": 2020,
@@ -37892,13 +37865,13 @@
     },
     {
       "year": 2020,
-      "month": 12,
+      "month": 10,
+      "id": 1009,
       "property_id": 33,
-      "type": "Repair",
-      "date_spent": "12/02/2020",
-      "amount_spent": 1233,
-      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-12-58-07-450.jpg",
-      "id": 1009
+      "type": "utility",
+      "date_spent": "234",
+      "amount_spent": 345,
+      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-23-11-30-346.jpg"
     },
     {
       "year": 2020,
@@ -44606,25 +44579,6 @@
       "date_acquired": "5/4/1983",
       "year_built": "3/24/1925",
       "parking": 4
-    },
-    {
-      "year": 1983,
-      "month": 5,
-      "id": 249,
-      "user_id": 2,
-      "st_address": "01 Buena Vista Place",
-      "city": "Troy",
-      "state": "Michigan",
-      "zip": "48098",
-      "rent_amt": "$2468.94",
-      "type": "townhouse",
-      "sqft": 2309,
-      "num_beds": 4,
-      "num_baths": 3,
-      "cost_basis": "$147340.77",
-      "date_acquired": "5/22/1983",
-      "year_built": "9/28/1986",
-      "parking": 3
     },
     {
       "year": 2018,

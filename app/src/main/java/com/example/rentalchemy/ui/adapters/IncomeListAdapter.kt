@@ -53,11 +53,6 @@ class IncomeListAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
 
-        holder.itemView.setOnClickListener {
-            MainViewModel.selectedIncomeItem = getItem(position)
-            //itemClickListener()
-        }
-
         holder.itemView.setOnLongClickListener {
             MainViewModel.selectedIncomeItem = getItem(position)
             itemLongClickListener()

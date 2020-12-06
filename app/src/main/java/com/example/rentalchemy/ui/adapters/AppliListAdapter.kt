@@ -56,11 +56,6 @@ class AppliListAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
 
-        holder.itemView.setOnClickListener {
-            MainViewModel.selectedAppliance = getItem(position)
-            //itemClickListener()
-        }
-
         holder.itemView.setOnLongClickListener {
             MainViewModel.selectedAppliance = getItem(position)
             itemLongClickListener()
