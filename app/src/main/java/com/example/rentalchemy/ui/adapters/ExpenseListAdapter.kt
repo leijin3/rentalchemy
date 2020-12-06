@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -44,8 +45,7 @@ class ExpenseListAdapter(
             typeTV.text = item.type
             dateTV.text = item.date_spent
             amountTV.text = item.amount_spent.toString()
-            //TODO: display picture in row
-            //receiptIV.setImageResource(getImage(item.receipt_url))
+            receiptIV.setImageURI(item.receipt_url.toUri())
         }
     }
 

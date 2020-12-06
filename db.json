@@ -15789,15 +15789,6 @@
       "date_received": "1/14/2019"
     },
     {
-      "year": 2019,
-      "month": 5,
-      "id": 755,
-      "property_id": 91,
-      "type": "late fees",
-      "amt_received": "1496.27",
-      "date_received": "5/31/2019"
-    },
-    {
       "year": 2020,
       "month": 6,
       "id": 756,
@@ -22813,16 +22804,6 @@
       "price": "3755.73",
       "date_purchased": "4/16/2014",
       "warranty": "11/20/2023"
-    },
-    {
-      "year": 2013,
-      "month": null,
-      "id": 482,
-      "property_id": 91,
-      "type": "range",
-      "price": "4957.88",
-      "date_purchased": "3/30/2013",
-      "warranty": "5/25/2022"
     },
     {
       "year": 2006,
@@ -38005,6 +37986,86 @@
       "date_spent": "3/12/2020",
       "amount_spent": "2098.22",
       "receipt_url": "http://dummyimage.com/203x178.bmp/cc0000/ffffff"
+    },
+    {
+      "year": 2020,
+      "month": 12,
+      "property_id": 33,
+      "type": "Utility",
+      "date_spent": "12/03/2020",
+      "amount_spent": 123,
+      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-11-57-54-612.jpg",
+      "id": 1001
+    },
+    {
+      "year": 2017,
+      "month": 11,
+      "property_id": 33,
+      "type": "Utility",
+      "date_spent": "11/15/2017",
+      "amount_spent": 3827.97,
+      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-11-58-40-222.jpg",
+      "id": 1002
+    },
+    {
+      "year": 2017,
+      "month": 11,
+      "property_id": 33,
+      "type": "Utility",
+      "date_spent": "11/15/2017",
+      "amount_spent": 3827.97,
+      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-12-52-04-938.jpg",
+      "id": 1003
+    },
+    {
+      "year": 2017,
+      "month": 11,
+      "property_id": 33,
+      "type": "Utility",
+      "date_spent": "11/15/2017",
+      "amount_spent": 3827.97,
+      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-12-52-38-332.jpg",
+      "id": 1004
+    },
+    {
+      "year": 2017,
+      "month": 11,
+      "property_id": 33,
+      "type": "Utility",
+      "date_spent": "11/15/2017",
+      "amount_spent": 3827.97,
+      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-12-53-52-451.jpg",
+      "id": 1006
+    },
+    {
+      "year": 2017,
+      "month": 11,
+      "property_id": 33,
+      "type": "Utility",
+      "date_spent": "11/15/2017",
+      "amount_spent": 3827.97,
+      "receipt_url": "File Name Here",
+      "id": 1007
+    },
+    {
+      "year": 2017,
+      "month": 11,
+      "property_id": 33,
+      "type": "Utility",
+      "date_spent": "11/15/2017",
+      "amount_spent": 3827.97,
+      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-12-54-54-788.jpg",
+      "id": 1008
+    },
+    {
+      "year": 2020,
+      "month": 12,
+      "property_id": 33,
+      "type": "Repair",
+      "date_spent": "12/02/2020",
+      "amount_spent": 1233,
+      "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-12-58-07-450.jpg",
+      "id": 1009
     }
   ],
   "tenants": [
@@ -44762,30 +44823,130 @@
     }
   ],
   "users": [
-    { "id": 1, "user_name": "jzanneli0", "created_at": "12/10/2019" },
-    { "id": 2, "user_name": "test", "created_at": "6/10/2020" },
-    { "id": 3, "user_name": "achrystal2", "created_at": "6/11/2020" },
-    { "id": 4, "user_name": "keiler3", "created_at": "8/28/2020" },
-    { "id": 5, "user_name": "tdaen4", "created_at": "2/11/2020" },
-    { "id": 6, "user_name": "cbone5", "created_at": "7/11/2020" },
-    { "id": 7, "user_name": "ajoblin6", "created_at": "1/5/2020" },
-    { "id": 8, "user_name": "bfochs7", "created_at": "3/22/2020" },
-    { "id": 9, "user_name": "apavie8", "created_at": "8/18/2020" },
-    { "id": 10, "user_name": "kblood9", "created_at": "10/7/2020" },
-    { "id": 11, "user_name": "ctomkowicza", "created_at": "9/2/2020" },
-    { "id": 12, "user_name": "lsimnettb", "created_at": "10/19/2020" },
-    { "id": 13, "user_name": "rmacgillespiec", "created_at": "1/23/2020" },
-    { "id": 14, "user_name": "fmaccafferkyd", "created_at": "11/15/2019" },
-    { "id": 15, "user_name": "srizzardinie", "created_at": "3/22/2020" },
-    { "id": 16, "user_name": "oseniourf", "created_at": "3/8/2020" },
-    { "id": 17, "user_name": "cmacgheeg", "created_at": "6/18/2020" },
-    { "id": 18, "user_name": "spenningtonh", "created_at": "2/16/2020" },
-    { "id": 19, "user_name": "btrenouthi", "created_at": "12/22/2019" },
-    { "id": 20, "user_name": "vscreasej", "created_at": "2/2/2020" },
-    { "id": 21, "user_name": "scommuccik", "created_at": "5/29/2020" },
-    { "id": 22, "user_name": "shinschel", "created_at": "3/26/2020" },
-    { "id": 23, "user_name": "mgillyettm", "created_at": "12/8/2019" },
-    { "id": 24, "user_name": "igierthn", "created_at": "12/26/2019" },
-    { "id": 25, "user_name": "mshatliffeo", "created_at": "9/19/2020" }
+    {
+      "id": 1,
+      "user_name": "jzanneli0",
+      "created_at": "12/10/2019"
+    },
+    {
+      "id": 2,
+      "user_name": "test",
+      "created_at": "6/10/2020"
+    },
+    {
+      "id": 3,
+      "user_name": "achrystal2",
+      "created_at": "6/11/2020"
+    },
+    {
+      "id": 4,
+      "user_name": "keiler3",
+      "created_at": "8/28/2020"
+    },
+    {
+      "id": 5,
+      "user_name": "tdaen4",
+      "created_at": "2/11/2020"
+    },
+    {
+      "id": 6,
+      "user_name": "cbone5",
+      "created_at": "7/11/2020"
+    },
+    {
+      "id": 7,
+      "user_name": "ajoblin6",
+      "created_at": "1/5/2020"
+    },
+    {
+      "id": 8,
+      "user_name": "bfochs7",
+      "created_at": "3/22/2020"
+    },
+    {
+      "id": 9,
+      "user_name": "apavie8",
+      "created_at": "8/18/2020"
+    },
+    {
+      "id": 10,
+      "user_name": "kblood9",
+      "created_at": "10/7/2020"
+    },
+    {
+      "id": 11,
+      "user_name": "ctomkowicza",
+      "created_at": "9/2/2020"
+    },
+    {
+      "id": 12,
+      "user_name": "lsimnettb",
+      "created_at": "10/19/2020"
+    },
+    {
+      "id": 13,
+      "user_name": "rmacgillespiec",
+      "created_at": "1/23/2020"
+    },
+    {
+      "id": 14,
+      "user_name": "fmaccafferkyd",
+      "created_at": "11/15/2019"
+    },
+    {
+      "id": 15,
+      "user_name": "srizzardinie",
+      "created_at": "3/22/2020"
+    },
+    {
+      "id": 16,
+      "user_name": "oseniourf",
+      "created_at": "3/8/2020"
+    },
+    {
+      "id": 17,
+      "user_name": "cmacgheeg",
+      "created_at": "6/18/2020"
+    },
+    {
+      "id": 18,
+      "user_name": "spenningtonh",
+      "created_at": "2/16/2020"
+    },
+    {
+      "id": 19,
+      "user_name": "btrenouthi",
+      "created_at": "12/22/2019"
+    },
+    {
+      "id": 20,
+      "user_name": "vscreasej",
+      "created_at": "2/2/2020"
+    },
+    {
+      "id": 21,
+      "user_name": "scommuccik",
+      "created_at": "5/29/2020"
+    },
+    {
+      "id": 22,
+      "user_name": "shinschel",
+      "created_at": "3/26/2020"
+    },
+    {
+      "id": 23,
+      "user_name": "mgillyettm",
+      "created_at": "12/8/2019"
+    },
+    {
+      "id": 24,
+      "user_name": "igierthn",
+      "created_at": "12/26/2019"
+    },
+    {
+      "id": 25,
+      "user_name": "mshatliffeo",
+      "created_at": "9/19/2020"
+    }
   ]
 }
