@@ -59,6 +59,19 @@ class IncomeFragment : Fragment() {
 
         addressTV.text = MainViewModel.selectedProperty?.streetAddress ?: "Address Here"
 
+        if (MainViewModel.selectedIncomeItem != null) {
+
+            val currentIncomeItem = MainViewModel.selectedIncomeItem
+
+            currentIncomeItem?.apply {
+                yearTV.text = this.year.toString()
+                monthTV.text = this.month.toString()
+                incomeTypeSpinner.setSelection(incomeTypes.indexOf(currentIncomeItem.type))
+                amountTV.text = this.amt_received.toString()
+                dateTV.text = this.date_received
+            }
+        }
+
         saveBut.setOnClickListener {
             val validAmount = (amountTV.text.toString()).matches("\\d+(\\.\\d{1,2})?".toRegex())
             val validMonth = (monthTV.text.toString()).matches("\\d{1,2}".toRegex())

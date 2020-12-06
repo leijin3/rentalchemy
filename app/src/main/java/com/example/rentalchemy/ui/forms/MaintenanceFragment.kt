@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.rentalchemy.R
+import com.example.rentalchemy.database.model.MaintenanceItem
 import com.example.rentalchemy.ui.main.MainViewModel
-import java.lang.Float
 
 class MaintenanceFragment : Fragment() {
 
@@ -47,11 +46,26 @@ class MaintenanceFragment : Fragment() {
         val dateFinishedTV = view.findViewById<TextView>(R.id.date_finished)
         val monthTV = view.findViewById<TextView>(R.id.month_finished)
         val yearTV = view.findViewById<TextView>(R.id.year_finished)
-        val saveBut = view.findViewById<Button>(R.id.maintenance_saveBut)
+        val editSaveBut = view.findViewById<Button>(R.id.maintenance_saveBut)
+
+        if (MainViewModel.selectedProperty != null) {
+
+            val currentMaintenanceItem = MainViewModel.selectedMaintenanceItem
+
+            currentMaintenanceItem?.apply {
+                descriptionTV.text = this.description
+                contractorTV.text = this.contractor
+                dateFinishedTV.text = this.date_finished
+                monthTV.text = this.month.toString()
+                yearTV.text = this.year.toString()
+            }
+        }
+
+
         if (isEditing) {
-            saveBut.text = "Save Maintenance Item"
+            editSaveBut.text = "Save Maintenance Item"
         } else {
-            saveBut.text = "Edit Maintenance Item"
+            editSaveBut.text = "Edit Maintenance Item"
         }
 
 
@@ -64,7 +78,7 @@ class MaintenanceFragment : Fragment() {
             dateFinishedTV.isEnabled = isEditing
             monthTV.isEnabled = isEditing
             yearTV.isEnabled = isEditing
-            saveBut.text = "Save Maintenance Item"
+            editSaveBut.text = "Save Maintenance Item"
 
         }
 
@@ -75,18 +89,22 @@ class MaintenanceFragment : Fragment() {
             dateFinishedTV.isEnabled = isEditing
             monthTV.isEnabled = isEditing
             yearTV.isEnabled = isEditing
-            saveBut.text = "Edit Maintenance Item"
+            editSaveBut.text = "Edit Maintenance Item"
 
         }
 
-        saveBut.setOnClickListener {
+        editSaveBut.setOnClickListener {
             if (isEditing) {
-                viewModel.createMaintenanceItem(
-                    yearTV.text.toString().toInt(),
-                    monthTV.text.toString().toInt(),
-                    descriptionTV.text.toString(),
-                    contractorTV.text.toString(),
-                    dateFinishedTV.text.toString(),
+                viewModel.updateMaintenanceItem(
+                    MaintenanceItem(
+                        yearTV.text.toString().toInt(),
+                        monthTV.text.toString().toInt(),
+                        MainViewModel.selectedMaintenanceItem!!.id,
+                        MainViewModel.selectedProperty!!.id,
+                        descriptionTV.text.toString(),
+                        contractorTV.text.toString(),
+                        dateFinishedTV.text.toString(),
+                    )
                 )
                 disableEditTexts()
             } else {

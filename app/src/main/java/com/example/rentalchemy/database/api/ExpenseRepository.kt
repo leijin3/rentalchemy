@@ -9,11 +9,8 @@ class ExpenseRepository(private val jsApi: JsonServerApi) {
 
     //functions to serve data to the ViewModel
 
-    suspend fun getExpenseList(propertyId: Long): List<Expense> {
-        return jsApi.getExpenseList(propertyId)
-    }
 
-    fun add(expenseInfo: Expense, onResult: (Expense?) -> Unit) {
+    fun create(expenseInfo: Expense, onResult: (Expense?) -> Unit) {
         jsApi.createExpense(expenseInfo).enqueue(
             object : Callback<Expense> {
                 override fun onFailure(call: Call<Expense>, t: Throwable) {
@@ -30,6 +27,23 @@ class ExpenseRepository(private val jsApi: JsonServerApi) {
         )
     }
 
+    fun update(id: Long, newExpense: Expense, onResult: (Expense?) -> Unit) {
+        jsApi.updateExpense(id, newExpense).enqueue(
+            object : Callback<Expense> {
+                override fun onFailure(call: Call<Expense>, t: Throwable) {
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Expense>, response: Response<Expense>) {
+                    onResult(newExpense)
+                }
+            }
+        )
+    }
+
+    suspend fun getExpenseList(propertyId: Long): List<Expense> {
+        return jsApi.getExpenseList(propertyId)
+    }
 
     fun delete(propertyId: Long, onResult: (Expense?) -> Unit) {
         jsApi.deleteExpense(propertyId).enqueue(
@@ -40,20 +54,6 @@ class ExpenseRepository(private val jsApi: JsonServerApi) {
 
                 override fun onResponse(call: Call<Expense>, response: Response<Expense>) {
 
-                }
-            }
-        )
-    }
-
-    fun update(expenseId: Long, newExpense: Expense, onResult: (Expense?) -> Unit) {
-        jsApi.updateExpense(expenseId, newExpense).enqueue(
-            object : Callback<Expense> {
-                override fun onFailure(call: Call<Expense>, t: Throwable) {
-                    onResult(null)
-                }
-
-                override fun onResponse(call: Call<Expense>, response: Response<Expense>) {
-                    onResult(newExpense)
                 }
             }
         )

@@ -53,6 +53,7 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:hint="Purchase and install new furnace."
             android:textSize="18sp" />
     </LinearLayout>
@@ -75,6 +76,7 @@
             android:id="@+id/contractor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:hint="Total HVAC Solutions, 527-6543"
             android:textSize="18sp" />
 
@@ -98,6 +100,7 @@
             android:id="@+id/date_finished"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:hint="10/23/2020"
             android:textSize="18sp" />
 
@@ -121,6 +124,7 @@
             android:id="@+id/month_finished"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:hint="10"
             android:textSize="18sp" />
 
@@ -144,6 +148,7 @@
             android:id="@+id/year_finished"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:hint="2020"
             android:textSize="18sp" />
 
