@@ -88,3 +88,4 @@ lint/tmp/
 .history
 
 **/node_modules
+.DS_Store

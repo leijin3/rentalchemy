@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: Rentalchemy REST API
+  description: This is the Rentalchemy REST API for interfacing with database models.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+  - url: https://localhost:3000
+paths:
+  /properties:
+    get:
+      tags:
+        - User-side
+      summary: Returns a list of all properties
+      operationId: getProperties
+      responses:
+        200:
+          description: 'Success '
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Property'
+        500:
+          description: Database connection error
+          content: {}
+  /properties/{user_id}:
+    get:
+      tags:
+        - User-side
+      summary: Get a list of properties owned by the specified user
+      description: Given a tool_id send a response with the tool information for it
+      operationId: getPropertiesByToolId
+      parameters:
+        - name: user_id
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Property'
+        404:
+          description: Invalid user_id
+          content: {}
+        500:
+          description: Database connection error
+          content: {}
+
+  /users:
+    get:
+      tags:
+        - User-side
+      summary: Returns a list of all users
+      responses:
+        200:
+          description: 'Success '
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        500:
+          description: Database connection error
+          content: {}
+
+components:
+  schemas:
+    Property:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier of a property.
+        user_id:
+          type: integer
+          description: The property owner's user id.
+        st_address:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: The city of the property
+        state:
+          type: string
+          description: The state of the property
+        zip:
+          type: string
+          description: The zipcode of the property
+        rent_amt:
+          type: number
+          description: The monthly rent amount
+        sqft:
+          type: integer
+        num_beds:
+          type: integer
+        num_baths:
+          type: integer
+        nun_baths:
+          type: integer
+        cost_basis:
+          type: number
+        date_aquired:
+          type: string
+        year_built:
+          type: number
+        parking:
+          type: integer
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier of a user.
+    Tenant:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier of a tenant.
+    Maintenance:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier of a maintenance item.
+    Income:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier of an income item.
+    Expense:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier of an expense item.
+    Appliance:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier of a appliance.
