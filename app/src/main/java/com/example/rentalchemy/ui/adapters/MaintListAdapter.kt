@@ -56,11 +56,6 @@ class MaintListAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
 
-//        holder.itemView.setOnClickListener {
-//                   MainViewModel.selectedMaintenanceItem = getItem(position)
-            //itemClickListener()
-//        }
-
         holder.itemView.setOnLongClickListener {
             MainViewModel.selectedMaintenanceItem = getItem(position)
             itemLongClickListener()
