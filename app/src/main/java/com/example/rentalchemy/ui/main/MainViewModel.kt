@@ -197,6 +197,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedMaintenanceItems.postValue(maintenanceRepository.getMaintenanceList(propertyId))
     }
 
+    fun updateMaintenanceItem(newMaintenanceItem: MaintenanceItem) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+
+        maintenanceRepository.update(selectedMaintenanceItem!!.id, newMaintenanceItem) {
+            if (it?.id != null) {
+                selectedMaintenanceItem = newMaintenanceItem
+                Toast.makeText(getApplication(), "Maintenance Item updated!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Log.d("XXX", "Not updated")
+            }
+        }
+    }
+
     fun deleteMaintenanceItem(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
                 + Dispatchers.IO
