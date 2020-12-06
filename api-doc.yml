@@ -10,9 +10,15 @@ paths:
   /properties:
     get:
       tags:
-        - User-side
+        - Property
       summary: Returns a list of all properties
-      operationId: getProperties
+      operationId: getProperty
+      parameters:
+        - name: user_id
+          in: query
+          description: Shows properties owned by the user.
+          schema:
+            type: integer
       responses:
         200:
           description: 'Success '
@@ -25,17 +31,42 @@ paths:
         500:
           description: Database connection error
           content: {}
-  /properties/{user_id}:
+    post:
+      tags:
+        - Property
+      summary: Create a property for a user
+      operationId: postProperty
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - user_id
+              properties:
+                user_id:
+                  type: integer
+                  description: The owner of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Property'
+
+  /properties/{id}:
     get:
       tags:
-        - User-side
-      summary: Get a list of properties owned by the specified user
-      description: Given a tool_id send a response with the tool information for it
-      operationId: getPropertiesByToolId
+        - Property
+      summary: Get a property with specified id
+      description: Given a id send a response with the property information for it
+      operationId: getPropertiesById
       parameters:
-        - name: user_id
+        - name: id
           in: path
-          description: ID of the user
+          description: ID of the property
           required: true
           schema:
             type: integer
@@ -54,11 +85,591 @@ paths:
         500:
           description: Database connection error
           content: {}
+    delete:
+      tags:
+        - Property
+      summary: Delete a property
+      operationId: deleteProperty
+      parameters:
+        - name: id
+          in: path
+          description: ID of the property
+          required: true
+          schema:
+            type: integer
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Property'
+    put:
+      tags:
+        - Property
+      summary: Update a property
+      operationId: putProperty
+      parameters:
+        - name: id
+          in: path
+          description: ID of the property
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - user_id
+              properties:
+                user_id:
+                  type: integer
+                  description: The owner of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Property'
+
+  /maintenances:
+    get:
+      tags:
+        - Maintenance
+      summary: Returns a list of all maintenance items
+      operationId: getMainteanceItems
+      parameters:
+        - name: property_id
+          in: query
+          description: id of the property.
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 'Success '
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Maintenance'
+        500:
+          description: Database connection error
+          content: {}
+
+    post:
+      tags:
+        - Maintenance
+      summary: Create a maintenance item for a property
+      operationId: postMaintenanceItem
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - property_id
+              properties:
+                user_id:
+                  type: integer
+                  description: The id of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Property'
+
+  /maintenances/{id}:
+    get:
+      tags:
+        - Maintenance
+      summary: Get a maintenance item with specified id
+      description: Given a id send a response with the property maintenance item for it
+      operationId: getMaintenanceItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the maintenance item
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Maintenance'
+        404:
+          description: Invalid id
+          content: {}
+        500:
+          description: Database connection error
+          content: {}
+    delete:
+      tags:
+        - Maintenance
+      summary: Delete a maintenance item
+      operationId: deleteMaintenanceItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the property
+          required: true
+          schema:
+            type: integer
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Property'
+    put:
+      tags:
+        - Maintenance
+      summary: Update a maintenance item
+      operationId: putMaintenanceItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the maintenance
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - property_id
+              properties:
+                user_id:
+                  type: integer
+                  description: The id of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Maintenance'
+
+  /incomes:
+    get:
+      tags:
+        - Income
+      summary: Returns a list of all income items
+      operationId: getIncomeItems
+      parameters:
+        - name: property_id
+          in: query
+          description: id of the property.
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 'Success '
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Income'
+        500:
+          description: Database connection error
+          content: {}
+
+    post:
+      tags:
+        - Income
+      summary: Create an income item for a property
+      operationId: postIncomeItem
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - property_id
+              properties:
+                user_id:
+                  type: integer
+                  description: The id of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Income'
+
+  /incomes/{id}:
+    get:
+      tags:
+        - Income
+      summary: Get an income item with specified id
+      description: Given a id send a response with the property income item for it
+      operationId: getIncomeItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the income item
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Income'
+        404:
+          description: Invalid id
+          content: {}
+        500:
+          description: Database connection error
+          content: {}
+    delete:
+      tags:
+        - Income
+      summary: Delete an income item
+      operationId: deleteIncomeItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the income item
+          required: true
+          schema:
+            type: integer
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Income'
+    put:
+      tags:
+        - Income
+      summary: Update an income item
+      operationId: putIncomeItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the income item
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - user_id
+              properties:
+                property_id:
+                  type: integer
+                  description: The id of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Income'
+
+  /expenses:
+    get:
+      tags:
+        - Expense
+      summary: Returns a list of all expense items
+      operationId: getExpenseItems
+      parameters:
+        - name: property_id
+          in: query
+          description: id of the property.
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 'Success '
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Expense'
+        500:
+          description: Database connection error
+          content: {}
+
+    post:
+      tags:
+        - Expense
+      summary: Create an expense item for a property
+      operationId: postExpenseItem
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - property_id
+              properties:
+                user_id:
+                  type: integer
+                  description: The id of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Expense'
+
+  /expenses/{id}:
+    get:
+      tags:
+        - Expense
+      summary: Get an expense item with specified id
+      description: Given a id send a response with the property expense item for it
+      operationId: getExpenseItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the expense item
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Expense'
+        404:
+          description: Invalid id
+          content: {}
+        500:
+          description: Database connection error
+          content: {}
+    delete:
+      tags:
+        - Expense
+      summary: Delete an expense item
+      operationId: deleteExpenseItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the expense item
+          required: true
+          schema:
+            type: integer
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Expense'
+    put:
+      tags:
+        - Expense
+      summary: Update an expense item
+      operationId: putExpenseItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the expense item
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - user_id
+              properties:
+                property_id:
+                  type: integer
+                  description: The id of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Expense'
+
+  /appliances:
+    get:
+      tags:
+        - Appliance
+      summary: Returns a list of all appliance items
+      operationId: getApplianceItems
+      parameters:
+        - name: property_id
+          in: query
+          description: id of the property.
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 'Success '
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appliance'
+        500:
+          description: Database connection error
+          content: {}
+
+    post:
+      tags:
+        - Appliance
+      summary: Create an appliance item for a property
+      operationId: postApplianceItem
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - property_id
+              properties:
+                user_id:
+                  type: integer
+                  description: The id of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appliance'
+
+  /appliances/{id}:
+    get:
+      tags:
+        - Appliance
+      summary: Get an appliance item with specified id
+      description: Given a id send a response with the property appliance item for it
+      operationId: getApplianceItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the appliance item
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appliance'
+        404:
+          description: Invalid id
+          content: {}
+        500:
+          description: Database connection error
+          content: {}
+    delete:
+      tags:
+        - Appliance
+      summary: Delete an appliance item
+      operationId: deleteApplianceItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the appliance item
+          required: true
+          schema:
+            type: integer
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appliance'
+    put:
+      tags:
+        - Appliance
+      summary: Update an appliance item
+      operationId: putApplianceItemById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the appliance item
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - user_id
+              properties:
+                property_id:
+                  type: integer
+                  description: The id of the property
+      responses:
+        201:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appliance'
 
   /users:
     get:
       tags:
-        - User-side
+        - User
       summary: Returns a list of all users
       responses:
         200:
