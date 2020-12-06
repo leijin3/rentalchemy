@@ -18,8 +18,28 @@ class IncomeRepository(private val jsApi: JsonServerApi) {
                 }
 
                 override fun onResponse(call: Call<IncomeItem>, response: Response<IncomeItem>) {
-                    val incomeItemInfo = response.body()
                     onResult(incomeItemInfo)
+                }
+            }
+        )
+    }
+
+    fun update(
+        id: Long,
+        newIncomeItem: IncomeItem,
+        onResult: (IncomeItem?) -> Unit
+    ) {
+        jsApi.updateIncomeItem(id, newIncomeItem).enqueue(
+            object : Callback<IncomeItem> {
+                override fun onFailure(call: Call<IncomeItem>, t: Throwable) {
+                    onResult(null)
+                }
+
+                override fun onResponse(
+                    call: Call<IncomeItem>,
+                    response: Response<IncomeItem>
+                ) {
+                    onResult(newIncomeItem)
                 }
             }
         )

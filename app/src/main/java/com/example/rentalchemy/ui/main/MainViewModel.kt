@@ -269,7 +269,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedAppliances.postValue(applianceRepository.getApplianceList(propertyId))
     }
 
-    // TODO: updateAppliances(id: Long)
+    fun updateAppliances(newAppliance: Appliance) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        applianceRepository.update(selectedAppliance!!.id, newAppliance) {
+            if (it?.id != null) {
+                selectedAppliance = newAppliance
+                Toast.makeText(getApplication(), "Appliance updated!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Log.d("XXX", "Appliance Not updated")
+            }
+        }
+    }
 
     fun deleteAppliance(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
@@ -323,7 +336,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedIncomeItems.postValue(incomeRepository.getIncomeList(propertyId))
     }
 
-    // TODO: updateIncomeItem(id: Long)
+    fun updateIncomeItem(newIncomeItem: IncomeItem) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        incomeRepository.update(selectedIncomeItem!!.id, newIncomeItem) {
+            if (it?.id != null) {
+                selectedIncomeItem = newIncomeItem
+                Toast.makeText(getApplication(), "Income item updated!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Log.d("XXX", "Income Not updated")
+            }
+        }
+    }
 
     fun deleteIncomeItem(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
@@ -366,7 +392,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 receipt_url = receiptURL
             )
 
-            expenseRepository.add(newExpense) {
+            expenseRepository.create(newExpense) {
                 if (it?.id != null) {
                     fetchExpenses(selectedProperty!!.id)
                 } else {
@@ -382,7 +408,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchedExpenses.postValue(expenseRepository.getExpenseList(propertyId))
     }
 
-    // TODO: updateExpense(id: Long)
+    fun updateExpense(newExpense: Expense) = viewModelScope.launch(
+        context = viewModelScope.coroutineContext
+                + Dispatchers.IO
+    ) {
+        expenseRepository.update(selectedExpense!!.id, newExpense) {
+            if (it?.id != null) {
+                selectedExpense = newExpense
+                Toast.makeText(getApplication(), "Expense updated!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Log.d("XXX", "Expense Not updated")
+            }
+        }
+    }
 
     fun deleteExpense(id: Long) = viewModelScope.launch(
         context = viewModelScope.coroutineContext
