@@ -5,7 +5,7 @@
 ### Local development
 
 
-- Make sure you have [Node](https://nodejs.org/en/download/) installed
+#### Make sure you have [Node](https://nodejs.org/en/download/) installed
 ```sh
 # Install dependencies (only need to run once)
 npm install
