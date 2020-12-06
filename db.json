@@ -27941,16 +27941,6 @@
       "receipt_url": "http://dummyimage.com/186x196.bmp/ff4444/ffffff"
     },
     {
-      "year": 2017,
-      "month": 11,
-      "id": 5,
-      "property_id": 33,
-      "type": "tax",
-      "date_spent": "11/15/2017",
-      "amount_spent": "3827.97",
-      "receipt_url": "http://dummyimage.com/218x240.bmp/ff4444/ffffff"
-    },
-    {
       "year": 2015,
       "month": 11,
       "id": 6,
@@ -37909,6 +37899,16 @@
       "amount_spent": 1233,
       "receipt_url": "file:///storage/emulated/0/Android/media/com.example.rentalchemy/Rentalchemy/2020-12-05-12-58-07-450.jpg",
       "id": 1009
+    },
+    {
+      "year": 2020,
+      "month": 10,
+      "property_id": 169,
+      "type": "utility",
+      "date_spent": "10/2/2020",
+      "amount_spent": 4258.94,
+      "receipt_url": "File Name Here",
+      "id": 1010
     }
   ],
   "tenants": [
