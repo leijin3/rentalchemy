@@ -1,0 +1,94 @@
+      73 text files.
+classified 73 files      72 unique files.                              
+       2 files ignored.
+
+github.com/AlDanial/cloc v 1.88  T=0.09 s (772.9 files/s, 58867.0 lines/s)
+-----------------------------------------------------------------------------------------------------------------------
+File                                                                                blank        comment           code
+-----------------------------------------------------------------------------------------------------------------------
+./java/com/example/rentalchemy/ui/main/MainViewModel.kt                                68             13            452
+./res/layout/property_detail_fragment.xml                                              49              0            291
+./java/com/example/rentalchemy/ui/main/PropertyDetailFragment.kt                       25              3            192
+./res/drawable/ic_launcher_background.xml                                               0              0            170
+./java/com/example/rentalchemy/database/api/ReportGenerator.kt                         48              0            155
+./res/layout/appliance_fragment.xml                                                    32              0            152
+./res/layout/expense_fragment.xml                                                      31              0            148
+./java/com/example/rentalchemy/ui/forms/ItemListFragment.kt                            24              0            145
+./res/layout/report_fragment.xml                                                       17              0            145
+./res/layout/maintenance_fragment.xml                                                  27              0            138
+./java/com/example/rentalchemy/ui/forms/ExpenseFragment.kt                             20              0            136
+./res/layout/income_fragment.xml                                                       27              0            133
+./res/layout/tenant_info_fragment.xml                                                  23              0            118
+./java/com/example/rentalchemy/ui/main/DashboardFragment.kt                            20              0            116
+./res/layout/property_dashboard.xml                                                    14              0            110
+./java/com/example/rentalchemy/ui/forms/CameraFragment.kt                              33              4            108
+./java/com/example/rentalchemy/ui/forms/MaintenanceFragment.kt                         20              0             96
+./java/com/example/rentalchemy/database/api/JsonServerApi.kt                           34              6             93
+./java/com/example/rentalchemy/ui/forms/ApplianceFragment.kt                           15              0             82
+./java/com/example/rentalchemy/ui/forms/IncomeFragment.kt                              15              0             81
+./java/com/example/rentalchemy/ui/forms/TenantInfoFragment.kt                          17              5             70
+./java/com/example/rentalchemy/ui/main/PropertyListFragment.kt                         14              3             70
+./java/com/example/rentalchemy/ui/main/MainFragment.kt                                 16              2             64
+./res/layout/appliance_row.xml                                                         11              0             63
+./res/layout/main_fragment.xml                                                          7              0             61
+./java/com/example/rentalchemy/ui/adapters/ExpenseListAdapter.kt                       11              1             60
+./java/com/example/rentalchemy/database/api/MaintenanceRepository.kt                   10              0             59
+./java/com/example/rentalchemy/ui/adapters/AppliListAdapter.kt                         11              1             58
+./java/com/example/rentalchemy/ui/adapters/MaintListAdapter.kt                         14              1             58
+./java/com/example/rentalchemy/database/api/ApplianceRepository.kt                     10              0             57
+./res/layout/expense_row.xml                                                           12              0             57
+./java/com/example/rentalchemy/database/api/IncomeRepository.kt                        10              0             55
+./java/com/example/rentalchemy/ui/adapters/IncomeListAdapter.kt                        11              1             55
+./java/com/example/rentalchemy/ui/adapters/PropertyListAdapter.kt                      11              2             54
+./java/com/example/rentalchemy/database/api/PropertyRepository.kt                      12              4             53
+./res/layout/maintenance_row.xml                                                        8              0             50
+./java/com/example/rentalchemy/ui/main/ReportFragment.kt                               14              0             48
+./java/com/example/rentalchemy/database/api/ExpenseRepository.kt                       14              1             46
+./res/layout/income_row.xml                                                             8              0             44
+./res/layout/property_row.xml                                                           8              0             44
+./res/layout/item_list_fragment.xml                                                     6              0             42
+./res/drawable-v24/ic_launcher_foreground.xml                                           0              0             30
+./res/layout/property_list_fragment.xml                                                 4              0             26
+./res/layout/camera_fragment.xml                                                        3              0             24
+./AndroidManifest.xml                                                                   3              0             23
+./java/com/example/rentalchemy/database/model/Property.kt                               2              1             23
+./java/com/example/rentalchemy/MainActivity.kt                                          6              0             18
+./res/drawable/ic_home_foreground.xml                                                   0              0             15
+./java/com/example/rentalchemy/database/model/Appliance.kt                              2              0             14
+./res/values/colors.xml                                                                 0              0             14
+./java/com/example/rentalchemy/database/model/Expense.kt                                3              0             13
+./java/com/example/rentalchemy/database/model/IncomeItem.kt                             2              0             12
+./res/values/appliance_type.xml                                                         2              0             12
+./res/values/expense_type.xml                                                           2              0             12
+./res/values-night/themes.xml                                                           0              5             11
+./res/values/strings.xml                                                                0              0             11
+./res/values/themes.xml                                                                 0              5             11
+./graphql/com/example/rentalchemy/MaintenanceHistory.graphql                            0              0             10
+./graphql/com/example/rentalchemy/YearlyExpense.graphql                                 0              0             10
+./graphql/com/example/rentalchemy/YearlyIncome.graphql                                  0              0             10
+./graphql/com/example/rentalchemy/YearlyMaintenance.graphql                             0              0             10
+./res/values/income_type.xml                                                            2              0             10
+./res/values/property_type.xml                                                          2              0             10
+./java/com/example/rentalchemy/database/model/MaintenanceItem.kt                        2              0              8
+./java/com/example/rentalchemy/database/model/Tenant.kt                                 2              0              8
+./res/layout/main_activity.xml                                                          0              0              7
+./java/com/example/rentalchemy/database/model/User.kt                                   2              0              6
+./java/com/example/rentalchemy/database/api/Apollo.kt                                   2              1              5
+./res/mipmap-anydpi-v26/ic_home.xml                                                     0              0              5
+./res/mipmap-anydpi-v26/ic_launcher_round.xml                                           0              0              5
+./res/values/ic_home_background.xml                                                     0              0              4
+./graphql/com/example/rentalchemy/schema.json                                           0              0              1
+-----------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                  818             59           4607
+-----------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Kotlin                          34            520             49           2570
+XML                             33            298             10           1996
+GraphQL                          4              0              0             40
+JSON                             1              0              0              1
+-------------------------------------------------------------------------------
+SUM:                            72            818             59           4607
+-------------------------------------------------------------------------------
