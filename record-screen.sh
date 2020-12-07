@@ -38,6 +38,6 @@ ffmpeg -hide_banner -loglevel panic \
   -vf scale=1024:-1 -profile:v baseline -level 3.0 -pix_fmt yuv420p \
   -c:v libx264 -c:a aac -crf 30 -movflags faststart $filename.mp4
 
-rm $filename.mkv
+#rm $filename.mkv
 
 echo Done!

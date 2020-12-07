@@ -122,19 +122,30 @@ class ExpenseFragment : Fragment() {
                 val validYear = (yearTV.text.toString()).matches("\\d{4}".toRegex())
 
                 if (validPrice && validMonth && validYear) {
-                    viewModel.updateExpense(
-                        Expense(
+                    if (MainViewModel.selectedExpense == null) {
+                        viewModel.createExpense(
                             parseInt(yearTV.text.toString()),
                             parseInt(monthTV.text.toString()),
-                            MainViewModel.selectedExpense!!.id,
                             MainViewModel.selectedProperty!!.id,
                             expenseTypeSpinner.selectedItem.toString(),
-                            dateTV.text.toString(),
                             parseFloat(amountTV.text.toString()),
+                            dateTV.text.toString(),
                             receiptURL
                         )
-
-                    )
+                    }else {
+                        viewModel.updateExpense(
+                            Expense(
+                                parseInt(yearTV.text.toString()),
+                                parseInt(monthTV.text.toString()),
+                                MainViewModel.selectedExpense!!.id,
+                                MainViewModel.selectedProperty!!.id,
+                                expenseTypeSpinner.selectedItem.toString(),
+                                dateTV.text.toString(),
+                                parseFloat(amountTV.text.toString()),
+                                receiptURL
+                            )
+                        )
+                    }
                     viewModel.clearCurrentPhoto()
                     receiptIV.setImageURI(receiptURL.toUri())
                     saveBut.text = "Edit Expense"
